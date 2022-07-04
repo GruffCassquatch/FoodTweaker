@@ -116,47 +116,47 @@ namespace FoodTweaker
         public Choice caloriesFish = Choice.Default;
 
         [Name("         Coho Salmon calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Coho Salmon.\nDefault Game Value: 454.5\nRealistic Value: 1780")]
+        [Description("Set the calorie value of 1kg of COOKED Coho Salmon.\nDefault Game Value: 454.5\nRealistic Value: 1390")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
-        public float salmonCooked = 455;
+        public float salmonCooked = 1390;
 
         [Name("         Lake Whitefish calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Lake Whitefish.\nDefault Game Value: 383.5\nRealistic Value: 1720")]
+        [Description("Set the calorie value of 1kg of COOKED Lake Whitefish.\nDefault Game Value: 383.5\nRealistic Value: 1340")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
-        public float whitefishCooked = 385;
+        public float whitefishCooked = 1340;
 
         [Name("         Rainbow Trout calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Rainbow Trout.\nDefault Game Value: 383.5\nRealistic Value: 1690")]
+        [Description("Set the calorie value of 1kg of COOKED Rainbow Trout.\nDefault Game Value: 383.5\nRealistic Value: 1500")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
-        public float troutCooked = 385;
+        public float troutCooked = 1500;
 
         [Name("         Smallmouth Bass calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Smallmouth Bass.\nDefault Game Value: 454.5\nRealistic Value: 1450")]
+        [Description("Set the calorie value of 1kg of COOKED Smallmouth Bass.\nDefault Game Value: 454.5\nRealistic Value: 1460")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
-        public float bassCooked = 455;
+        public float bassCooked = 1460;
 
         [Name("Fish Shrinkage & Cleaning Loss")]
-        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%+\nCUSTOM: Set your own values.")]
+        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%\nCUSTOM: Set your own values.")]
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice fishShrinkage = Choice.Default;
 
         [Name("         Coho Salmon")]
-        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%+")]
+        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float salmonShrinks = 0.33f;
 
         [Name("         Lake Whitefish")]
-        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%+")]
+        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float whitefishShrinks = 0.33f;
 
         [Name("         Rainbow Trout")]
-        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%+")]
+        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float troutShrinks = 0.33f;
 
         [Name("         Smallmouth Bass")]
-        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%+")]
+        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float bassShrinks = 0.33f;
 
@@ -260,7 +260,7 @@ namespace FoodTweaker
         public float beefJerky = 350;
 
         [Name("         Cattail Stalk")]
-        [Description("Default Game Value: 150\nRealistic Value: 25 (estimated)")]
+        [Description("Default Game Value: 150\nRealistic Value: 15 (estimated)")]
         [Slider(5, 500, 100, NumberFormat = "{0:0.#}")]
         public float cattailStalk = 150;
 
@@ -420,6 +420,7 @@ namespace FoodTweaker
             SetFieldVisible(nameof(whitefishCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
             SetFieldVisible(nameof(troutCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
             SetFieldVisible(nameof(bassCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
+            SetFieldVisible(nameof(mreHeating), Settings.settings.modFunction == true);
         }
     }
 

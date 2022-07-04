@@ -78,7 +78,7 @@ namespace FoodTweaker
                         }
 
                         // Meat
-                        if (__instance.m_FoodItem.m_IsMeat)
+                        if (__instance.m_FoodItem.m_IsMeat && (Settings.settings.caloriesMeat != Choice.Default || Settings.settings.meatShrinkage != Choice.Default))
                         {
                             // Shrinkage
                             float bearShrinkage = 1f;
@@ -182,7 +182,7 @@ namespace FoodTweaker
                         }
 
                         // Fish
-                        else if (__instance.m_FoodItem.m_IsFish)
+                        else if (__instance.m_FoodItem.m_IsFish && (Settings.settings.caloriesFish != Choice.Default || Settings.settings.fishShrinkage != Choice.Default))
                         {
                             // Shrinkage
                             float salmonShrinkage = 0.66f;
@@ -213,10 +213,10 @@ namespace FoodTweaker
 
                             if (Settings.settings.caloriesFish == Choice.Realistic)
                             {
-                                cookedSalmonCalories = 1780;
-                                cookedWhitefishCalories = 1720;
-                                cookedTroutCalories = 1690;
-                                cookedBassCalories = 1450;
+                                cookedSalmonCalories = 1390;
+                                cookedWhitefishCalories = 1340;
+                                cookedTroutCalories = 1500;
+                                cookedBassCalories = 1460;
                             }
                             else if (Settings.settings.caloriesFish == Choice.Custom)
                             {
@@ -280,7 +280,7 @@ namespace FoodTweaker
                         }
 
                         // Drinks
-                        else if (__instance.m_FoodItem.m_IsDrink)
+                        else if (__instance.m_FoodItem.m_IsDrink && Settings.settings.caloriesDrinks != Choice.Default)
                         {
                             float birchBarkTeaWeight = 0.1f;
                             float coffeeWeight = 0.1f;
@@ -366,7 +366,7 @@ namespace FoodTweaker
                         }
 
                         // Other Foods
-                        else
+                        else if (Settings.settings.caloriesOtherFood != Choice.Default)
                         {
                             float airlineChickenWeight = 0.25f;
                             float airlineVegetableWeight = 0.25f;
@@ -387,31 +387,31 @@ namespace FoodTweaker
                             float sardinesWeight = 0.1f;
                             float tomatoSoupWeight = 0.25f;
 
-                            float airlineChicken = 620;
-                            float airlineVegetable = 560;
-                            float beefJerky = 350;
-                            float cattailStalk = 150;
-                            float chocolateBar = 250;
-                            float condensedMilk = 750;
-                            float dogFood = 500;
-                            float energyBar = 500;
-                            float granolaBar = 300;
-                            float ketchupChips = 300;
-                            float mapleSyrup = 850;
-                            float mre = 1750;
-                            float peanutButter = 900;
-                            float pinnaclePeaches = 450;
-                            float porkAndBeans = 600;
-                            float saltyCrackers = 600;
-                            float sardines = 300;
-                            float tomatoSoup = 300;
+                            float airlineChicken = 620 / airlineChickenWeight;
+                            float airlineVegetable = 560 / airlineVegetableWeight;
+                            float beefJerky = 350 / beefJerkyWeight;
+                            float cattailStalk = 150 / cattailStalkWeight;
+                            float chocolateBar = 250 / chocolateBarWeight;
+                            float condensedMilk = 750 / condensedMilkWeight;
+                            float dogFood = 500 / dogFoodWeight;
+                            float energyBar = 500 / energyBarWeight;
+                            float granolaBar = 300 / granolaBarWeight;
+                            float ketchupChips = 300 / ketchupChipsWeight;
+                            float mapleSyrup = 850 / mapleSyrupWeight;
+                            float mre = 1750 / mreWeight;
+                            float peanutButter = 900 / peanutButterWeight;
+                            float pinnaclePeaches = 450 / pinnaclePeachesWeight;
+                            float porkAndBeans = 600 / porkAndBeansWeight;
+                            float saltyCrackers = 600 / saltyCrackersWeight;
+                            float sardines = 300 / sardinesWeight;
+                            float tomatoSoup = 300 / tomatoSoupWeight;
 
                             if (Settings.settings.caloriesOtherFood == Choice.Realistic)
                             {
                                 airlineChicken = 620 / airlineChickenWeight;
                                 airlineVegetable = 560 / airlineVegetableWeight;
                                 beefJerky = 410 / beefJerkyWeight;
-                                cattailStalk = 25 / cattailStalkWeight;
+                                cattailStalk = 15 / cattailStalkWeight;
                                 chocolateBar = 585 / chocolateBarWeight;
                                 condensedMilk = 815 / condensedMilkWeight;
                                 dogFood = 425 / dogFoodWeight;
@@ -429,24 +429,24 @@ namespace FoodTweaker
                             }
                             else if (Settings.settings.caloriesOtherFood == Choice.Custom)
                             {
-                                airlineChicken = Settings.settings.airlineChicken;
-                                airlineVegetable = Settings.settings.airlineVegetarian;
-                                beefJerky = Settings.settings.beefJerky;
-                                cattailStalk = Settings.settings.cattailStalk;
-                                chocolateBar = Settings.settings.chocolateBar;
-                                condensedMilk = Settings.settings.condensedMilk;
-                                dogFood = Settings.settings.dogFood;
-                                energyBar = Settings.settings.energyBar;
-                                granolaBar = Settings.settings.granolaBar;
-                                ketchupChips = Settings.settings.ketchupChips;
-                                mapleSyrup = Settings.settings.mapleSyrup;
-                                mre = Settings.settings.mre;
-                                peanutButter = Settings.settings.peanutButter;
-                                pinnaclePeaches = Settings.settings.pinnaclePeaches;
-                                porkAndBeans = Settings.settings.porkAndBeans;
-                                saltyCrackers = Settings.settings.saltyCrackers;
-                                sardines = Settings.settings.sardines;
-                                tomatoSoup = Settings.settings.tomatoSoup;
+                                airlineChicken = Settings.settings.airlineChicken / airlineChickenWeight;
+                                airlineVegetable = Settings.settings.airlineVegetarian / airlineVegetableWeight;
+                                beefJerky = Settings.settings.beefJerky / beefJerkyWeight;
+                                cattailStalk = Settings.settings.cattailStalk / cattailStalkWeight;
+                                chocolateBar = Settings.settings.chocolateBar / chocolateBarWeight;
+                                condensedMilk = Settings.settings.condensedMilk / condensedMilkWeight;
+                                dogFood = Settings.settings.dogFood / dogFoodWeight;
+                                energyBar = Settings.settings.energyBar / energyBarWeight;
+                                granolaBar = Settings.settings.granolaBar / granolaBarWeight;
+                                ketchupChips = Settings.settings.ketchupChips / ketchupChipsWeight;
+                                mapleSyrup = Settings.settings.mapleSyrup / mapleSyrupWeight;
+                                mre = Settings.settings.mre / mreWeight;
+                                peanutButter = Settings.settings.peanutButter / peanutButterWeight;
+                                pinnaclePeaches = Settings.settings.pinnaclePeaches / pinnaclePeachesWeight;
+                                porkAndBeans = Settings.settings.porkAndBeans / porkAndBeansWeight;
+                                saltyCrackers = Settings.settings.saltyCrackers / saltyCrackersWeight;
+                                sardines = Settings.settings.sardines / sardinesWeight;
+                                tomatoSoup = Settings.settings.tomatoSoup / tomatoSoupWeight;
                             }
 
                             if (__instance.m_GearName == "GEAR_AirlineFoodChick")

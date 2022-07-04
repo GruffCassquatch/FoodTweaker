@@ -86,10 +86,10 @@ namespace FoodTweaker
 
                         if (Settings.settings.caloriesFish == Choice.Realistic)
                         {
-                            salmonCaloriesPerKg = 1780;
-                            whitefishCaloriesPerKg = 1720;
-                            troutCaloriesPerKg = 1690;
-                            bassCaloriesPerKg = 1450;
+                            salmonCaloriesPerKg = 1390;
+                            whitefishCaloriesPerKg = 1340;
+                            troutCaloriesPerKg = 1500;
+                            bassCaloriesPerKg = 1460;
                         }
                         else if (Settings.settings.caloriesFish == Choice.Custom)
                         {
