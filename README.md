@@ -31,7 +31,7 @@ Originally by [Deus13](https://github.com/Deus13/WarmFood) and now updated and m
   * **WarmFood** includes MRE self-heating, hot meat and fish as well as calorie adjustment for meat, fish and peanut butter. 
   * **Food Tweaker** uses the same methodology for MRE self-heating and hot fish/meat as **WarmFood**, as per WarmFood's [MIT License](https://github.com/ttr/tld-WarmFood/blob/master/LICENSE)
   * The calorie adjustment is different: **Food Tweaker** uses calories/kg and **Warm Food** uses a multiplier.
-  * Unfortunately, **Warm Food** is NOT compatible with **Food Tweaker**.
+  * **Warm Food** is NOT recommended for use with **Food Tweaker**, certain settings will create conflicts.
 
 
 ## Requirements
