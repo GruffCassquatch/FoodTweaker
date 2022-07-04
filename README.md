@@ -45,8 +45,8 @@ Delete ```FoodTweaker.dll``` and ```FoodTweaker.json``` from your Mods folder
 	* Most sections include the following options: 
 		* GAME DEFAULT: Calorie values will remain unchanged.
 		* REALISTIC: Based on real-world values.
-        	* CUSTOM: Set your own values. 
-        	* Choose CUSTOM and look at the description for each individual slider to see both the GAME DEFAULT value and the REALISTIC preset value.
+		* CUSTOM: Set your own values. 
+		* Choose CUSTOM and look at the description for each individual slider to see both the GAME DEFAULT value and the REALISTIC preset value.
 	* Calories & Shrinkage:
 		* If you choose GAME DEFAULT for calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have the same total calorie value as vanilla, regardless of shrinkage.
 			* E.g. 1kg bear meat has 900 calories by default, the cooked bear meat will still have 900 calories regardless of shrinkage.
