@@ -24,7 +24,7 @@ The mod does not currently include calorie adjustment for foods added by mods, a
   ## Limitations:
   * If you change the mod settings while in-game, you will need to change scene to apply the changes (e.g. go outside/inside).
   * The mod can be used on an existing save, but food items that have already been spawned/harvested etc. in that save will not be updated to the new modded calorie values. Other settings will be applied, such as cooking time and heating.
-  * Compatible with [Weight Tweaks](https://github.com/Xpazeman/tld-weight-tweaks) mod, **IF you leave food weight at default values**. Otherwise there will be conflicts with parts of Food Tweaker.
+  * Compatible with [Weight Tweaks](https://github.com/Xpazeman/tld-weight-tweaks) mod, **IF you leave Weight Tweaks food weight option at default values**. Otherwise there will probably be conflicts with some functions of Food Tweaker.
 
 
 ## Credit to [WarmFood](https://github.com/ttr/tld-WarmFood)
