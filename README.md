@@ -9,6 +9,14 @@ A mod for the Long Dark.
   * Enable MRE self-heating
   * All meat and fish will become "Hot" after cooking and will provide Warming Up buff when eaten hot
   * Includes Realistic presets, Custom sliders and ability to keep Game Default values
+
+Realistic preset values are provided as an easy option for those who don't want to individually research and set custom values. 
+These values will not please everyone and can't possibly be definitive. 
+* Realistic meat calorie values have been largely taken from the [Alaska Department of Fish and Game](https://www.adfg.alaska.gov/index.cfm?adfg=hunting.eating) website.
+* Realistic fish calorie values were averaged from various nutrition data websites and based on wild-caught fish cooked with dry heat (i.e. grilled).
+* Realistic values for other foods and drinks were averaged from various nutrition data websites.
+* Some foods, like wolf meat, have to be estimated as there isn't comprehensive nutritional data available for them. The data available on cattails suggests they have 10x less calories/kg than the Game Default value. [Source 1](https://nutritiondata.self.com/facts/ethnic-foods/10462/2), [Source 2](https://www.healthbenefitstimes.com/cattail/), [Source 3](https://www.lybrate.com/topic/benefits-of-cattail-and-its-side-effects)
+
   
   ## Limitations:
   * If you change the mod settings while in-game, you will need to change scene to apply the changes (e.g. go outside/inside).
