@@ -18,6 +18,8 @@ These values will not please everyone and can't possibly be definitive.
   * The data available on cattails suggests they have 10x less calories/kg than the Game Default value. [Source 1](https://nutritiondata.self.com/facts/ethnic-foods/10462/2), [Source 2](https://www.healthbenefitstimes.com/cattail/), [Source 3](https://www.lybrate.com/topic/benefits-of-cattail-and-its-side-effects).
   * Some foods, like wolf meat, have to be estimated as there isn't comprehensive nutritional data available for them.
 
+The mod does not currently include calorie adjustment for modded foods, as these are already realistic. 
+
   
   ## Limitations:
   * If you change the mod settings while in-game, you will need to change scene to apply the changes (e.g. go outside/inside).
