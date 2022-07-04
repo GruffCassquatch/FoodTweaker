@@ -52,7 +52,7 @@ Delete ```FoodTweaker.dll``` and ```FoodTweaker.json``` from your Mods folder
 		* If you choose GAME DEFAULT for calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have the same total calorie value as vanilla, regardless of shrinkage.
 			* E.g. 1kg bear meat has 900 calories by default, the cooked bear meat will still have 900 calories regardless of shrinkage.
 		* If you choose CUSTOM calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have a *proportional amount* of calories to weight.
-			* E.g. if you set 1kg of COOKED bear meat to have 1000 calories, and also set bear meat shrinkage to 25%: 1kg of raw bear meat will have 750 calories, and it will yeild 0.75kg of cooked bear meat that also has 750 calories.   
+			* E.g. if you set 1kg of COOKED bear meat to have 1000 calories, and also set bear meat shrinkage to 25%: 1kg of raw bear meat will have 750 calories, and it will yield 0.75kg of cooked bear meat that also has 750 calories.   
 5. Click ```CONFIRM``` to apply your changes or ```BACK``` to exit without applying changes
 
 
