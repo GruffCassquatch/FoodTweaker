@@ -4,15 +4,15 @@ A mod for the Long Dark.
 ## Mod features:
   * Adjust calories of food items (meat, fish, drinks, packaged goods etc.)
   * Adjust cooking time for meat and fish
-  * Ajust how much meat shrinks when cooked (*raw weight* vs *cooked weight*)
-  * Adjust difference between weight of *whole, raw fish* vs *cleaned, cooked fish*
+  * Adjust how much meat shrinks when cooked (**raw weight** vs **cooked weight**)
+  * Adjust difference between weight of **whole, raw fish** vs **cleaned, cooked fish**
   * Enable MRE self-heating
   * All meat and fish will become "Hot" after cooking and will provide Warming Up buff when eaten hot
   * Includes Realistic presets, Custom sliders and ability to keep Game Default values
   
   ## Limitations:
   * If you change the mod settings while in-game, you will need to change scene to apply the changes (e.g. go outside/inside).
-  * The mod can be used on an existing save, but food items that have already been spawned/harvested etc. in that save will not be updated to the new modded calorie values
+  * The mod can be used on an existing save, but food items that have already been spawned/harvested etc. in that save will not be updated to the new modded calorie values. Other settings will be applied, such as cooking time and heating.
 
 
 ## Credit to [WarmFood](https://github.com/ttr/tld-WarmFood)
@@ -48,13 +48,10 @@ Delete ```FoodTweaker.dll``` and ```FoodTweaker.json``` from your Mods folder
         * CUSTOM: Set your own values. 
         * Choose CUSTOM and look at the description for each individual slider to see both the GAME DEFAULT value and the REALISTIC preset value.
     * Calories & Shrinkage:
-        * If you choose GAME DEFAULT for calories, but **not** GAME DEFAULT for shrinkage, 
-        the cooked meat or fish will have the same total calorie value as vanilla, regardless of shrinkage.
-        E.g. 1kg bear meat has 900 calories by default, the cooked bear meat will still have 900 calories regardless of shrinkage.
-        * If you choose CUSTOM calories, but **not** GAME DEFAULT for shrinkage,
-        the cooked meat or fish will have a *proportional amount* of calories to weight.
-        E.g. if you set 1kg of COOKED bear meat to have 1000 calories, and also set bear meat shrinkage to 25%: 
-        1kg of raw bear meat will have 750 calories, and it will yeild 0.75kg of cooked bear meat that also has 750 calories.
+        * If you choose GAME DEFAULT for calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have the same total calorie value as vanilla, regardless of shrinkage.
+        	* E.g. 1kg bear meat has 900 calories by default, the cooked bear meat will still have 900 calories regardless of shrinkage.
+        * If you choose CUSTOM calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have a *proportional amount* of calories to weight.
+        	* E.g. if you set 1kg of COOKED bear meat to have 1000 calories, and also set bear meat shrinkage to 25%: 1kg of raw bear meat will have 750 calories, and it will yeild 0.75kg of cooked bear meat that also has 750 calories.
         * The raw meat or fish will always have the appropriate amount of calories to match the cooked meat or fish. You will not lose calories by cooking, you can only lose weight.    
 5. Click ```CONFIRM``` to apply your changes or ```BACK``` to exit without applying changes
 
