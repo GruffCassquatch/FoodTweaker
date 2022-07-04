@@ -43,7 +43,7 @@ Delete ```FoodTweaker.dll``` and ```FoodTweaker.json``` from your Mods folder
 4. Choose to Enable or Disable the mod
 5. Mod Options:
 	* Most sections include the following options: 
-		* GAME DEFAULT: Calorie values will remain unchanged.
+		* GAME DEFAULT: Values will remain unchanged.
 		* REALISTIC: Based on real-world values.
 		* CUSTOM: Set your own values. 
 		* Choose CUSTOM and look at the description for each individual slider to see both the GAME DEFAULT value and the REALISTIC preset value.
