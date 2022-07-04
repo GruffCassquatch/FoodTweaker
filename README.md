@@ -1,4 +1,6 @@
 # Food Tweaker
+A mod for the Long Dark.
+
 ## Mod features:
   * Adjust calories of food items (meat, fish, drinks, packaged goods etc.)
   * Adjust cooking time for meat and fish
