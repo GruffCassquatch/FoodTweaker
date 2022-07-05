@@ -18,7 +18,7 @@ namespace FoodTweaker
         public bool modFunction = false;
 
         [Section("Meat")]
-        [Name("Calorie Values of Meat")]
+        [Name("Calories (Before Cooking Skill Bonus)")]
         [Description("GAME DEFAULT: Calorie values will remain unchanged.\nREALISTIC: Based on real-world values.\nCUSTOM: Set your own values.")]
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice caloriesMeat = Choice.Default;
@@ -79,39 +79,39 @@ namespace FoodTweaker
         [Slider(0, 0.5f, 51, NumberFormat = "{0:P0}")]
         public float wolfShrinks = 0.25f;
 
-        [Name("Cooking Time")]
-        [Description("The game calculates cooking time based on calories. If you have increased the calorie values of meat, you might want to adjust cooking time.\nGAME DEFAULT: Values will remain unchanged.\nREALISTIC: Based on realistic values.\nCUSTOM: Set your own values.")]
+        [Name("Cooking Time (Before Cooking Skill Bonus)")]
+        [Description("GAME DEFAULT: Values will remain unchanged.\nREALISTIC: Based on realistic values + some assumptions.\nCUSTOM: Set your own values.")]
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice meatCookingTime = Choice.Default;
 
         [Name("         Bear (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Bear meat")]
+        [Description("Adjust cooking time, in minutes, for 1kg Bear meat.\nGAME DEFAULT: ≈ 1 hour 22 mins.\nREALISTIC: 35 mins (24.5 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
-        public float bearCookingTime = 30;
+        public float bearCookingTime = 35;
 
         [Name("         Deer (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Deer meat")]
+        [Description("Adjust cooking time, in minutes, for 1kg Deer meat.\nGAME DEFAULT: ≈ 57 mins.\nREALISTIC: 20 mins (14 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float deerCookingTime = 20;
 
         [Name("         Moose (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Moose meat")]
+        [Description("Adjust cooking time, in minutes, for 1kg Moose meat.\nGAME DEFAULT: ≈ 1 hour 22 mins.\nREALISTIC: 25 mins (17.5 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float mooseCookingTime = 25;
 
         [Name("         Rabbit (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Rabbit meat")]
+        [Description("Adjust cooking time, in minutes, for 1kg Rabbit meat\nGAME DEFAULT: ≈ 38 mins.\nREALISTIC: 28 mins (19.6 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float rabbitCookingTime = 20;
 
         [Name("         Wolf (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Wolf meat")]
+        [Description("Adjust cooking time, in minutes, for 1kg Wolf meat.\nGAME DEFAULT: ≈ 1 hour 9 mins.\nREALISTIC: 35 mins (24.5 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float wolfCookingTime = 30;
 
         [Section("Fish")]
-        [Name("Calorie Values of Fish")]
-        [Description("GAME DEFAULT: Calorie values will remain unchanged.\nREALISTIC: Based on real-world values.\nCUSTOM: Set your own values.")]
+        [Name("Calories (Before Cooking Skill Bonus)")]
+        [Description("GAME DEFAULT: Calorie values will remain unchanged.\nREALISTIC: Based on real-world values + some assumptions.\nCUSTOM: Set your own values.")]
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice caloriesFish = Choice.Default;
 
@@ -160,34 +160,34 @@ namespace FoodTweaker
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float bassShrinks = 0.33f;
 
-        [Name("Cooking Time")]
-        [Description("The game calculates cooking time based on calories. If you have increased the calorie values of fish, you might want to adjust cooking time.\nGAME DEFAULT: Values will remain unchanged.\nREALISTIC: Based on realistic values.\nCUSTOM: Set your own values.")]
+        [Name("Cooking Time (Before Cooking Skill Bonus)")]
+        [Description("GAME DEFAULT: Values will remain unchanged.\nREALISTIC: Based on realistic values + some assumptions.\nCUSTOM: Set your own values.")]
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice fishCookingTime = Choice.Default;
 
         [Name("         Coho Salmon (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Coho Salmon")]
+        [Description("Adjust cooking time, in minutes, for 1kg Coho Salmon.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
-        public float salmonCookingTime = 10;
+        public float salmonCookingTime = 15;
 
         [Name("         Lake Whitefish (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Lake Whitefish")]
+        [Description("Adjust cooking time, in minutes, for 1kg Lake Whitefish.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
-        public float whitefishCookingTime = 10;
+        public float whitefishCookingTime = 15;
 
         [Name("         Rainbow Trout (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Rainbow Trout")]
+        [Description("Adjust cooking time, in minutes, for 1kg Rainbow Trout.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
-        public float troutCookingTime = 10;
+        public float troutCookingTime = 15;
 
         [Name("         Smallmouth Bass (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Smallmouth Bass")]
+        [Description("Adjust cooking time, in minutes, for 1kg Smallmouth Bass.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
-        public float bassCookingTime = 10;
+        public float bassCookingTime = 15;
 
 
         [Section("Drinks")]
-        [Name("Calorie Values of Drinks")]
+        [Name("Calories")]
         [Description("GAME DEFAULT: Calorie values will remain unchanged.\nREALISTIC: Based on real-world values.\nCUSTOM: Set your own values.")]
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice caloriesDrinks = Choice.Default;
@@ -239,7 +239,7 @@ namespace FoodTweaker
 
 
         [Section("Other Food")]
-        [Name("Calorie Values of Other Foods")]
+        [Name("Calories (Before Cooking Skill Bonus)")]
         [Description("GAME DEFAULT: Calorie values will remain unchanged.\nREALISTIC: Based on real-world values.\nCUSTOM: Set your own values.")]
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice caloriesOtherFood = Choice.Default;
@@ -337,7 +337,7 @@ namespace FoodTweaker
 
         [Section("MRE Self-Heating")]
         [Name("Does MRE self-heat")]
-        [Description("GAME DEFAULT: No.\nREALITY: Canadian MREs (Called IMPs) do NOT have self-heating.\nUSA MREs DO have self-heating")]
+        [Description("GAME DEFAULT: No.\nREALITY: Canadian MREs (IMPs) do NOT have self-heating.\nUSA MREs DO have self-heating")]
         public bool mreHeating = false;
 
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)
