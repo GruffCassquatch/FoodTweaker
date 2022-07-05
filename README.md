@@ -11,19 +11,22 @@ A mod for the Long Dark.
   * Includes Realistic presets, Custom sliders and ability to keep Game Default values
 
 Realistic preset values are provided as an easy option for those who don't want to individually research and set custom values. 
-These values will not please everyone and can't possibly be definitive. 
+These values will not please everyone and can't possibly be definitive. Use the Custom options if you don't like the presets!
+  * Note that the Cooking skill will boost the calorie value of cooked foods by up tp 25% and reduce cooking time by up to 30%. This has been factored into the realistic presets.
   * Realistic meat calorie values have been largely taken from the [Alaska Department of Fish and Game](https://www.adfg.alaska.gov/index.cfm?adfg=hunting.eating) website.
-  * Realistic fish calorie values were averaged from various nutrition data websites and based on wild-caught fish cooked with dry heat (i.e. grilled).
-  * Realistic values for other foods and drinks were averaged from various nutrition data websites.
+  * Realistic fish calorie values were averaged from various nutrition data websites and based on wild-caught fish cooked with dry heat.
+  * Realistic values for other foods and drinks were taken from various nutrition data websites, using the highest values found.
   * The data available on cattails suggests they have 10x less calories/kg than the Game Default value. [Source 1](https://nutritiondata.self.com/facts/ethnic-foods/10462/2), [Source 2](https://www.healthbenefitstimes.com/cattail/), [Source 3](https://www.lybrate.com/topic/benefits-of-cattail-and-its-side-effects).
   * Some foods, like wolf meat, have to be estimated as there isn't comprehensive nutritional data available for them.
+  * Cooking times are based on the best online sources I could find and are averages / generalisations. There is limited information available on cooking these specific meats and fish over a fire and it is not possible to account for all of the factors that would affect cooking time in reality. 
+  * If anyone has relevant real-world experience to share, you're very welcome to send me a message (see contact info at bottom).
+
 
 The mod does not currently include calorie adjustment for foods added by mods, as these are already realistic. 
 
-  
   ## Limitations:
   * If you change the mod settings while in-game, you will need to change scene to apply the changes (e.g. go outside/inside).
-  * The mod can be used on an existing save, but food items that have already been spawned/harvested etc. in that save will not be updated to the new modded calorie values. Other settings will be applied, such as cooking time and heating.
+  * The mod can be used on an existing save, but food items that have already been spawned/harvested etc. in that save will not be updated to the new modded calorie values. Raw meat and fish will have updated values after you cook them. Other settings will be applied, such as cooking time and heating.
   * Compatible with [Weight Tweaks](https://github.com/Xpazeman/tld-weight-tweaks) mod, **IF you leave Weight Tweaks food weight option at default values**. Otherwise there will probably be conflicts with the calories and shrinkage functions in Food Tweaker.
 
 
@@ -60,10 +63,12 @@ Delete ```FoodTweaker.dll``` and ```FoodTweaker.json``` from your Mods folder
 		* CUSTOM: Set your own values. 
 		* Choose CUSTOM and look at the description for each individual slider to see both the GAME DEFAULT value and the REALISTIC preset value.
 	* Calories & Shrinkage:
-		* The raw meat or fish will always have the appropriate amount of calories to match the cooked meat or fish. You will not lose calories by cooking, you can only lose weight. 
+		* All calorie values are *before* the Cooking Skill calorie bonus is applied. 
+		* A cooked pice of meat or fish will always have at least as many calories as when it was raw. You will not lose calories by cooking, you can only lose weight. 
+		* You will *gain* calories on cooked items if you have a high enough Cooking Skill, as you would in the vanilla game.
 		* If you choose GAME DEFAULT for calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have the same total calorie value as vanilla, regardless of shrinkage.
 			* E.g. 1kg bear meat has 900 calories by default, the cooked bear meat will still have 900 calories regardless of shrinkage.
-		* If you choose CUSTOM calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have a *proportional amount* of calories to weight.
+		* If you choose CUSTOM calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have a *proportional amount* of calories to weight. Take this into account when setting Calories and Shrinkage.
 			* E.g. if you set 1kg of COOKED bear meat to have 1000 calories, and also set bear meat shrinkage to 25%: 1kg of raw bear meat will have 750 calories, and it will yield 0.75kg of cooked bear meat that also has 750 calories.   
 5. Click ```CONFIRM``` to apply your changes or ```BACK``` to exit without applying changes
 
