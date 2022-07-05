@@ -11,16 +11,18 @@ A mod for the Long Dark.
   * Includes Realistic presets, Custom sliders and ability to keep Game Default values
 
 Realistic preset values are provided as an easy option for those who don't want to individually research and set custom values. 
-These values will not please everyone and can't possibly be definitive. 
+These values will not please everyone and can't possibly be definitive. Use the Custom options if you don't like the presets!
   * Realistic meat calorie values have been largely taken from the [Alaska Department of Fish and Game](https://www.adfg.alaska.gov/index.cfm?adfg=hunting.eating) website.
-  * Realistic fish calorie values were averaged from various nutrition data websites and based on wild-caught fish cooked with dry heat (i.e. grilled).
-  * Realistic values for other foods and drinks were averaged from various nutrition data websites.
+  * Realistic fish calorie values were averaged from various nutrition data websites and based on wild-caught fish cooked with dry heat.
+  * Realistic values for other foods and drinks were taken from various nutrition data websites, using the highest values found.
   * The data available on cattails suggests they have 10x less calories/kg than the Game Default value. [Source 1](https://nutritiondata.self.com/facts/ethnic-foods/10462/2), [Source 2](https://www.healthbenefitstimes.com/cattail/), [Source 3](https://www.lybrate.com/topic/benefits-of-cattail-and-its-side-effects).
   * Some foods, like wolf meat, have to be estimated as there isn't comprehensive nutritional data available for them.
+  * Cooking times are based on the best online sources I could find and are averages / generalisations. There is limited information available on cooking these specific meats and fish over a fire and it is not possible to account for all of the factors that would affect cooking time in reality. 
+  * If anyone has relevant real-world experience to share, you're very welcome to send me a message (see contact info at bottom).
+
 
 The mod does not currently include calorie adjustment for foods added by mods, as these are already realistic. 
 
-  
   ## Limitations:
   * If you change the mod settings while in-game, you will need to change scene to apply the changes (e.g. go outside/inside).
   * The mod can be used on an existing save, but food items that have already been spawned/harvested etc. in that save will not be updated to the new modded calorie values. Other settings will be applied, such as cooking time and heating.
