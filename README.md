@@ -12,6 +12,7 @@ A mod for the Long Dark.
 
 Realistic preset values are provided as an easy option for those who don't want to individually research and set custom values. 
 These values will not please everyone and can't possibly be definitive. Use the Custom options if you don't like the presets!
+  * Note that the Cooking skill will boost the calorie value of cooked foods by up tp 25% and reduce cooking time by up to 30%. This has been factored into the realistic presets.
   * Realistic meat calorie values have been largely taken from the [Alaska Department of Fish and Game](https://www.adfg.alaska.gov/index.cfm?adfg=hunting.eating) website.
   * Realistic fish calorie values were averaged from various nutrition data websites and based on wild-caught fish cooked with dry heat.
   * Realistic values for other foods and drinks were taken from various nutrition data websites, using the highest values found.
