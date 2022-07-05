@@ -91,11 +91,11 @@ namespace FoodTweaker
 
                             if (Settings.settings.caloriesMeat == Choice.Realistic)
                             {
-                                cookedBearCalories = 1630;
-                                cookedDeerCalories = 1450;
-                                cookedMooseCalories = 1300;
-                                cookedRabbitCalories = 1140;
-                                cookedWolfCalories = 1165;
+                                cookedBearCalories = 1305;
+                                cookedDeerCalories = 1172;
+                                cookedMooseCalories = 1040;
+                                cookedRabbitCalories = 932;
+                                cookedWolfCalories = 875;
                             }
                             else if (Settings.settings.caloriesMeat == Choice.Custom)
                             {
@@ -226,10 +226,10 @@ namespace FoodTweaker
 
                             if (Settings.settings.caloriesFish == Choice.Realistic)
                             {
-                                cookedSalmonCalories = 1390;
-                                cookedWhitefishCalories = 1340;
-                                cookedTroutCalories = 1500;
-                                cookedBassCalories = 1460;
+                                cookedSalmonCalories = 1120;
+                                cookedWhitefishCalories = 1065;
+                                cookedTroutCalories = 1200;
+                                cookedBassCalories = 1170;
                             }
                             else if (Settings.settings.caloriesFish == Choice.Custom)
                             {

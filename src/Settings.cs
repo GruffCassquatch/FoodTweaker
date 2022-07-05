@@ -24,27 +24,27 @@ namespace FoodTweaker
         public Choice caloriesMeat = Choice.Default;
 
         [Name("         Bear calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Bear.\nDefault Game Value: 900\nRealistic Value: 1630")]
+        [Description("Set the calorie value of 1kg of COOKED Bear.\nDefault Game Value: 900\nRealistic Value: 1305 (1630 at Cooking lvl 5)")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
         public float bearCooked = 900;
 
         [Name("         Deer calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Deer.\nDefault Game Value: 800\nRealistic Value: 1450")]
+        [Description("Set the calorie value of 1kg of COOKED Deer.\nDefault Game Value: 800\nRealistic Value: 1172 (1465 at Cooking lvl 5)")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
         public float deerCooked = 800;
 
         [Name("         Moose calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Moose.\nDefault Game Value: 900\nRealistic Value: 1300")]
+        [Description("Set the calorie value of 1kg of COOKED Moose.\nDefault Game Value: 900\nRealistic Value: 1040 (1300 at Cooking lvl 5)")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
         public float mooseCooked = 900;
 
         [Name("         Rabbit calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Rabbit.\nDefault Game Value: 450\nRealistic Value: 1140")]
+        [Description("Set the calorie value of 1kg of COOKED Rabbit.\nDefault Game Value: 450\nRealistic Value: 932 (1140 at Cooking lvl 5)")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
         public float rabbitCooked = 450;
 
         [Name("         Wolf calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Wolf.\nDefault Game Value: 700\nRealistic Value: 1165")]
+        [Description("Set the calorie value of 1kg of COOKED Wolf.\nDefault Game Value: 700\nRealistic Value: 875 (1165 at Cooking lvl 5)")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
         public float wolfCooked = 700;
 
@@ -116,22 +116,22 @@ namespace FoodTweaker
         public Choice caloriesFish = Choice.Default;
 
         [Name("         Coho Salmon calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Coho Salmon.\nDefault Game Value: 454.5\nRealistic Value: 1390")]
+        [Description("Set the calorie value of 1kg of COOKED Coho Salmon.\nDefault Game Value: 454.5\nRealistic Value: 1120 (1400 at Cooking lvl 5)")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
         public float salmonCooked = 1390;
 
         [Name("         Lake Whitefish calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Lake Whitefish.\nDefault Game Value: 383.5\nRealistic Value: 1340")]
+        [Description("Set the calorie value of 1kg of COOKED Lake Whitefish.\nDefault Game Value: 383.5\nRealistic Value: 1065 (1330 at Cooking lvl 5)")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
         public float whitefishCooked = 1340;
 
         [Name("         Rainbow Trout calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Rainbow Trout.\nDefault Game Value: 383.5\nRealistic Value: 1500")]
+        [Description("Set the calorie value of 1kg of COOKED Rainbow Trout.\nDefault Game Value: 383.5\nRealistic Value: 1200 (1500 at Cooking lvl 5)")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
         public float troutCooked = 1500;
 
         [Name("         Smallmouth Bass calories/kg (Cooked)")]
-        [Description("Set the calorie value of 1kg of COOKED Smallmouth Bass.\nDefault Game Value: 454.5\nRealistic Value: 1460")]
+        [Description("Set the calorie value of 1kg of COOKED Smallmouth Bass.\nDefault Game Value: 454.5\nRealistic Value: 1168 (1460 at Cooking lvl 5)")]
         [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
         public float bassCooked = 1460;
 

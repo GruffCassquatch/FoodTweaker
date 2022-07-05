@@ -87,10 +87,10 @@ namespace FoodTweaker
 
                         if (Settings.settings.caloriesFish == Choice.Realistic)
                         {
-                            salmonCaloriesPerKg = 1390;
-                            whitefishCaloriesPerKg = 1340;
-                            troutCaloriesPerKg = 1500;
-                            bassCaloriesPerKg = 1460;
+                            salmonCaloriesPerKg = 1120;
+                            whitefishCaloriesPerKg = 1065;
+                            troutCaloriesPerKg = 1200;
+                            bassCaloriesPerKg = 1170;
                         }
                         else if (Settings.settings.caloriesFish == Choice.Custom)
                         {
@@ -127,11 +127,11 @@ namespace FoodTweaker
 
                         if (Settings.settings.caloriesMeat == Choice.Realistic)
                         {
-                            cookedBearCalories = 1630;
-                            cookedDeerCalories = 1450;
-                            cookedMooseCalories = 1300;
-                            cookedRabbitCalories = 1140;
-                            cookedWolfCalories = 1165;
+                            cookedBearCalories = 1305;
+                            cookedDeerCalories = 1172;
+                            cookedMooseCalories = 1040;
+                            cookedRabbitCalories = 932;
+                            cookedWolfCalories = 875;
                         }
                         else if (Settings.settings.caloriesMeat == Choice.Custom)
                         {
