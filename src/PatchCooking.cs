@@ -10,9 +10,6 @@ namespace FoodTweaker
         {
             private static float Postfix(float __result,  CookingPotItem __instance)
             {
-                MelonLogger.Msg("Gear Item being Cooked Calories Remaining: " + __instance.m_GearItemBeingCooked.m_FoodItem.m_CaloriesRemaining);
-                MelonLogger.Msg("Gear Item being Cooked Calories Total: " + __instance.m_GearItemBeingCooked.m_FoodItem.m_CaloriesTotal);
-
                 if (Settings.settings.modFunction)
                 {
                     if (Settings.settings.meatCookingTime != Choice.Default)
@@ -78,8 +75,6 @@ namespace FoodTweaker
         {
             private static void Postfix(GearItem rawItem, GearItem cookedItem)
             {
-                MelonLogger.Msg("Raw Item Calories Remaining: " + rawItem.m_FoodItem.m_CaloriesRemaining.ToString());
-                MelonLogger.Msg("Raw Item Calories Total: " + rawItem.m_FoodItem.m_CaloriesTotal.ToString());
                 if (Settings.settings.modFunction)
                 {
                     if (rawItem.m_FoodItem.m_IsFish)
@@ -128,7 +123,6 @@ namespace FoodTweaker
                     {
                         float rawItemWeight = rawItem.m_FoodItem.m_CaloriesRemaining / rawItem.m_FoodItem.m_CaloriesTotal;
                         float cookedItemWeight = rawItemWeight;
-                        MelonLogger.Msg("Raw Weight: " + rawItemWeight.ToString());
 
                         float cookedBearCalories = 900;
                         float cookedDeerCalories = 800;
