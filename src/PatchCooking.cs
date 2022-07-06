@@ -10,6 +10,9 @@ namespace FoodTweaker
         {
             private static float Postfix(float __result,  CookingPotItem __instance)
             {
+                MelonLogger.Msg("Gear Item being Cooked Calories Remaining: " + __instance.m_GearItemBeingCooked.m_FoodItem.m_CaloriesRemaining);
+                MelonLogger.Msg("Gear Item being Cooked Calories Total: " + __instance.m_GearItemBeingCooked.m_FoodItem.m_CaloriesTotal);
+
                 if (Settings.settings.modFunction)
                 {
                     if (Settings.settings.meatCookingTime != Choice.Default)
@@ -73,6 +76,8 @@ namespace FoodTweaker
         {
             private static void Postfix(GearItem rawItem, GearItem cookedItem)
             {
+                MelonLogger.Msg("Raw Item Calories Remaining: " + rawItem.m_FoodItem.m_CaloriesRemaining.ToString());
+                MelonLogger.Msg("Raw Item Calories Total: " + rawItem.m_FoodItem.m_CaloriesTotal.ToString());
                 if (Settings.settings.modFunction)
                 {
                     if (rawItem.m_FoodItem.m_IsFish)
@@ -119,6 +124,10 @@ namespace FoodTweaker
                     }
                     else if (rawItem.m_FoodItem.m_IsMeat)
                     {
+                        float rawItemWeight = rawItem.m_FoodItem.m_CaloriesRemaining / rawItem.m_FoodItem.m_CaloriesTotal;
+                        float cookedItemWeight = rawItemWeight;
+                        MelonLogger.Msg("Raw Weight: " + rawItemWeight.ToString());
+
                         float cookedBearCalories = 900;
                         float cookedDeerCalories = 800;
                         float cookedMooseCalories = 900;
@@ -177,34 +186,33 @@ namespace FoodTweaker
 
                         if (cookedItem.m_GearName == "GEAR_CookedMeatBear")
                         {
-                            cookedItem.m_WeightKG = rawItem.m_WeightKG * bearShrinkage;
-                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItem.m_WeightKG * cookedBearCalories * GameManager.GetSkillCooking().GetCalorieScale();
-                            cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining;
+                            cookedItemWeight *= bearShrinkage;
+                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItemWeight * cookedBearCalories * GameManager.GetSkillCooking().GetCalorieScale();
                         }
                         else if (cookedItem.m_GearName == "GEAR_CookedMeatDeer")
                         {
-                            cookedItem.m_WeightKG = rawItem.m_WeightKG * deerShrinkage;
-                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItem.m_WeightKG * cookedDeerCalories * GameManager.GetSkillCooking().GetCalorieScale();
-                            cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining;
+                            cookedItemWeight *= deerShrinkage;
+                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItemWeight * cookedDeerCalories * GameManager.GetSkillCooking().GetCalorieScale();
                         }
                         else if (cookedItem.m_GearName == "GEAR_CookedMeatMoose")
                         {
-                            cookedItem.m_WeightKG = rawItem.m_WeightKG * mooseShrinkage;
-                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItem.m_WeightKG * cookedMooseCalories * GameManager.GetSkillCooking().GetCalorieScale();
-                            cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining;
+                            cookedItemWeight *= mooseShrinkage;
+                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItemWeight * cookedMooseCalories * GameManager.GetSkillCooking().GetCalorieScale();
                         }
                         else if (cookedItem.m_GearName == "GEAR_CookedMeatRabbit")
                         {
-                            cookedItem.m_WeightKG = rawItem.m_WeightKG * rabbitShrinkage;
-                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItem.m_WeightKG * cookedRabbitCalories * GameManager.GetSkillCooking().GetCalorieScale();
-                            cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining;
+                            cookedItemWeight *= rabbitShrinkage;
+                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItemWeight * cookedRabbitCalories * GameManager.GetSkillCooking().GetCalorieScale();
                         }
                         else if (cookedItem.m_GearName == "GEAR_CookedMeatWolf")
                         {
-                            cookedItem.m_WeightKG = rawItem.m_WeightKG * wolfShrinkage;
-                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItem.m_WeightKG * cookedWolfCalories * GameManager.GetSkillCooking().GetCalorieScale();
-                            cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining;
+                            cookedItemWeight *= wolfShrinkage;
+                            cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItemWeight * cookedWolfCalories * GameManager.GetSkillCooking().GetCalorieScale();
                         }
+                        cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining / cookedItemWeight;
+                        MelonLogger.Msg("Cooked Item Weight: " + cookedItemWeight.ToString());
+                        MelonLogger.Msg("Cooked Item Calories Remaining: " + cookedItem.m_FoodItem.m_CaloriesRemaining.ToString());
+                        MelonLogger.Msg("Cooked Item Total Calories: " + cookedItem.m_FoodItem.m_CaloriesTotal.ToString());
                     }
                 }
             }
