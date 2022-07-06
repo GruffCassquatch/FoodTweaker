@@ -70,8 +70,8 @@ Delete ```FoodTweaker.dll``` and ```FoodTweaker.json``` from your Mods folder
 		* If you choose GAME DEFAULT for calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have the same total calorie value as vanilla, regardless of shrinkage.
 			* E.g. 1kg bear meat has 900 calories by default, the cooked bear meat will still have 900 calories regardless of shrinkage.
 		* If you choose CUSTOM calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have a *proportional amount* of calories to weight. Take this into account when setting Calories and Shrinkage.
-			* If you want to use real-world calories/kg values (e.g. from nutritional information website), just set the Custom slider to the appropriate calories/kg value.
-			* If you know how many calories you want 1kg meat to have after cooking & shrinkage, use this formula to get the calories/kg value: ```FinalCalories / (1 - shrinkage)```
+			* If you want to use *cooked* calories/kg values for meat and fish (e.g. from nutritional information website), just set the Custom slider to the appropriate calories/kg value.
+			* If want to use *raw* calories/kg, use this formula to get the cooked calories/kg value: ```RawCalories / (1 - shrinkage)```
 			* E.g. you want cooked deer calories to match the Game Default raw deer calories, and also have 25% shrinkage: 
 			 	* 900 / (1 - 0.25) = 900 / 0.75 = 1200
 				* Then set ```Deer calories/kg (Cooked)``` to 1200 and ```Deer Shrinkage``` to 25%. Now 1kg of raw deer meat will cook to 0.75kg of cooked meat with 900 calories.
