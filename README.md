@@ -65,7 +65,7 @@ Delete ```FoodTweaker.dll``` and ```FoodTweaker.json``` from your Mods folder
 	* Calories & Shrinkage:
 		* All calorie values are *before* the Cooking Skill calorie bonus is applied. 
 		* A cooked piece of meat or fish will always have at least as many calories as when it was raw.
-			* The EXCEPTION to this is if you use the GAME DEFAULT setting for **meat**, as in the vanilla game raw venison and rabbit have *higher* calories than the cooked versions (Venison: 900 raw, 800 cooked; Rabbit: 500 raw, 450 cooked). If you choose GAME DEFAULT I assume you want this weirdness.
+			* The EXCEPTION to this is if you use the GAME DEFAULT setting for **meat**, as in the vanilla game raw deer and rabbit meat have *higher* calories than the cooked versions (Deer: 900 raw, 800 cooked; Rabbit: 500 raw, 450 cooked). If you choose GAME DEFAULT I assume you want this weirdness.
 		* You will *gain* calories on cooked items if you have a high enough Cooking Skill, as you would in the vanilla game.
 		* If you choose GAME DEFAULT for calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have the same total calorie value as vanilla, regardless of shrinkage.
 			* E.g. 1kg bear meat has 900 calories by default, the cooked bear meat will still have 900 calories regardless of shrinkage.
