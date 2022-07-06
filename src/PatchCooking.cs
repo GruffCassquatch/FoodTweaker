@@ -185,7 +185,7 @@ namespace FoodTweaker
                         {
                             cookedItem.m_WeightKG = rawItem.m_WeightKG * deerShrinkage;
                             cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItem.m_WeightKG * cookedDeerCalories * GameManager.GetSkillCooking().GetCalorieScale();
-                            cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining / cookedItem.m_WeightKG;
+                            cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining;
                         }
                         else if (cookedItem.m_GearName == "GEAR_CookedMeatMoose")
                         {
