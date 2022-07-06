@@ -150,17 +150,18 @@ namespace FoodTweaker
                                 __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedBearCalories;
                                 __instance.m_FoodItem.m_CaloriesTotal = cookedBearCalories;
                             }
-                            /*
                             else if (__instance.m_GearName == "GEAR_RawMeatDeer")
                             {
+                                MelonLogger.Msg("Deer Raw __instance.m_WeightKG " + __instance.m_WeightKG.ToString());
                                 __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedDeerCalories * deerShrinkage;
                                 __instance.m_FoodItem.m_CaloriesTotal = cookedDeerCalories * deerShrinkage;
                             }
                             else if (__instance.m_GearName == "GEAR_CookedMeatDeer")
                             {
+                                MelonLogger.Msg("Deer Cooked __instance.m_WeightKG " + __instance.m_WeightKG.ToString());
                                 __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedDeerCalories;
                                 __instance.m_FoodItem.m_CaloriesTotal = cookedDeerCalories;
-                            }*/
+                            }
                             else if (__instance.m_GearName == "GEAR_RawMeatMoose")
                             {
                                 __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedMooseCalories * mooseShrinkage;
