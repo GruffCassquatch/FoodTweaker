@@ -22,7 +22,7 @@ These values will not please everyone and can't possibly be definitive. Use the 
   * If anyone has relevant real-world experience to share, you're very welcome to send me a message (see contact info at bottom).
 
 
-The mod does not currently include calorie adjustment for foods added by mods, as these are already realistic. 
+The mod does not currently include calorie adjustment for foods added by mods, as these are already realistic and some come with their own settings to adjust calories. 
 
   ## Limitations:
   * If you change the mod settings while in-game, you will need to change scene to apply the changes (e.g. go outside/inside).
