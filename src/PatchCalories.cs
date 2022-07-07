@@ -85,7 +85,6 @@ namespace FoodTweaker
                             float itemWeight = __instance.m_FoodItem.m_CaloriesRemaining / __instance.m_FoodItem.m_CaloriesTotal;
 
                             // Calories
-                            
                             float cookedBearCalories = Implementation.defaultCookedBearCalories;
                             float cookedDeerCalories = Implementation.defaultCookedDeerCalories;
                             float cookedMooseCalories = Implementation.defaultCookedMooseCalories;
@@ -110,19 +109,19 @@ namespace FoodTweaker
                             }
 
                             // Shrinkage
-                            float bearShrinkage = Implementation.defaultMeatShrinkage;
-                            float deerShrinkage = Implementation.defaultMeatShrinkage;
-                            float mooseShrinkage = Implementation.defaultMeatShrinkage;
-                            float rabbitShrinkage = Implementation.defaultMeatShrinkage;
-                            float wolfShrinkage = Implementation.defaultMeatShrinkage;
+                            float bearShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                            float deerShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                            float mooseShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                            float rabbitShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                            float wolfShrinkage = 1 - Implementation.defaultMeatShrinkage;
 
                             if (Settings.settings.meatShrinkage == Choice.Realistic)
                             {
-                                bearShrinkage = Implementation.realisticMeatShrinkage;
-                                deerShrinkage = Implementation.realisticMeatShrinkage;
-                                mooseShrinkage = Implementation.realisticMeatShrinkage;
-                                rabbitShrinkage = Implementation.realisticMeatShrinkage;
-                                wolfShrinkage = Implementation.realisticMeatShrinkage;
+                                bearShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                                deerShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                                mooseShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                                rabbitShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                                wolfShrinkage = 1 - Implementation.realisticMeatShrinkage;
                             }
                             else if (Settings.settings.meatShrinkage == Choice.Custom)
                             {
@@ -150,6 +149,7 @@ namespace FoodTweaker
                             
                             else if (__instance.m_GearName == "GEAR_CookedMeatBear")
                             {
+                                if (itemWeight == 1) itemWeight *= bearShrinkage;
                                 __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedBearCalories;
                                 __instance.m_FoodItem.m_CaloriesTotal = cookedBearCalories;
                             }
@@ -160,6 +160,7 @@ namespace FoodTweaker
                             }
                             else if (__instance.m_GearName == "GEAR_CookedMeatDeer")
                             {
+                                if (itemWeight == 1) itemWeight *= deerShrinkage;
                                 __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedDeerCalories;
                                 __instance.m_FoodItem.m_CaloriesTotal = cookedDeerCalories;
                             }
@@ -170,6 +171,7 @@ namespace FoodTweaker
                             }
                             else if (__instance.m_GearName == "GEAR_CookedMeatMoose")
                             {
+                                if (itemWeight == 1) itemWeight *= mooseShrinkage;
                                 __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedMooseCalories;
                                 __instance.m_FoodItem.m_CaloriesTotal = cookedMooseCalories;
                             }
@@ -180,6 +182,7 @@ namespace FoodTweaker
                             }
                             else if (__instance.m_GearName == "GEAR_CookedMeatRabbit")
                             {
+                                if (itemWeight == 1) itemWeight *= rabbitShrinkage;
                                 __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedRabbitCalories;
                                 __instance.m_FoodItem.m_CaloriesTotal = cookedRabbitCalories;
                             }
@@ -190,9 +193,11 @@ namespace FoodTweaker
                             }
                             else if (__instance.m_GearName == "GEAR_CookedMeatWolf")
                             {
+                                if (itemWeight == 1) itemWeight *= wolfShrinkage;
                                 __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedWolfCalories;
                                 __instance.m_FoodItem.m_CaloriesTotal = cookedWolfCalories;
                             }
+                            MelonLogger.Msg(__instance.m_GearName.ToString() + " Item Weight " + itemWeight);
                         }
 
                         // Fish
@@ -201,17 +206,17 @@ namespace FoodTweaker
                             if (Settings.settings.caloriesFish == Choice.Default && Settings.settings.fishShrinkage == Choice.Default) return;
 
                             // Shrinkage
-                            float salmonShrinkage = Implementation.defaultFishShrinkage;
-                            float whitefishShrinkage = Implementation.defaultFishShrinkage;
-                            float troutShrinkage = Implementation.defaultFishShrinkage;
-                            float bassShrinkage = Implementation.defaultFishShrinkage;
+                            float salmonShrinkage = 1 - Implementation.defaultFishShrinkage;
+                            float whitefishShrinkage = 1 - Implementation.defaultFishShrinkage;
+                            float troutShrinkage = 1 - Implementation.defaultFishShrinkage;
+                            float bassShrinkage = 1 - Implementation.defaultFishShrinkage;
 
                             if (Settings.settings.fishShrinkage == Choice.Realistic)
                             {
-                                salmonShrinkage = Implementation.realisticFishShrinkage;
-                                whitefishShrinkage = Implementation.realisticFishShrinkage;
-                                troutShrinkage = Implementation.realisticFishShrinkage;
-                                bassShrinkage = Implementation.realisticFishShrinkage;
+                                salmonShrinkage = 1 - Implementation.realisticFishShrinkage;
+                                whitefishShrinkage = 1 - Implementation.realisticFishShrinkage;
+                                troutShrinkage = 1 - Implementation.realisticFishShrinkage;
+                                bassShrinkage = 1 - Implementation.realisticFishShrinkage;
                             }
                             else if (Settings.settings.fishShrinkage == Choice.Custom)
                             {

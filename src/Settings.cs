@@ -186,6 +186,18 @@ namespace FoodTweaker
         public float bassCookingTime = 15;
 
 
+        [Section("Meat & Fish Warming Up Buff")]
+        [Name("     Buff Duration")]
+        [Description("How long the Warming Up buff lasts.\nGame Defaults: Pinnacle Peaches = 0.75,\nPork & Beans = 1.0, Tomato Soup = 1.0")]
+        [Slider(0.25f, 6, 24, NumberFormat = "{0:0.##} hours")]
+        public float meatFishWarmingUpDuration = 2;
+
+        [Name("     Buff Initial Warmth increase")]
+        [Description("Immediate % increase to Warmth meter.\nGame Defaults: Pinnacle Peaches = 8%,\nPork & Beans = 10%, Tomato Soup = 20%")]
+        [Slider(0, 100, 101, NumberFormat = "{0:0.#}%")]
+        public float meatFishInitialWarmthBonus = 15;
+
+
         [Section("Drinks")]
         [Name("Calories")]
         [Description("GAME DEFAULT: Calorie values will remain unchanged.\nREALISTIC: Based on real-world values.\nCUSTOM: Set your own values.")]
@@ -349,18 +361,6 @@ namespace FoodTweaker
         [Description("Immediate % increase to Warmth meter.\nGame Defaults: Pinnacle Peaches = 8%,\nPork & Beans = 10%, Tomato Soup = 20%")]
         [Slider(0, 100, 101, NumberFormat = "{0:0.#}%")]
         public float mreInitialWarmthBonus = 15;
-
-
-        [Section("Meat+Fish Warming Up Buff")]
-        [Name("     Buff Duration")]
-        [Description("How long the Warming Up buff lasts.\nGame Defaults: Pinnacle Peaches = 0.75,\nPork & Beans = 1.0, Tomato Soup = 1.0")]
-        [Slider(0.25f, 6, 24, NumberFormat = "{0:0.##} hours")]
-        public float meatFishWarmingUpDuration = 2;
-
-        [Name("     Buff Initial Warmth increase")]
-        [Description("Immediate % increase to Warmth meter.\nGame Defaults: Pinnacle Peaches = 8%,\nPork & Beans = 10%, Tomato Soup = 20%")]
-        [Slider(0, 100, 101, NumberFormat = "{0:0.#}%")]
-        public float meatFishInitialWarmthBonus = 15;
 
 
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)

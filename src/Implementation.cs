@@ -22,8 +22,8 @@ namespace FoodTweaker
         public const float defaultCookedTroutCaloriesPerKg = 383.5f;
         public const float defaultCookedBassCaloriesPerKg = 454.5f;
 
-        public const float defaultMeatShrinkage = 1;
-        public const float defaultFishShrinkage = 0.66f;
+        public const float defaultMeatShrinkage = 0;
+        public const float defaultFishShrinkage = 0.33f;
 
         public const float birchBarkTeaWeight = 0.1f;
         public const float coffeeWeight = 0.1f;

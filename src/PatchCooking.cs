@@ -107,9 +107,9 @@ namespace FoodTweaker
                         if (cookedItem.m_GearName == "GEAR_CookedSmallMouthBass") cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedBassCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
 
                         // Shrinkage
-                        float fishShrinkage = Implementation.defaultFishShrinkage;
+                        float fishShrinkage = 1 - Implementation.defaultFishShrinkage;
 
-                        if (Settings.settings.fishShrinkage == Choice.Realistic) fishShrinkage = Implementation.realisticFishShrinkage;
+                        if (Settings.settings.fishShrinkage == Choice.Realistic) fishShrinkage = 1 - Implementation.realisticFishShrinkage;
                         else if (Settings.settings.fishShrinkage == Choice.Custom)
                         {
                             if (cookedItem.m_GearName == "GEAR_CookedCohoSalmon") fishShrinkage = 1 - Settings.settings.salmonShrinks;
@@ -148,19 +148,19 @@ namespace FoodTweaker
                         }
 
                         // Shrinkage
-                        float bearShrinkage = Implementation.defaultMeatShrinkage;
-                        float deerShrinkage = Implementation.defaultMeatShrinkage;
-                        float mooseShrinkage = Implementation.defaultMeatShrinkage;
-                        float rabbitShrinkage = Implementation.defaultMeatShrinkage;
-                        float wolfShrinkage = Implementation.defaultMeatShrinkage;
+                        float bearShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                        float deerShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                        float mooseShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                        float rabbitShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                        float wolfShrinkage = 1 - Implementation.defaultMeatShrinkage;
 
                         if (Settings.settings.meatShrinkage == Choice.Realistic)
                         {
-                            bearShrinkage = Implementation.realisticMeatShrinkage;
-                            deerShrinkage = Implementation.realisticMeatShrinkage;
-                            mooseShrinkage = Implementation.realisticMeatShrinkage;
-                            rabbitShrinkage = Implementation.realisticMeatShrinkage;
-                            wolfShrinkage = Implementation.realisticMeatShrinkage;
+                            bearShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                            deerShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                            mooseShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                            rabbitShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                            wolfShrinkage = 1 - Implementation.realisticMeatShrinkage;
                         }
                         else if (Settings.settings.meatShrinkage == Choice.Custom)
                         {
