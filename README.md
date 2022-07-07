@@ -6,7 +6,7 @@ A mod for the Long Dark.
   * Adjust cooking time for meat and fish
   * Adjust how much meat shrinks when cooked (**raw weight** vs **cooked weight**)
   * Adjust difference between weight of **whole, raw fish** vs **cleaned, cooked fish**
-  * Enable MRE self-heating
+  * Enable MRE self-heating: MRE will become "Hot" after cooking and will provide Warming Up buff when eaten hot
   * All meat and fish will become "Hot" after cooking and will provide Warming Up buff when eaten hot
   * Includes Realistic presets, Custom sliders and ability to keep Game Default values
 
