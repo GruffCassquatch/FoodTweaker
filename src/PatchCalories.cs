@@ -15,7 +15,7 @@ namespace FoodTweaker
         internal static class ApplyBuffs
         {
             private static void Prefix(GearItem __instance, float normalizedValue)
-            {
+            {   
                 if (Settings.settings.modFunction && __instance.m_FoodItem)
                 {
                     if (__instance.m_GearName == "GEAR_MRE" && Settings.settings.mreHeating)
@@ -26,12 +26,12 @@ namespace FoodTweaker
                             {
                                 __instance.m_FreezingBuff = __instance.gameObject.AddComponent<FreezingBuff>();
                             }
-                            __instance.m_FreezingBuff.m_InitialPercentDecrease = 10f;
+                            __instance.m_FreezingBuff.m_InitialPercentDecrease = Settings.settings.mreInitialWarmthBonus / 3;
                             __instance.m_FreezingBuff.m_RateOfIncreaseScale = 0.5f;
-                            __instance.m_FreezingBuff.m_DurationHours = 2f;
+                            __instance.m_FreezingBuff.m_DurationHours = Settings.settings.mreWarmingUpDuration;
                             __instance.m_FoodItem.m_HeatPercent = 100;
-                            __instance.m_FoodItem.m_PercentHeatLossPerMinuteIndoors = 0.5f;
-                            __instance.m_FoodItem.m_PercentHeatLossPerMinuteOutdoors = 1f;
+                            __instance.m_FoodItem.m_PercentHeatLossPerMinuteIndoors = 1f;
+                            __instance.m_FoodItem.m_PercentHeatLossPerMinuteOutdoors = 2f;
 
                             __instance.m_FreezingBuff.Apply(normalizedValue);
                         }
@@ -72,9 +72,9 @@ namespace FoodTweaker
                             {
                                 __instance.m_FreezingBuff = __instance.gameObject.AddComponent<FreezingBuff>();
                             }
-                            __instance.m_FreezingBuff.m_InitialPercentDecrease = 10f;
+                            __instance.m_FreezingBuff.m_InitialPercentDecrease = Settings.settings.meatFishInitialWarmthBonus / 2;
                             __instance.m_FreezingBuff.m_RateOfIncreaseScale = 0.5f;
-                            __instance.m_FreezingBuff.m_DurationHours = 1f;
+                            __instance.m_FreezingBuff.m_DurationHours = Settings.settings.meatFishWarmingUpDuration;
                         }
 
                         // Meat

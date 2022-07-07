@@ -336,9 +336,32 @@ namespace FoodTweaker
 
 
         [Section("MRE Self-Heating")]
-        [Name("Does MRE self-heat")]
+        [Name("Does MRE self-heat when opened")]
         [Description("GAME DEFAULT: No.\nREALITY: Canadian MREs (IMPs) do NOT have self-heating.\nUSA MREs DO have self-heating")]
         public bool mreHeating = false;
+
+        [Name("     Buff Duration")]
+        [Description("How long the Warming Up buff lasts.\nGame Defaults: Pinnacle Peaches = 0.75,\nPork & Beans = 1.0, Tomato Soup = 1.0")]
+        [Slider(0.25f, 6, 24, NumberFormat = "{0:0.##} hours")]
+        public float mreWarmingUpDuration = 2;
+
+        [Name("     Buff Initial Warmth increase")]
+        [Description("Immediate % increase to Warmth meter.\nGame Defaults: Pinnacle Peaches = 8%,\nPork & Beans = 10%, Tomato Soup = 20%")]
+        [Slider(0, 100, 101, NumberFormat = "{0:0.#}%")]
+        public float mreInitialWarmthBonus = 15;
+
+
+        [Section("Meat+Fish Warming Up Buff")]
+        [Name("     Buff Duration")]
+        [Description("How long the Warming Up buff lasts.\nGame Defaults: Pinnacle Peaches = 0.75,\nPork & Beans = 1.0, Tomato Soup = 1.0")]
+        [Slider(0.25f, 6, 24, NumberFormat = "{0:0.##} hours")]
+        public float meatFishWarmingUpDuration = 2;
+
+        [Name("     Buff Initial Warmth increase")]
+        [Description("Immediate % increase to Warmth meter.\nGame Defaults: Pinnacle Peaches = 8%,\nPork & Beans = 10%, Tomato Soup = 20%")]
+        [Slider(0, 100, 101, NumberFormat = "{0:0.#}%")]
+        public float meatFishInitialWarmthBonus = 15;
+
 
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)
         {
@@ -350,7 +373,8 @@ namespace FoodTweaker
                 field.Name == nameof(meatShrinkage) ||
                 field.Name == nameof(fishShrinkage) ||
                 field.Name == nameof(meatCookingTime) ||
-                field.Name == nameof(fishCookingTime))
+                field.Name == nameof(fishCookingTime) ||
+                field.Name == nameof(mreHeating))
             {
                 RefreshFields();
             }
@@ -421,6 +445,10 @@ namespace FoodTweaker
             SetFieldVisible(nameof(troutCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
             SetFieldVisible(nameof(bassCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
             SetFieldVisible(nameof(mreHeating), Settings.settings.modFunction == true);
+            SetFieldVisible(nameof(mreWarmingUpDuration), Settings.settings.modFunction == true && Settings.settings.mreHeating);
+            SetFieldVisible(nameof(mreInitialWarmthBonus), Settings.settings.modFunction == true && Settings.settings.mreHeating);
+            SetFieldVisible(nameof(meatFishWarmingUpDuration), Settings.settings.modFunction == true);
+            SetFieldVisible(nameof(meatFishInitialWarmthBonus), Settings.settings.modFunction == true);
         }
     }
 
