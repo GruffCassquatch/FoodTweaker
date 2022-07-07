@@ -25,9 +25,10 @@ These values will not please everyone and can't possibly be definitive. Use the 
 The mod does not currently include calorie adjustment for foods added by mods, as these are already realistic and some come with their own settings to adjust calories. 
 
   ## Limitations:
-  * If you change the mod settings while in-game, you will need to change scene to apply the changes (e.g. go outside/inside).
-  * The mod can be used on an existing save, but food items that have already been spawned/harvested etc. in that save will not be updated to the new modded calorie values. Raw meat and fish will have updated values after you cook them.
+  * If you change the mod settings while in-game, you will need to change scene (e.g. go outside/inside) to apply some of the changes.
+  * The mod can be used on an existing save, but food items that have already been spawned/harvested etc. in that save will not be updated to the new modded calorie values. Raw meat and fish will have updated values after you cook them. If you disable the mod, foods that had modded calorie or weight values will retain those modded values.
   * Compatible with [Weight Tweaks](https://github.com/Xpazeman/tld-weight-tweaks) mod, **IF you leave Weight Tweaks food weight option at default values**. Otherwise there will probably be conflicts with the calories and shrinkage functions in Food Tweaker.
+  * If you use the [DeveloperConsole](https://github.com/FINDarkside/TLD-Developer-Console) to add cooked meat to your inventory, it will be added as a 1kg piece, regardless of what you have shrinkage set to. The calories/kg will be correct.
 
 
 ## Credit to [WarmFood](https://github.com/ttr/tld-WarmFood)
@@ -65,12 +66,16 @@ Delete ```FoodTweaker.dll``` and ```FoodTweaker.json``` from your Mods folder
 	* Calories & Shrinkage:
 		* All calorie values are *before* the Cooking Skill calorie bonus is applied. 
 		* A cooked piece of meat or fish will always have at least as many calories as when it was raw.
-			* The EXCEPTION to this is if you use the GAME DEFAULT setting for **meat**, as in the vanilla game raw venison and rabbit have *higher* calories than the cooked versions (Venison: 900 raw, 800 cooked; Rabbit: 500 raw, 450 cooked). If you choose GAME DEFAULT I assume you want this weirdness.
+			* The EXCEPTION to this is if you use the GAME DEFAULT setting for **meat**, as in the vanilla game raw deer and rabbit meat have *higher* calories than the cooked versions (Deer: 900 raw, 800 cooked; Rabbit: 500 raw, 450 cooked). If you choose GAME DEFAULT I assume you want this weirdness.
 		* You will *gain* calories on cooked items if you have a high enough Cooking Skill, as you would in the vanilla game.
 		* If you choose GAME DEFAULT for calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have the same total calorie value as vanilla, regardless of shrinkage.
 			* E.g. 1kg bear meat has 900 calories by default, the cooked bear meat will still have 900 calories regardless of shrinkage.
 		* If you choose CUSTOM calories, but **not** GAME DEFAULT for shrinkage, the cooked meat or fish will have a *proportional amount* of calories to weight. Take this into account when setting Calories and Shrinkage.
-			* E.g. if you set 1kg of COOKED bear meat to have 1000 calories, and also set bear meat shrinkage to 25%: 1kg of raw bear meat will have 750 calories, and it will yield 0.75kg of cooked bear meat that also has 750 calories.   
+			* If you want to use *cooked* calories/kg values for meat and fish (e.g. from nutritional information website), just set the Custom slider to the appropriate calories/kg value.
+			* If want to use *raw* calories/kg, use this formula to get the cooked calories/kg value: ```RawCalories / (1 - shrinkage)```
+			* E.g. you want cooked deer calories to match the Game Default raw deer calories, and also have 25% shrinkage: 
+			 	* 900 / (1 - 0.25) = 900 / 0.75 = 1200
+				* Then set ```Deer calories/kg (Cooked)``` to 1200 and ```Deer Shrinkage``` to 25%. Now 1kg of raw deer meat will cook to 0.75kg of cooked meat with 900 calories.
 5. Click ```CONFIRM``` to apply your changes or ```BACK``` to exit without applying changes
 
 
