@@ -25,27 +25,27 @@ namespace FoodTweaker
 
         [Name("         Bear calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Bear.\nDefault Game Value: 900\nRealistic Value: 1305 (1630 at Cooking lvl 5)")]
-        [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float bearCooked = 900;
 
         [Name("         Deer calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Deer.\nDefault Game Value: 800\nRealistic Value: 1172 (1465 at Cooking lvl 5)")]
-        [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float deerCooked = 800;
 
         [Name("         Moose calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Moose.\nDefault Game Value: 900\nRealistic Value: 1040 (1300 at Cooking lvl 5)")]
-        [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float mooseCooked = 900;
 
         [Name("         Rabbit calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Rabbit.\nDefault Game Value: 450\nRealistic Value: 932 (1140 at Cooking lvl 5)")]
-        [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float rabbitCooked = 450;
 
         [Name("         Wolf calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Wolf.\nDefault Game Value: 700\nRealistic Value: 875 (1165 at Cooking lvl 5)")]
-        [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float wolfCooked = 700;
 
 
@@ -85,27 +85,27 @@ namespace FoodTweaker
         public Choice meatCookingTime = Choice.Default;
 
         [Name("         Bear (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Bear meat.\nGAME DEFAULT: ≈ 1 hour 22 mins.\nREALISTIC: 35 mins (24.5 with Cooking lvl 5)")]
+        [Description("Adjust cooking time, in minutes, for 1kg Bear meat.\nGAME DEFAULT: 1 hour 22 mins.\nREALISTIC: 35 mins (24.5 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float bearCookingTime = 35;
 
         [Name("         Deer (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Deer meat.\nGAME DEFAULT: ≈ 57 mins.\nREALISTIC: 20 mins (14 with Cooking lvl 5)")]
+        [Description("Adjust cooking time, in minutes, for 1kg Deer meat.\nGAME DEFAULT: 57 mins.\nREALISTIC: 20 mins (14 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float deerCookingTime = 20;
 
         [Name("         Moose (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Moose meat.\nGAME DEFAULT: ≈ 1 hour 22 mins.\nREALISTIC: 25 mins (17.5 with Cooking lvl 5)")]
+        [Description("Adjust cooking time, in minutes, for 1kg Moose meat.\nGAME DEFAULT: 1 hour 22 mins.\nREALISTIC: 25 mins (17.5 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float mooseCookingTime = 25;
 
         [Name("         Rabbit (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Rabbit meat\nGAME DEFAULT: ≈ 38 mins.\nREALISTIC: 28 mins (19.6 with Cooking lvl 5)")]
+        [Description("Adjust cooking time, in minutes, for 1kg Rabbit meat\nGAME DEFAULT: 38 mins.\nREALISTIC: 28 mins (19.6 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float rabbitCookingTime = 20;
 
         [Name("         Wolf (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Wolf meat.\nGAME DEFAULT: ≈ 1 hour 9 mins.\nREALISTIC: 35 mins (24.5 with Cooking lvl 5)")]
+        [Description("Adjust cooking time, in minutes, for 1kg Wolf meat.\nGAME DEFAULT: 1 hour 9 mins.\nREALISTIC: 35 mins (24.5 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float wolfCookingTime = 30;
 
@@ -117,23 +117,23 @@ namespace FoodTweaker
 
         [Name("         Coho Salmon calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Coho Salmon.\nDefault Game Value: 454.5\nRealistic Value: 1120 (1400 at Cooking lvl 5)")]
-        [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
-        public float salmonCooked = 1390;
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
+        public float salmonCooked = 454.5f;
 
         [Name("         Lake Whitefish calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Lake Whitefish.\nDefault Game Value: 383.5\nRealistic Value: 1065 (1330 at Cooking lvl 5)")]
-        [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
-        public float whitefishCooked = 1340;
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
+        public float whitefishCooked = 383.5f;
 
         [Name("         Rainbow Trout calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Rainbow Trout.\nDefault Game Value: 383.5\nRealistic Value: 1200 (1500 at Cooking lvl 5)")]
-        [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
-        public float troutCooked = 1500;
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
+        public float troutCooked = 383.5f;
 
         [Name("         Smallmouth Bass calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Smallmouth Bass.\nDefault Game Value: 454.5\nRealistic Value: 1168 (1460 at Cooking lvl 5)")]
-        [Slider(250, 2000, 1751, NumberFormat = "{0:0.#} /kg")]
-        public float bassCooked = 1460;
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
+        public float bassCooked = 454.5f;
 
         [Name("Fish Shrinkage & Cleaning Loss")]
         [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%\nCUSTOM: Set your own values.")]
@@ -166,22 +166,22 @@ namespace FoodTweaker
         public Choice fishCookingTime = Choice.Default;
 
         [Name("         Coho Salmon (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Coho Salmon.\nREALISTIC: 15 mins")]
+        [Description("Adjust cooking time, in minutes, for 1kg Coho Salmon.\nGAME DEFAULT: 12 mins.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float salmonCookingTime = 15;
 
         [Name("         Lake Whitefish (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Lake Whitefish.\nREALISTIC: 15 mins")]
+        [Description("Adjust cooking time, in minutes, for 1kg Lake Whitefish.\nGAME DEFAULT: 21 mins.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float whitefishCookingTime = 15;
 
         [Name("         Rainbow Trout (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Rainbow Trout.\nREALISTIC: 15 mins")]
+        [Description("Adjust cooking time, in minutes, for 1kg Rainbow Trout.\nGAME DEFAULT: 19 mins.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float troutCookingTime = 15;
 
         [Name("         Smallmouth Bass (minutes/kg)")]
-        [Description("Adjust cooking time, in minutes, for 1kg Smallmouth Bass.\nREALISTIC: 15 mins")]
+        [Description("Adjust cooking time, in minutes, for 1kg Smallmouth Bass.\nGAME DEFAULT: 15 mins.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float bassCookingTime = 15;
 
