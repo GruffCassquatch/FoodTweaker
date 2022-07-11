@@ -109,6 +109,7 @@ namespace FoodTweaker
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float wolfCookingTime = 30;
 
+
         [Section("Fish")]
         [Name("Calories (Before Cooking Skill Bonus)")]
         [Description("GAME DEFAULT: Calorie values will remain unchanged.\nREALISTIC: Based on real-world values + some assumptions.\nCUSTOM: Set your own values.")]
@@ -363,6 +364,11 @@ namespace FoodTweaker
         public float mreInitialWarmthBonus = 15;
 
 
+        [Section("Fix Hydration from Tea & Coffee")]
+        [Name("Fix mismatched hydration levels")]
+        [Description("NO: Nothing will be changed.\nYES: Fix tea & coffee being 2x more hydrating than water")]
+        public bool updateHydration = false;
+
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)
         {
             if (field.Name == nameof(modFunction) ||
@@ -444,11 +450,27 @@ namespace FoodTweaker
             SetFieldVisible(nameof(whitefishCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
             SetFieldVisible(nameof(troutCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
             SetFieldVisible(nameof(bassCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
+            SetFieldVisible(nameof(updateHydration), Settings.settings.modFunction == true);
             SetFieldVisible(nameof(mreHeating), Settings.settings.modFunction == true);
             SetFieldVisible(nameof(mreWarmingUpDuration), Settings.settings.modFunction == true && Settings.settings.mreHeating);
             SetFieldVisible(nameof(mreInitialWarmthBonus), Settings.settings.modFunction == true && Settings.settings.mreHeating);
             SetFieldVisible(nameof(meatFishWarmingUpDuration), Settings.settings.modFunction == true);
             SetFieldVisible(nameof(meatFishInitialWarmthBonus), Settings.settings.modFunction == true);
+        }
+        protected override void OnConfirm()
+        {
+            base.OnConfirm();
+            ChangePrefabs();
+        }
+        internal void ChangePrefabs()
+        {
+            if (Settings.settings.modFunction && Settings.settings.updateHydration)
+            {
+                Patches.ChangePrefabParameters("GEAR_CoffeeCup");
+                Patches.ChangePrefabParameters("GEAR_GreenTeaCup");
+                Patches.ChangePrefabParameters("GEAR_ReishiTea");
+                Patches.ChangePrefabParameters("GEAR_RoseHipTea");
+            }
         }
     }
 
@@ -461,6 +483,7 @@ namespace FoodTweaker
             settings = new FoodTweakerSettings();
             settings.AddToModSettings("Food Tweaker Settings");
             settings.RefreshFields();
+            settings.ChangePrefabs();
         }
     }
 }

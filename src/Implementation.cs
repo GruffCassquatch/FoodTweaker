@@ -83,6 +83,8 @@ namespace FoodTweaker
         public const float defaultSardinesCalories = 300;
         public const float defaultTomatoSoupCalories = 300;
 
+        public const float waterHydrationLevel = 150;
+
         // Realistic Values
         public const float realisticCookedBearCalories = 1305;
         public const float realisticCookedDeerCalories = 1172;
