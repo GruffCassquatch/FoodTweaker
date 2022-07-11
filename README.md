@@ -25,10 +25,9 @@ These values will not please everyone and can't possibly be definitive. Use the 
 The mod does not currently include calorie adjustment for foods added by mods, as these are already realistic and some come with their own settings to adjust calories. 
 
   ## Limitations:
-  * If you change the mod settings while in-game, you will need to change scene (e.g. go outside/inside) to apply some of the changes.
+  * If you change the mod settings while in-game, you may need to change scene (e.g. go outside/inside) to apply some of the changes.
   * The mod can be used on an existing save, but food items that have already been spawned/harvested etc. in that save will not be updated to the new modded calorie values. Raw meat and fish will have updated values after you cook them. If you disable the mod, foods that had modded calorie or weight values will retain those modded values.
   * Compatible with [Weight Tweaks](https://github.com/Xpazeman/tld-weight-tweaks) mod, **IF you leave Weight Tweaks food weight option at default values**. Otherwise there will probably be conflicts with the calories and shrinkage functions in Food Tweaker.
-  * If you use the [DeveloperConsole](https://github.com/FINDarkside/TLD-Developer-Console) to add cooked meat to your inventory, it will be added as a 1kg piece, regardless of what you have shrinkage set to. The calories/kg will be correct.
 
 
 ## Credit to [WarmFood](https://github.com/ttr/tld-WarmFood)
