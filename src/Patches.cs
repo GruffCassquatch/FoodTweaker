@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using HarmonyLib;
 using MelonLoader;
 
 namespace FoodTweaker
@@ -258,485 +257,374 @@ namespace FoodTweaker
         }
 
         [HarmonyPatch(typeof(GearItem), "Awake", null)]
-        public class AdjustCalories
+        private static class AdjustCalories
         {
             private static void Postfix(GearItem __instance)
             {
                 if (Settings.settings.modFunction)
                 {
-                    Settings.settings.ChangePrefabs();
-                    
                     if (__instance.m_FoodItem)
                     {
-                        // Hot Food + Warming Up Buff
-                        if (__instance.m_GearName.Contains("Cooked") && (__instance.m_FoodItem.m_IsMeat || __instance.m_FoodItem.m_IsFish))
-                        {
-                            __instance.m_FoodItem.m_HeatedWhenCooked = true;
-                            __instance.m_FoodItem.m_PercentHeatLossPerMinuteIndoors = 1f;
-                            __instance.m_FoodItem.m_PercentHeatLossPerMinuteOutdoors = 2f;
-                            __instance.m_FoodItem.m_HeatPercent = 0;
-
-                            if (!__instance.m_FreezingBuff)
-                            {
-                                __instance.m_FreezingBuff = __instance.gameObject.AddComponent<FreezingBuff>();
-                            }
-                            __instance.m_FreezingBuff.m_InitialPercentDecrease = Settings.settings.meatFishInitialWarmthBonus / 2;
-                            __instance.m_FreezingBuff.m_RateOfIncreaseScale = 0.5f;
-                            __instance.m_FreezingBuff.m_DurationHours = Settings.settings.meatFishWarmingUpDuration;
-                        }
-
-                        // Meat
-                        if (__instance.m_FoodItem.m_IsMeat)
-                        {
-                            if (Settings.settings.caloriesMeat == Choice.Default && Settings.settings.meatShrinkage == Choice.Default) return;
-
-                            float itemWeight = __instance.m_FoodItem.m_CaloriesRemaining / __instance.m_FoodItem.m_CaloriesTotal;
-
-                            // Calories
-                            float cookedBearCalories = Implementation.defaultCookedBearCalories;
-                            float cookedDeerCalories = Implementation.defaultCookedDeerCalories;
-                            float cookedMooseCalories = Implementation.defaultCookedMooseCalories;
-                            float cookedRabbitCalories = Implementation.defaultCookedRabbitCalories;
-                            float cookedWolfCalories = Implementation.defaultCookedWolfCalories;
-
-                            if (Settings.settings.caloriesMeat == Choice.Realistic)
-                            {
-                                cookedBearCalories = Implementation.realisticCookedBearCalories;
-                                cookedDeerCalories = Implementation.realisticCookedDeerCalories;
-                                cookedMooseCalories = Implementation.realisticCookedMooseCalories;
-                                cookedRabbitCalories = Implementation.realisticCookedRabbitCalories;
-                                cookedWolfCalories = Implementation.realisticCookedWolfCalories;
-                            }
-                            else if (Settings.settings.caloriesMeat == Choice.Custom)
-                            {
-                                cookedBearCalories = Settings.settings.bearCooked;
-                                cookedDeerCalories = Settings.settings.deerCooked;
-                                cookedMooseCalories = Settings.settings.mooseCooked;
-                                cookedRabbitCalories = Settings.settings.rabbitCooked;
-                                cookedWolfCalories = Settings.settings.wolfCooked;
-                            }
-
-                            // Shrinkage
-                            float bearShrinkage = 1 - Implementation.defaultMeatShrinkage;
-                            float deerShrinkage = 1 - Implementation.defaultMeatShrinkage;
-                            float mooseShrinkage = 1 - Implementation.defaultMeatShrinkage;
-                            float rabbitShrinkage = 1 - Implementation.defaultMeatShrinkage;
-                            float wolfShrinkage = 1 - Implementation.defaultMeatShrinkage;
-
-                            if (Settings.settings.meatShrinkage == Choice.Realistic)
-                            {
-                                bearShrinkage = 1 - Implementation.realisticMeatShrinkage;
-                                deerShrinkage = 1 - Implementation.realisticMeatShrinkage;
-                                mooseShrinkage = 1 - Implementation.realisticMeatShrinkage;
-                                rabbitShrinkage = 1 - Implementation.realisticMeatShrinkage;
-                                wolfShrinkage = 1 - Implementation.realisticMeatShrinkage;
-                            }
-                            else if (Settings.settings.meatShrinkage == Choice.Custom)
-                            {
-                                bearShrinkage = 1 - Settings.settings.bearShrinks;
-                                deerShrinkage = 1 - Settings.settings.deerShrinks;
-                                mooseShrinkage = 1 - Settings.settings.mooseShrinks;
-                                rabbitShrinkage = 1 - Settings.settings.rabbitShrinks;
-                                wolfShrinkage = 1 - Settings.settings.wolfShrinks;
-                            }
-
-                            if (Settings.settings.caloriesMeat == Choice.Default && Settings.settings.meatShrinkage != Choice.Default)
-                            {
-                                cookedBearCalories = Implementation.defaultCookedBearCalories / bearShrinkage;
-                                cookedDeerCalories = Implementation.defaultCookedDeerCalories / deerShrinkage;
-                                cookedMooseCalories = Implementation.defaultCookedMooseCalories / mooseShrinkage;
-                                cookedRabbitCalories = Implementation.defaultCookedRabbitCalories / rabbitShrinkage;
-                                cookedWolfCalories = Implementation.defaultCookedWolfCalories / wolfShrinkage;
-                            }
-
-                            if (__instance.m_GearName == "GEAR_RawMeatBear")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedBearCalories * bearShrinkage;
-                                __instance.m_FoodItem.m_CaloriesTotal = __instance.m_FoodItem.m_CaloriesRemaining / itemWeight;
-                            }
-
-                            else if (__instance.m_GearName == "GEAR_CookedMeatBear")
-                            {
-                                if (itemWeight == 1) itemWeight *= bearShrinkage;
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedBearCalories;
-                                __instance.m_FoodItem.m_CaloriesTotal = cookedBearCalories;
-                            }
-                            else if (__instance.m_GearName == "GEAR_RawMeatDeer")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedDeerCalories * deerShrinkage;
-                                __instance.m_FoodItem.m_CaloriesTotal = cookedDeerCalories * deerShrinkage;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CookedMeatDeer")
-                            {
-                                if (itemWeight == 1) itemWeight *= deerShrinkage;
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedDeerCalories;
-                                __instance.m_FoodItem.m_CaloriesTotal = cookedDeerCalories;
-                            }
-                            else if (__instance.m_GearName == "GEAR_RawMeatMoose")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedMooseCalories * mooseShrinkage;
-                                __instance.m_FoodItem.m_CaloriesTotal = cookedMooseCalories * mooseShrinkage;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CookedMeatMoose")
-                            {
-                                if (itemWeight == 1) itemWeight *= mooseShrinkage;
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedMooseCalories;
-                                __instance.m_FoodItem.m_CaloriesTotal = cookedMooseCalories;
-                            }
-                            else if (__instance.m_GearName == "GEAR_RawMeatRabbit")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedRabbitCalories * rabbitShrinkage;
-                                __instance.m_FoodItem.m_CaloriesTotal = cookedRabbitCalories * rabbitShrinkage;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CookedMeatRabbit")
-                            {
-                                if (itemWeight == 1) itemWeight *= rabbitShrinkage;
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedRabbitCalories;
-                                __instance.m_FoodItem.m_CaloriesTotal = cookedRabbitCalories;
-                            }
-                            else if (__instance.m_GearName == "GEAR_RawMeatWolf")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedWolfCalories * wolfShrinkage;
-                                __instance.m_FoodItem.m_CaloriesTotal = cookedWolfCalories * wolfShrinkage;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CookedMeatWolf")
-                            {
-                                if (itemWeight == 1) itemWeight *= wolfShrinkage;
-                                __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedWolfCalories;
-                                __instance.m_FoodItem.m_CaloriesTotal = cookedWolfCalories;
-                            }
-                            MelonLogger.Msg(__instance.m_GearName.ToString() + " Item Weight " + itemWeight);
-                        }
-
-                        // Fish
-                        else if (__instance.m_FoodItem.m_IsFish)
-                        {
-                            if (Settings.settings.caloriesFish == Choice.Default && Settings.settings.fishShrinkage == Choice.Default) return;
-
-                            // Shrinkage
-                            float salmonShrinkage = 1 - Implementation.defaultFishShrinkage;
-                            float whitefishShrinkage = 1 - Implementation.defaultFishShrinkage;
-                            float troutShrinkage = 1 - Implementation.defaultFishShrinkage;
-                            float bassShrinkage = 1 - Implementation.defaultFishShrinkage;
-
-                            if (Settings.settings.fishShrinkage == Choice.Realistic)
-                            {
-                                salmonShrinkage = 1 - Implementation.realisticFishShrinkage;
-                                whitefishShrinkage = 1 - Implementation.realisticFishShrinkage;
-                                troutShrinkage = 1 - Implementation.realisticFishShrinkage;
-                                bassShrinkage = 1 - Implementation.realisticFishShrinkage;
-                            }
-                            else if (Settings.settings.fishShrinkage == Choice.Custom)
-                            {
-                                salmonShrinkage = 1 - Settings.settings.salmonShrinks;
-                                whitefishShrinkage = 1 - Settings.settings.whitefishShrinks;
-                                troutShrinkage = 1 - Settings.settings.troutShrinks;
-                                bassShrinkage = 1 - Settings.settings.bassShrinks;
-                            }
-
-                            // Calories
-                            float cookedSalmonCaloriesPerKg = Implementation.defaultCookedSalmonCaloriesPerKg;
-                            float cookedWhitefishCaloriesPerKg = Implementation.defaultCookedWhitefishCaloriesPerKg;
-                            float cookedTroutCaloriesPerKg = Implementation.defaultCookedTroutCaloriesPerKg;
-                            float cookedBassCaloriesPerKg = Implementation.defaultCookedBassCaloriesPerKg;
-
-                            if (Settings.settings.caloriesFish == Choice.Realistic)
-                            {
-                                cookedSalmonCaloriesPerKg = Implementation.realisticCookedSalmonCaloriesPerKg;
-                                cookedWhitefishCaloriesPerKg = Implementation.realisticCookedWhitefishCaloriesPerKg;
-                                cookedTroutCaloriesPerKg = Implementation.realisticCookedTroutCaloriesPerKg;
-                                cookedBassCaloriesPerKg = Implementation.realisticCookedBassCaloriesPerKg;
-                            }
-                            else if (Settings.settings.caloriesFish == Choice.Custom)
-                            {
-                                cookedSalmonCaloriesPerKg = Settings.settings.salmonCooked;
-                                cookedWhitefishCaloriesPerKg = Settings.settings.whitefishCooked;
-                                cookedTroutCaloriesPerKg = Settings.settings.troutCooked;
-                                cookedBassCaloriesPerKg = Settings.settings.bassCooked;
-                            }
-
-                            if (Settings.settings.caloriesFish == Choice.Default && Settings.settings.fishShrinkage != Choice.Default)
-                            {
-                                cookedSalmonCaloriesPerKg = Implementation.realisticCookedSalmonCaloriesPerKg / salmonShrinkage;
-                                cookedWhitefishCaloriesPerKg = Implementation.realisticCookedWhitefishCaloriesPerKg / whitefishShrinkage;
-                                cookedTroutCaloriesPerKg = Implementation.realisticCookedTroutCaloriesPerKg / troutShrinkage;
-                                cookedBassCaloriesPerKg = Implementation.realisticCookedBassCaloriesPerKg / bassShrinkage;
-                            }
-
-                            if (__instance.m_GearName == "GEAR_RawCohoSalmon")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedSalmonCaloriesPerKg * salmonShrinkage;
-                                __instance.m_FoodWeight.m_CaloriesPerKG = cookedSalmonCaloriesPerKg * salmonShrinkage;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CookedCohoSalmon")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedSalmonCaloriesPerKg;
-                                __instance.m_FoodWeight.m_CaloriesPerKG = cookedSalmonCaloriesPerKg;
-                            }
-                            else if (__instance.m_GearName.Contains("GEAR_RawLakeWhiteFish"))
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedWhitefishCaloriesPerKg * whitefishShrinkage;
-                                __instance.m_FoodWeight.m_CaloriesPerKG = cookedWhitefishCaloriesPerKg * whitefishShrinkage;
-                            }
-                            else if (__instance.m_GearName.Contains("GEAR_CookedLakeWhiteFish"))
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedWhitefishCaloriesPerKg;
-                                __instance.m_FoodWeight.m_CaloriesPerKG = cookedWhitefishCaloriesPerKg;
-                            }
-                            else if (__instance.m_GearName == "GEAR_RawRainbowTrout")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedTroutCaloriesPerKg * troutShrinkage;
-                                __instance.m_FoodWeight.m_CaloriesPerKG = cookedTroutCaloriesPerKg * troutShrinkage;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CookedRainbowTrout")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedTroutCaloriesPerKg;
-                                __instance.m_FoodWeight.m_CaloriesPerKG = cookedTroutCaloriesPerKg;
-                            }
-                            else if (__instance.m_GearName == "GEAR_RawSmallMouthBass")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedBassCaloriesPerKg * bassShrinkage;
-                                __instance.m_FoodWeight.m_CaloriesPerKG = cookedBassCaloriesPerKg * bassShrinkage;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CookedSmallMouthBass")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedBassCaloriesPerKg;
-                                __instance.m_FoodWeight.m_CaloriesPerKG = cookedBassCaloriesPerKg;
-                            }
-                            __instance.m_FoodItem.m_CaloriesTotal = __instance.m_FoodItem.m_CaloriesRemaining;
-                        }
-
-                        // Drinks
-                        else if (__instance.m_FoodItem.m_IsDrink)
-                        {
-                            if (Settings.settings.caloriesDrinks != Choice.Default)
-                            {
-                                float birchBarkTea = Implementation.defaultBirchBarkTeaCalories / Implementation.birchBarkTeaWeight;
-                                float coffee = Implementation.defaultCoffeeCalories / Implementation.coffeeWeight;
-                                float goEnergyDrink = Implementation.defaultGoEnergyDrinkCalories / Implementation.goEnergyDrinkWeight;
-                                float herbalTea = Implementation.defaultHerbalTeaCalories / Implementation.herbalTeaWeight;
-                                float orangeSoda = Implementation.defaultOrangeSodaCalories / Implementation.orangeSodaWeight;
-                                float reishiTea = Implementation.defaultReishiTeaCalories / Implementation.reishiTeaWeight;
-                                float roseHipTea = Implementation.defaultRoseHipTeaCalories / Implementation.roseHipTeaWeight;
-                                float grapeSoda = Implementation.defaultGrapeSodaCalories / Implementation.grapeSodaWeight;
-                                float summitSoda = Implementation.defaultSummitSodaCalories / Implementation.summitSodaWeight;
-
-                                if (Settings.settings.caloriesDrinks == Choice.Realistic)
-                                {
-                                    birchBarkTea = Implementation.realisticBirchBarkTeaCalories / Implementation.birchBarkTeaWeight;
-                                    coffee = Implementation.realisticCoffeeCalories / Implementation.coffeeWeight;
-                                    goEnergyDrink = Implementation.realisticGoEnergyDrinkCalories / Implementation.goEnergyDrinkWeight;
-                                    herbalTea = Implementation.realisticHerbalTeaCalories / Implementation.herbalTeaWeight;
-                                    orangeSoda = Implementation.realisticOrangeSodaCalories / Implementation.orangeSodaWeight;
-                                    reishiTea = Implementation.realisticReishiTeaCalories / Implementation.reishiTeaWeight;
-                                    roseHipTea = Implementation.realisticRoseHipTeaCalories / Implementation.roseHipTeaWeight;
-                                    grapeSoda = Implementation.realisticGrapeSodaCalories / Implementation.grapeSodaWeight;
-                                    summitSoda = Implementation.realisticSummitSodaCalories / Implementation.summitSodaWeight;
-                                }
-                                else if (Settings.settings.caloriesDrinks == Choice.Custom)
-                                {
-                                    birchBarkTea = Settings.settings.birchBarkTea / Implementation.birchBarkTeaWeight;
-                                    coffee = Settings.settings.coffee / Implementation.coffeeWeight;
-                                    herbalTea = Settings.settings.herbalTea / Implementation.herbalTeaWeight;
-                                    orangeSoda = Settings.settings.orangeSoda / Implementation.orangeSodaWeight;
-                                    goEnergyDrink = Settings.settings.goEnergyDrink / Implementation.goEnergyDrinkWeight;
-                                    reishiTea = Settings.settings.reishiTea / Implementation.reishiTeaWeight;
-                                    roseHipTea = Settings.settings.roseHipTea / Implementation.roseHipTeaWeight;
-                                    grapeSoda = Settings.settings.grapeSoda / Implementation.grapeSodaWeight;
-                                    summitSoda = Settings.settings.summitSoda / Implementation.summitSodaWeight;
-                                }
-
-                                if (__instance.m_GearName == "GEAR_BirchbarkTea")
-                                {
-                                    __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * birchBarkTea;
-                                }
-                                else if (__instance.m_GearName == "GEAR_CoffeeCup")
-                                {
-                                    __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * coffee;
-                                }
-                                else if (__instance.m_GearName == "GEAR_GreenTeaCup")
-                                {
-                                    __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * herbalTea;
-                                }
-                                else if (__instance.m_GearName == "GEAR_SodaOrange")
-                                {
-                                    __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * orangeSoda;
-                                }
-                                else if (__instance.m_GearName == "GEAR_SodaEnergy")
-                                {
-                                    __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * goEnergyDrink;
-                                }
-                                else if (__instance.m_GearName == "GEAR_ReishiTea")
-                                {
-                                    __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * reishiTea;
-                                }
-                                else if (__instance.m_GearName == "GEAR_RoseHipTea")
-                                {
-                                    __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * roseHipTea;
-                                }
-                                else if (__instance.m_GearName == "GEAR_SodaGrape")
-                                {
-                                    __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * grapeSoda;
-                                }
-                                else if (__instance.m_GearName == "GEAR_Soda")
-                                {
-                                    __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * summitSoda;
-                                }
-                                __instance.m_FoodItem.m_CaloriesTotal = __instance.m_FoodItem.m_CaloriesRemaining;
-                            }
-                        }
-
-                        // Other Foods
-                        else if (Settings.settings.caloriesOtherFood != Choice.Default)
-                        {
-                            float airlineChicken = Implementation.defaultAirlineChickenCalories / Implementation.airlineChickenWeight;
-                            float airlineVegetable = Implementation.defaultAirlineVegetableCalories / Implementation.airlineVegetableWeight;
-                            float beefJerky = Implementation.defaultBeefJerkyCalories / Implementation.beefJerkyWeight;
-                            float cattailStalk = Implementation.defaultCattailStalkCalories / Implementation.cattailStalkWeight;
-                            float chocolateBar = Implementation.defaultChocolateBarCalories / Implementation.chocolateBarWeight;
-                            float condensedMilk = Implementation.defaultCondensedMilkCalories / Implementation.condensedMilkWeight;
-                            float dogFood = Implementation.defaultDogFoodCalories / Implementation.dogFoodWeight;
-                            float energyBar = Implementation.defaultEnergyBarCalories / Implementation.energyBarWeight;
-                            float granolaBar = Implementation.defaultGranolaBarCalories / Implementation.granolaBarWeight;
-                            float ketchupChips = Implementation.defaultKetchupChipsCalories / Implementation.ketchupChipsWeight;
-                            float mapleSyrup = Implementation.defaultMapleSyrupCalories / Implementation.mapleSyrupWeight;
-                            float mre = Implementation.defaultMreCalories / Implementation.mreWeight;
-                            float peanutButter = Implementation.defaultPeanutButterCalories / Implementation.peanutButterWeight;
-                            float pinnaclePeaches = Implementation.defaultPinnaclePeachesCalories / Implementation.pinnaclePeachesWeight;
-                            float porkAndBeans = Implementation.defaultPorkAndBeansCalories / Implementation.porkAndBeansWeight;
-                            float saltyCrackers = Implementation.defaultSaltyCrackersCalories / Implementation.saltyCrackersWeight;
-                            float sardines = Implementation.defaultSardinesCalories / Implementation.sardinesWeight;
-                            float tomatoSoup = Implementation.defaultTomatoSoupCalories / Implementation.tomatoSoupWeight;
-
-                            if (Settings.settings.caloriesOtherFood == Choice.Realistic)
-                            {
-                                airlineChicken = Implementation.realisticAirlineChickenCalories / Implementation.airlineChickenWeight;
-                                airlineVegetable = Implementation.realisticAirlineVegetableCalories / Implementation.airlineVegetableWeight;
-                                beefJerky = Implementation.realisticBeefJerkyCalories / Implementation.beefJerkyWeight;
-                                cattailStalk = Implementation.realisticCattailStalkCalories / Implementation.cattailStalkWeight;
-                                chocolateBar = Implementation.realisticChocolateBarCalories / Implementation.chocolateBarWeight;
-                                condensedMilk = Implementation.realisticCondensedMilkCalories / Implementation.condensedMilkWeight;
-                                dogFood = Implementation.realisticDogFoodCalories / Implementation.dogFoodWeight;
-                                energyBar = Implementation.realisticEnergyBarCalories / Implementation.energyBarWeight;
-                                granolaBar = Implementation.realisticGranolaBarCalories / Implementation.granolaBarWeight;
-                                ketchupChips = Implementation.realisticKetchupChipsCalories / Implementation.ketchupChipsWeight;
-                                mapleSyrup = Implementation.realisticMapleSyrupCalories / Implementation.mapleSyrupWeight;
-                                mre = Implementation.realisticMreCalories / Implementation.mreWeight;
-                                peanutButter = Implementation.realisticPeanutButterCalories / Implementation.peanutButterWeight;
-                                pinnaclePeaches = Implementation.realisticPinnaclePeachesCalories / Implementation.pinnaclePeachesWeight;
-                                porkAndBeans = Implementation.realisticPorkAndBeansCalories / Implementation.porkAndBeansWeight;
-                                saltyCrackers = Implementation.realisticSaltyCrackersCalories / Implementation.saltyCrackersWeight;
-                                sardines = Implementation.realisticSardinesCalories / Implementation.sardinesWeight;
-                                tomatoSoup = Implementation.realisticTomatoSoupCalories / Implementation.tomatoSoupWeight;
-                            }
-                            else if (Settings.settings.caloriesOtherFood == Choice.Custom)
-                            {
-                                airlineChicken = Settings.settings.airlineChicken / Implementation.airlineChickenWeight;
-                                airlineVegetable = Settings.settings.airlineVegetarian / Implementation.airlineVegetableWeight;
-                                beefJerky = Settings.settings.beefJerky / Implementation.beefJerkyWeight;
-                                cattailStalk = Settings.settings.cattailStalk / Implementation.cattailStalkWeight;
-                                chocolateBar = Settings.settings.chocolateBar / Implementation.chocolateBarWeight;
-                                condensedMilk = Settings.settings.condensedMilk / Implementation.condensedMilkWeight;
-                                dogFood = Settings.settings.dogFood / Implementation.dogFoodWeight;
-                                energyBar = Settings.settings.energyBar / Implementation.energyBarWeight;
-                                granolaBar = Settings.settings.granolaBar / Implementation.granolaBarWeight;
-                                ketchupChips = Settings.settings.ketchupChips / Implementation.ketchupChipsWeight;
-                                mapleSyrup = Settings.settings.mapleSyrup / Implementation.mapleSyrupWeight;
-                                mre = Settings.settings.mre / Implementation.mreWeight;
-                                peanutButter = Settings.settings.peanutButter / Implementation.peanutButterWeight;
-                                pinnaclePeaches = Settings.settings.pinnaclePeaches / Implementation.pinnaclePeachesWeight;
-                                porkAndBeans = Settings.settings.porkAndBeans / Implementation.porkAndBeansWeight;
-                                saltyCrackers = Settings.settings.saltyCrackers / Implementation.saltyCrackersWeight;
-                                sardines = Settings.settings.sardines / Implementation.sardinesWeight;
-                                tomatoSoup = Settings.settings.tomatoSoup / Implementation.tomatoSoupWeight;
-                            }
-
-                            if (__instance.m_GearName == "GEAR_AirlineFoodChick")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * airlineChicken;
-                            }
-                            else if (__instance.m_GearName == "GEAR_AirlineFoodVeg")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * airlineVegetable;
-                            }
-                            else if (__instance.m_GearName == "GEAR_BeefJerky")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * beefJerky;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CandyBar")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * chocolateBar;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CattailStalk")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cattailStalk;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CondensedMilk")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * condensedMilk;
-                            }
-                            else if (__instance.m_GearName == "GEAR_DogFood")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * dogFood;
-                            }
-                            else if (__instance.m_GearName == "GEAR_EnergyBar")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * energyBar;
-                            }
-                            else if (__instance.m_GearName == "GEAR_GranolaBar")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * granolaBar;
-                            }
-                            else if (__instance.m_GearName == "GEAR_KetchupChips")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * ketchupChips;
-                            }
-                            else if (__instance.m_GearName == "GEAR_MapleSyrup")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * mapleSyrup;
-                            }
-                            else if (__instance.m_GearName == "GEAR_MRE")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * mre;
-                            }
-                            else if (__instance.m_GearName == "GEAR_PeanutButter")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * peanutButter;
-                            }
-                            else if (__instance.m_GearName == "GEAR_PinnacleCanPeaches")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * pinnaclePeaches;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CannedBeans")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * porkAndBeans;
-                            }
-                            else if (__instance.m_GearName == "GEAR_Crackers")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * saltyCrackers;
-                            }
-                            else if (__instance.m_GearName == "GEAR_CannedSardines")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * sardines;
-                            }
-                            else if (__instance.m_GearName == "Gear_TomatoSoupCan")
-                            {
-                                __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * tomatoSoup;
-                            }
-                            __instance.m_FoodItem.m_CaloriesTotal = __instance.m_FoodItem.m_CaloriesRemaining;
-                        }
+                        UpdateFoodItem(__instance);
                     }
                 }
             }
         }
-        public static void ChangePrefabParameters(string name)
-        {
-            GearItem item = GetGearItemPrefab(name);
-            if (item == null) return;
-            if (!item.m_FoodItem) return;
-            item.m_FoodItem.m_ReduceThirst = item.m_WeightKG * Implementation.waterHydrationLevel;
 
+        
+        [HarmonyPatch(typeof(GameManager), "Awake", null)]
+        private static class AdjustFoodItemsOnLoad
+        {
+            private static void Postfix()
+            {
+                if (Settings.settings.modFunction)
+                {
+                    Settings.settings.ChangePrefabs();
+                }
+            }
         }
-        private static GearItem GetGearItemPrefab(string name) => Resources.Load(name).Cast<GameObject>().GetComponent<GearItem>();
+
+        private static void UpdateFoodItem(GearItem __instance)
+        {
+            if (__instance.m_FoodItem)
+            {
+                // Hot Food + Warming Up Buff
+                if (__instance.m_GearName.Contains("Cooked") && (__instance.m_FoodItem.m_IsMeat || __instance.m_FoodItem.m_IsFish))
+                {
+                    __instance.m_FoodItem.m_HeatedWhenCooked = true;
+                    __instance.m_FoodItem.m_PercentHeatLossPerMinuteIndoors = 1f;
+                    __instance.m_FoodItem.m_PercentHeatLossPerMinuteOutdoors = 2f;
+                    __instance.m_FoodItem.m_HeatPercent = 0;
+
+                    if (!__instance.m_FreezingBuff)
+                    {
+                        __instance.m_FreezingBuff = __instance.gameObject.AddComponent<FreezingBuff>();
+                    }
+                    __instance.m_FreezingBuff.m_InitialPercentDecrease = Settings.settings.meatFishInitialWarmthBonus / 2;
+                    __instance.m_FreezingBuff.m_RateOfIncreaseScale = 0.5f;
+                    __instance.m_FreezingBuff.m_DurationHours = Settings.settings.meatFishWarmingUpDuration;
+                }
+
+                // Meat
+                if (__instance.m_FoodItem.m_IsMeat)
+                {
+                    if (Settings.settings.caloriesMeat == Choice.Default && Settings.settings.meatShrinkage == Choice.Default) return;
+
+                    float itemWeight = __instance.m_FoodItem.m_CaloriesRemaining / __instance.m_FoodItem.m_CaloriesTotal;
+
+                    // Calories
+                    float cookedBearCalories = Implementation.defaultCookedBearCalories;
+                    float cookedDeerCalories = Implementation.defaultCookedDeerCalories;
+                    float cookedMooseCalories = Implementation.defaultCookedMooseCalories;
+                    float cookedRabbitCalories = Implementation.defaultCookedRabbitCalories;
+                    float cookedWolfCalories = Implementation.defaultCookedWolfCalories;
+
+                    if (Settings.settings.caloriesMeat == Choice.Realistic)
+                    {
+                        cookedBearCalories = Implementation.realisticCookedBearCalories;
+                        cookedDeerCalories = Implementation.realisticCookedDeerCalories;
+                        cookedMooseCalories = Implementation.realisticCookedMooseCalories;
+                        cookedRabbitCalories = Implementation.realisticCookedRabbitCalories;
+                        cookedWolfCalories = Implementation.realisticCookedWolfCalories;
+                    }
+                    else if (Settings.settings.caloriesMeat == Choice.Custom)
+                    {
+                        cookedBearCalories = Settings.settings.bearCooked;
+                        cookedDeerCalories = Settings.settings.deerCooked;
+                        cookedMooseCalories = Settings.settings.mooseCooked;
+                        cookedRabbitCalories = Settings.settings.rabbitCooked;
+                        cookedWolfCalories = Settings.settings.wolfCooked;
+                    }
+
+                    // Shrinkage
+                    float bearShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                    float deerShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                    float mooseShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                    float rabbitShrinkage = 1 - Implementation.defaultMeatShrinkage;
+                    float wolfShrinkage = 1 - Implementation.defaultMeatShrinkage;
+
+                    if (Settings.settings.meatShrinkage == Choice.Realistic)
+                    {
+                        bearShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                        deerShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                        mooseShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                        rabbitShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                        wolfShrinkage = 1 - Implementation.realisticMeatShrinkage;
+                    }
+                    else if (Settings.settings.meatShrinkage == Choice.Custom)
+                    {
+                        bearShrinkage = 1 - Settings.settings.bearShrinks;
+                        deerShrinkage = 1 - Settings.settings.deerShrinks;
+                        mooseShrinkage = 1 - Settings.settings.mooseShrinks;
+                        rabbitShrinkage = 1 - Settings.settings.rabbitShrinks;
+                        wolfShrinkage = 1 - Settings.settings.wolfShrinks;
+                    }
+
+                    if (Settings.settings.caloriesMeat == Choice.Default && Settings.settings.meatShrinkage != Choice.Default)
+                    {
+                        cookedBearCalories = Implementation.defaultCookedBearCalories / bearShrinkage;
+                        cookedDeerCalories = Implementation.defaultCookedDeerCalories / deerShrinkage;
+                        cookedMooseCalories = Implementation.defaultCookedMooseCalories / mooseShrinkage;
+                        cookedRabbitCalories = Implementation.defaultCookedRabbitCalories / rabbitShrinkage;
+                        cookedWolfCalories = Implementation.defaultCookedWolfCalories / wolfShrinkage;
+                    }
+
+                    if (__instance.m_GearName == "GEAR_RawMeatBear")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedBearCalories * bearShrinkage;
+                        __instance.m_FoodItem.m_CaloriesTotal = __instance.m_FoodItem.m_CaloriesRemaining / itemWeight;
+                    }
+
+                    else if (__instance.m_GearName == "GEAR_CookedMeatBear")
+                    {
+                        if (itemWeight == 1) itemWeight *= bearShrinkage;
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedBearCalories;
+                        __instance.m_FoodItem.m_CaloriesTotal = cookedBearCalories;
+                    }
+                    else if (__instance.m_GearName == "GEAR_RawMeatDeer")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedDeerCalories * deerShrinkage;
+                        __instance.m_FoodItem.m_CaloriesTotal = cookedDeerCalories * deerShrinkage;
+                    }
+                    else if (__instance.m_GearName == "GEAR_CookedMeatDeer")
+                    {
+                        if (itemWeight == 1) itemWeight *= deerShrinkage;
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedDeerCalories;
+                        __instance.m_FoodItem.m_CaloriesTotal = cookedDeerCalories;
+                    }
+                    else if (__instance.m_GearName == "GEAR_RawMeatMoose")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedMooseCalories * mooseShrinkage;
+                        __instance.m_FoodItem.m_CaloriesTotal = cookedMooseCalories * mooseShrinkage;
+                    }
+                    else if (__instance.m_GearName == "GEAR_CookedMeatMoose")
+                    {
+                        if (itemWeight == 1) itemWeight *= mooseShrinkage;
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedMooseCalories;
+                        __instance.m_FoodItem.m_CaloriesTotal = cookedMooseCalories;
+                    }
+                    else if (__instance.m_GearName == "GEAR_RawMeatRabbit")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedRabbitCalories * rabbitShrinkage;
+                        __instance.m_FoodItem.m_CaloriesTotal = cookedRabbitCalories * rabbitShrinkage;
+                    }
+                    else if (__instance.m_GearName == "GEAR_CookedMeatRabbit")
+                    {
+                        if (itemWeight == 1) itemWeight *= rabbitShrinkage;
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedRabbitCalories;
+                        __instance.m_FoodItem.m_CaloriesTotal = cookedRabbitCalories;
+                    }
+                    else if (__instance.m_GearName == "GEAR_RawMeatWolf")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedWolfCalories * wolfShrinkage;
+                        __instance.m_FoodItem.m_CaloriesTotal = cookedWolfCalories * wolfShrinkage;
+                    }
+                    else if (__instance.m_GearName == "GEAR_CookedMeatWolf")
+                    {
+                        if (itemWeight == 1) itemWeight *= wolfShrinkage;
+                        __instance.m_FoodItem.m_CaloriesRemaining = itemWeight * cookedWolfCalories;
+                        __instance.m_FoodItem.m_CaloriesTotal = cookedWolfCalories;
+                    }
+                }
+
+                // Fish
+                else if (__instance.m_FoodItem.m_IsFish)
+                {
+                    if (Settings.settings.caloriesFish == Choice.Default && Settings.settings.fishShrinkage == Choice.Default) return;
+
+                    // Shrinkage
+                    float salmonShrinkage = 1 - Implementation.defaultFishShrinkage;
+                    float whitefishShrinkage = 1 - Implementation.defaultFishShrinkage;
+                    float troutShrinkage = 1 - Implementation.defaultFishShrinkage;
+                    float bassShrinkage = 1 - Implementation.defaultFishShrinkage;
+
+                    if (Settings.settings.fishShrinkage == Choice.Realistic)
+                    {
+                        salmonShrinkage = 1 - Implementation.realisticFishShrinkage;
+                        whitefishShrinkage = 1 - Implementation.realisticFishShrinkage;
+                        troutShrinkage = 1 - Implementation.realisticFishShrinkage;
+                        bassShrinkage = 1 - Implementation.realisticFishShrinkage;
+                    }
+                    else if (Settings.settings.fishShrinkage == Choice.Custom)
+                    {
+                        salmonShrinkage = 1 - Settings.settings.salmonShrinks;
+                        whitefishShrinkage = 1 - Settings.settings.whitefishShrinks;
+                        troutShrinkage = 1 - Settings.settings.troutShrinks;
+                        bassShrinkage = 1 - Settings.settings.bassShrinks;
+                    }
+
+                    // Calories
+                    float cookedSalmonCaloriesPerKg = Implementation.defaultCookedSalmonCaloriesPerKg;
+                    float cookedWhitefishCaloriesPerKg = Implementation.defaultCookedWhitefishCaloriesPerKg;
+                    float cookedTroutCaloriesPerKg = Implementation.defaultCookedTroutCaloriesPerKg;
+                    float cookedBassCaloriesPerKg = Implementation.defaultCookedBassCaloriesPerKg;
+
+                    if (Settings.settings.caloriesFish == Choice.Realistic)
+                    {
+                        cookedSalmonCaloriesPerKg = Implementation.realisticCookedSalmonCaloriesPerKg;
+                        cookedWhitefishCaloriesPerKg = Implementation.realisticCookedWhitefishCaloriesPerKg;
+                        cookedTroutCaloriesPerKg = Implementation.realisticCookedTroutCaloriesPerKg;
+                        cookedBassCaloriesPerKg = Implementation.realisticCookedBassCaloriesPerKg;
+                    }
+                    else if (Settings.settings.caloriesFish == Choice.Custom)
+                    {
+                        cookedSalmonCaloriesPerKg = Settings.settings.salmonCooked;
+                        cookedWhitefishCaloriesPerKg = Settings.settings.whitefishCooked;
+                        cookedTroutCaloriesPerKg = Settings.settings.troutCooked;
+                        cookedBassCaloriesPerKg = Settings.settings.bassCooked;
+                    }
+
+                    if (Settings.settings.caloriesFish == Choice.Default && Settings.settings.fishShrinkage != Choice.Default)
+                    {
+                        cookedSalmonCaloriesPerKg = Implementation.realisticCookedSalmonCaloriesPerKg / salmonShrinkage;
+                        cookedWhitefishCaloriesPerKg = Implementation.realisticCookedWhitefishCaloriesPerKg / whitefishShrinkage;
+                        cookedTroutCaloriesPerKg = Implementation.realisticCookedTroutCaloriesPerKg / troutShrinkage;
+                        cookedBassCaloriesPerKg = Implementation.realisticCookedBassCaloriesPerKg / bassShrinkage;
+                    }
+
+                    if (__instance.m_GearName == "GEAR_RawCohoSalmon")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedSalmonCaloriesPerKg * salmonShrinkage;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedSalmonCaloriesPerKg * salmonShrinkage;
+                    }
+                    else if (__instance.m_GearName == "GEAR_CookedCohoSalmon")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedSalmonCaloriesPerKg;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedSalmonCaloriesPerKg;
+                    }
+                    else if (__instance.m_GearName.Contains("GEAR_RawLakeWhiteFish"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedWhitefishCaloriesPerKg * whitefishShrinkage;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedWhitefishCaloriesPerKg * whitefishShrinkage;
+                    }
+                    else if (__instance.m_GearName.Contains("GEAR_CookedLakeWhiteFish"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedWhitefishCaloriesPerKg;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedWhitefishCaloriesPerKg;
+                    }
+                    else if (__instance.m_GearName == "GEAR_RawRainbowTrout")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedTroutCaloriesPerKg * troutShrinkage;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedTroutCaloriesPerKg * troutShrinkage;
+                    }
+                    else if (__instance.m_GearName == "GEAR_CookedRainbowTrout")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedTroutCaloriesPerKg;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedTroutCaloriesPerKg;
+                    }
+                    else if (__instance.m_GearName == "GEAR_RawSmallMouthBass")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedBassCaloriesPerKg * bassShrinkage;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedBassCaloriesPerKg * bassShrinkage;
+                    }
+                    else if (__instance.m_GearName == "GEAR_CookedSmallMouthBass")
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * cookedBassCaloriesPerKg;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedBassCaloriesPerKg;
+                    }
+                    __instance.m_FoodItem.m_CaloriesTotal = __instance.m_FoodItem.m_CaloriesRemaining;
+                }
+
+                // Drinks
+                else if (__instance.m_FoodItem.m_IsDrink)
+                {
+                    if (Settings.settings.caloriesDrinks != Choice.Default)
+                    {
+                        if (Settings.settings.caloriesDrinks == Choice.Realistic)
+                        {
+                            if (__instance.m_GearName == "GEAR_BirchbarkTea") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticBirchBarkTeaCalories / Implementation.birchBarkTeaWeight);
+                            else if (__instance.m_GearName == "GEAR_CoffeeCup") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticCoffeeCalories / Implementation.coffeeWeight);
+                            else if (__instance.m_GearName == "GEAR_GreenTeaCup") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticHerbalTeaCalories / Implementation.herbalTeaWeight);
+                            else if (__instance.m_GearName == "GEAR_SodaOrange") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticOrangeSodaCalories / Implementation.orangeSodaWeight);
+                            else if (__instance.m_GearName == "GEAR_SodaEnergy") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticGoEnergyDrinkCalories / Implementation.goEnergyDrinkWeight);
+                            else if (__instance.m_GearName == "GEAR_ReishiTea") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticReishiTeaCalories / Implementation.reishiTeaWeight);
+                            else if (__instance.m_GearName == "GEAR_RoseHipTea") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticRoseHipTeaCalories / Implementation.roseHipTeaWeight);
+                            else if (__instance.m_GearName == "GEAR_SodaGrape") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticGrapeSodaCalories / Implementation.grapeSodaWeight);
+                            else if (__instance.m_GearName == "GEAR_Soda") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticSummitSodaCalories / Implementation.summitSodaWeight);
+                        }
+                        else if (Settings.settings.caloriesDrinks == Choice.Custom)
+                        {
+                            if (__instance.m_GearName == "GEAR_BirchbarkTea") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.birchBarkTea / Implementation.birchBarkTeaWeight);
+                            else if (__instance.m_GearName == "GEAR_CoffeeCup") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.coffee / Implementation.coffeeWeight);
+                            else if (__instance.m_GearName == "GEAR_GreenTeaCup") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.herbalTea / Implementation.herbalTeaWeight);
+                            else if (__instance.m_GearName == "GEAR_SodaOrange") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.orangeSoda / Implementation.orangeSodaWeight);
+                            else if (__instance.m_GearName == "GEAR_SodaEnergy") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.goEnergyDrink / Implementation.goEnergyDrinkWeight);
+                            else if (__instance.m_GearName == "GEAR_ReishiTea") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.reishiTea / Implementation.reishiTeaWeight);
+                            else if (__instance.m_GearName == "GEAR_RoseHipTea") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.roseHipTea / Implementation.roseHipTeaWeight);
+                            else if (__instance.m_GearName == "GEAR_SodaGrape") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.grapeSoda / Implementation.grapeSodaWeight);
+                            else if (__instance.m_GearName == "GEAR_Soda") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.summitSoda / Implementation.summitSodaWeight);
+                        }
+                        __instance.m_FoodItem.m_CaloriesTotal = __instance.m_FoodItem.m_CaloriesRemaining;
+                    }
+                }
+
+                // Other Foods
+                else if (Settings.settings.caloriesOtherFood != Choice.Default)
+                { 
+                    if (Settings.settings.caloriesOtherFood == Choice.Realistic)
+                    {
+                        if (__instance.m_GearName == "GEAR_AirlineFoodChick") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticAirlineChickenCalories / Implementation.airlineChickenWeight);
+                        else if (__instance.m_GearName == "GEAR_AirlineFoodVeg") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticAirlineVegetableCalories / Implementation.airlineVegetableWeight);
+                        else if (__instance.m_GearName == "GEAR_BeefJerky") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticBeefJerkyCalories / Implementation.beefJerkyWeight);
+                        else if (__instance.m_GearName == "GEAR_CandyBar") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticChocolateBarCalories / Implementation.chocolateBarWeight);
+                        else if (__instance.m_GearName == "GEAR_CattailStalk") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticCattailStalkCalories / Implementation.cattailStalkWeight);
+                        else if (__instance.m_GearName == "GEAR_CondensedMilk") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticCondensedMilkCalories / Implementation.condensedMilkWeight);
+                        else if (__instance.m_GearName == "GEAR_DogFood") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticDogFoodCalories / Implementation.dogFoodWeight);
+                        else if (__instance.m_GearName == "GEAR_EnergyBar") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticEnergyBarCalories / Implementation.energyBarWeight);
+                        else if (__instance.m_GearName == "GEAR_GranolaBar") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticGranolaBarCalories / Implementation.granolaBarWeight);
+                        else if (__instance.m_GearName == "GEAR_KetchupChips") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticKetchupChipsCalories / Implementation.ketchupChipsWeight);
+                        else if (__instance.m_GearName == "GEAR_MapleSyrup") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticMapleSyrupCalories / Implementation.mapleSyrupWeight);
+                        else if (__instance.m_GearName == "GEAR_MRE") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticMreCalories / Implementation.mreWeight);
+                        else if (__instance.m_GearName == "GEAR_PeanutButter") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticPeanutButterCalories / Implementation.peanutButterWeight);
+                        else if (__instance.m_GearName == "GEAR_PinnacleCanPeaches") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticPinnaclePeachesCalories / Implementation.pinnaclePeachesWeight);
+                        else if (__instance.m_GearName == "GEAR_CannedBeans") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticPorkAndBeansCalories / Implementation.porkAndBeansWeight);
+                        else if (__instance.m_GearName == "GEAR_Crackers") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticSaltyCrackersCalories / Implementation.saltyCrackersWeight);
+                        else if (__instance.m_GearName == "GEAR_CannedSardines") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticSardinesCalories / Implementation.sardinesWeight);
+                        else if (__instance.m_GearName == "Gear_TomatoSoupCan") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Implementation.realisticTomatoSoupCalories / Implementation.tomatoSoupWeight);
+                    }
+                    else if (Settings.settings.caloriesOtherFood == Choice.Custom)
+                    {
+                        if (__instance.m_GearName == "GEAR_AirlineFoodChick") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.airlineChicken / Implementation.airlineChickenWeight);
+                        else if (__instance.m_GearName == "GEAR_AirlineFoodVeg") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.airlineVegetarian / Implementation.airlineVegetableWeight);
+                        else if (__instance.m_GearName == "GEAR_BeefJerky") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.beefJerky / Implementation.beefJerkyWeight);
+                        else if (__instance.m_GearName == "GEAR_CandyBar") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.chocolateBar / Implementation.chocolateBarWeight);
+                        else if (__instance.m_GearName == "GEAR_CattailStalk") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.cattailStalk / Implementation.cattailStalkWeight);
+                        else if (__instance.m_GearName == "GEAR_CondensedMilk") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.condensedMilk / Implementation.condensedMilkWeight);
+                        else if (__instance.m_GearName == "GEAR_DogFood") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.dogFood / Implementation.dogFoodWeight);
+                        else if (__instance.m_GearName == "GEAR_EnergyBar") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.energyBar / Implementation.energyBarWeight);
+                        else if (__instance.m_GearName == "GEAR_GranolaBar") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.granolaBar / Implementation.granolaBarWeight);
+                        else if (__instance.m_GearName == "GEAR_KetchupChips") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.ketchupChips / Implementation.ketchupChipsWeight);
+                        else if (__instance.m_GearName == "GEAR_MapleSyrup") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.mapleSyrup / Implementation.mapleSyrupWeight);
+                        else if (__instance.m_GearName == "GEAR_MRE") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.mre / Implementation.mreWeight);
+                        else if (__instance.m_GearName == "GEAR_PeanutButter") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.peanutButter / Implementation.peanutButterWeight);
+                        else if (__instance.m_GearName == "GEAR_PinnacleCanPeaches") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.pinnaclePeaches / Implementation.pinnaclePeachesWeight);
+                        else if (__instance.m_GearName == "GEAR_CannedBeans") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.porkAndBeans / Implementation.porkAndBeansWeight);
+                        else if (__instance.m_GearName == "GEAR_Crackers") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.saltyCrackers / Implementation.saltyCrackersWeight);
+                        else if (__instance.m_GearName == "GEAR_CannedSardines") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.sardines / Implementation.sardinesWeight);
+                        else if (__instance.m_GearName == "Gear_TomatoSoupCan") __instance.m_FoodItem.m_CaloriesRemaining = __instance.m_WeightKG * (Settings.settings.tomatoSoup / Implementation.tomatoSoupWeight);
+                    }
+                    __instance.m_FoodItem.m_CaloriesTotal = __instance.m_FoodItem.m_CaloriesRemaining;
+                }
+            }
+        }
+
+        public static void ChangePrefabHydration(string name)
+        {
+            GearItem gearItem = GetGearItemPrefab(name);
+            if (gearItem == null)
+            {
+                MelonLogger.Msg(name + " GearItem Prefab is NULL!");
+                return;
+            }
+            FoodItem foodItem = gearItem.GetComponent<FoodItem>();
+            if (foodItem == null)
+            {
+                MelonLogger.Msg(name + " FoodItem Prefab is NULL!");
+                return;
+            }
+            foodItem.m_ReduceThirst = gearItem.m_WeightKG * Implementation.waterHydrationLevel;
+        }
+
+        public static GearItem GetGearItemPrefab(string name) => Resources.Load(name).Cast<GameObject>().GetComponent<GearItem>();
     }
 }

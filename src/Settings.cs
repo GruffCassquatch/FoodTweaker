@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using ModSettings;
+using MelonLoader;
 
 namespace FoodTweaker
 {
@@ -13,6 +14,7 @@ namespace FoodTweaker
     }
     class FoodTweakerSettings : JsonModSettings
     {
+        [Section("Enable Mod")]
         [Name("Enable Mod")]
         [Description("Enable/Disable Mod")]
         public bool modFunction = false;
@@ -364,9 +366,9 @@ namespace FoodTweaker
         public float mreInitialWarmthBonus = 15;
 
 
-        [Section("Fix Hydration from Tea & Coffee")]
+        [Section("Fix Tea & Coffee Hydration Amount")]
         [Name("Fix mismatched hydration levels")]
-        [Description("NO: Nothing will be changed.\nYES: Fix tea & coffee being 2x more hydrating than water")]
+        [Description("NO: Nothing will be changed.\nYES: Fix tea & coffee being 2x more hydrating than water.\nChange will apply when you next change scene.")]
         public bool updateHydration = false;
 
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)
@@ -464,12 +466,15 @@ namespace FoodTweaker
         }
         internal void ChangePrefabs()
         {
-            if (Settings.settings.modFunction && Settings.settings.updateHydration)
+            if (Settings.settings.modFunction)
             {
-                Patches.ChangePrefabParameters("GEAR_CoffeeCup");
-                Patches.ChangePrefabParameters("GEAR_GreenTeaCup");
-                Patches.ChangePrefabParameters("GEAR_ReishiTea");
-                Patches.ChangePrefabParameters("GEAR_RoseHipTea");
+                if (Settings.settings.updateHydration)
+                {
+                    Patches.ChangePrefabHydration("GEAR_CoffeeCup");
+                    Patches.ChangePrefabHydration("GEAR_GreenTeaCup");
+                    Patches.ChangePrefabHydration("GEAR_ReishiTea");
+                    Patches.ChangePrefabHydration("GEAR_RoseHipTea");
+                }
             }
         }
     }
@@ -483,7 +488,6 @@ namespace FoodTweaker
             settings = new FoodTweakerSettings();
             settings.AddToModSettings("Food Tweaker Settings");
             settings.RefreshFields();
-            settings.ChangePrefabs();
         }
     }
 }
