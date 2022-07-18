@@ -476,10 +476,10 @@ namespace FoodTweaker
 
                     if (Settings.settings.caloriesFish == Choice.Default && Settings.settings.fishShrinkage != Choice.Default)
                     {
-                        cookedSalmonCaloriesPerKg = Implementation.realisticCookedSalmonCaloriesPerKg / salmonShrinkage;
-                        cookedWhitefishCaloriesPerKg = Implementation.realisticCookedWhitefishCaloriesPerKg / whitefishShrinkage;
-                        cookedTroutCaloriesPerKg = Implementation.realisticCookedTroutCaloriesPerKg / troutShrinkage;
-                        cookedBassCaloriesPerKg = Implementation.realisticCookedBassCaloriesPerKg / bassShrinkage;
+                        cookedSalmonCaloriesPerKg = Implementation.defaultCookedSalmonCaloriesPerKg / salmonShrinkage;
+                        cookedWhitefishCaloriesPerKg = Implementation.defaultCookedWhitefishCaloriesPerKg / whitefishShrinkage;
+                        cookedTroutCaloriesPerKg = Implementation.defaultCookedTroutCaloriesPerKg / troutShrinkage;
+                        cookedBassCaloriesPerKg = Implementation.defaultCookedBassCaloriesPerKg / bassShrinkage;
                     }
 
                     if (__instance.m_GearName == "GEAR_RawCohoSalmon")

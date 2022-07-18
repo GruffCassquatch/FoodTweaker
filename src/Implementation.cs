@@ -54,35 +54,6 @@ namespace FoodTweaker
         public const float  sardinesWeight = 0.1f;
         public const float  tomatoSoupWeight = 0.25f;
 
-        public const float defaultBirchBarkTeaCalories = 100;
-        public const float defaultCoffeeCalories = 100;
-        public const float defaultGoEnergyDrinkCalories = 100;
-        public const float defaultHerbalTeaCalories = 100;
-        public const float defaultOrangeSodaCalories = 250;
-        public const float defaultReishiTeaCalories = 100;
-        public const float defaultRoseHipTeaCalories = 100;
-        public const float defaultGrapeSodaCalories = 250;
-        public const float defaultSummitSodaCalories = 250;
-
-        public const float defaultAirlineChickenCalories = 620;
-        public const float defaultAirlineVegetableCalories = 560;
-        public const float defaultBeefJerkyCalories = 350;
-        public const float defaultCattailStalkCalories = 150;
-        public const float defaultChocolateBarCalories = 250;
-        public const float defaultCondensedMilkCalories = 750;
-        public const float defaultDogFoodCalories = 500;
-        public const float defaultEnergyBarCalories = 500;
-        public const float defaultGranolaBarCalories = 300;
-        public const float defaultKetchupChipsCalories = 300;
-        public const float defaultMapleSyrupCalories = 850;
-        public const float defaultMreCalories = 1750;
-        public const float defaultPeanutButterCalories = 900;
-        public const float defaultPinnaclePeachesCalories = 450;
-        public const float defaultPorkAndBeansCalories = 600;
-        public const float defaultSaltyCrackersCalories = 600;
-        public const float defaultSardinesCalories = 300;
-        public const float defaultTomatoSoupCalories = 300;
-
         public const float waterHydrationLevel = 150;
 
         // Realistic Values
