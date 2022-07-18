@@ -8,6 +8,7 @@ A mod for the Long Dark.
   * Adjust difference between weight of **whole, raw fish** vs **cleaned, cooked fish**
   * Enable MRE self-heating: MRE will become "Hot" after cooking and will provide Warming Up buff when eaten hot
   * All meat and fish will become "Hot" after cooking and will provide Warming Up buff when eaten hot
+  * Option to fix vanilla game error where tea and coffee provide 2x as much hydration as water
   * Includes Realistic presets, Custom sliders and ability to keep Game Default values
 
 Realistic preset values are provided as an easy option for those who don't want to individually research and set custom values. 
