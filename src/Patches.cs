@@ -80,7 +80,7 @@ namespace FoodTweaker
         {
             private static void Postfix(GearItem rawItem, GearItem cookedItem)
             {
-                if (Settings.settings.modFunction)
+                if (Settings.settings.modFunction && rawItem.name.StartsWith("GEAR_Raw"))
                 {
                     if (rawItem.m_FoodItem.m_IsFish)
                     {
@@ -210,7 +210,7 @@ namespace FoodTweaker
                             cookedItemWeight *= wolfShrinkage;
                             cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItemWeight * cookedWolfCalories * GameManager.GetSkillCooking().GetCalorieScale();
                         }
-                        cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining / cookedItemWeight;
+                        cookedItem.m_FoodItem.m_CaloriesTotal = cookedItem.m_FoodItem.m_CaloriesRemaining / cookedItemWeight; 
                     }
                 }
             }
