@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using ModSettings;
-using MelonLoader;
 
 namespace FoodTweaker
 {
