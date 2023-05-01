@@ -1,6 +1,8 @@
 # Food Tweaker
 A mod for the Long Dark.    
-FOR GAME VERSION 2.00 / 2.02 (**PRE TALES FROM THE FAR TERRITORY**)    
+CHOOSE THE CORRECT MOD VERSION TO MATCH YOUR GAME VERSION      
+
+UPDATED FOR 2.12 / TFTFT BY PHAEDRUS     
 
 ## Mod features:
   * Adjust calories of food items (meat, fish, drinks, packaged goods etc.)
