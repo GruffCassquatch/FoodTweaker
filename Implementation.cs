@@ -1,10 +1,32 @@
-﻿using MelonLoader;
-using UnityEngine;
-
-namespace FoodTweaker
+﻿namespace FoodTweaker
 {
-    public class Implementation : MelonMod
+    public class FoodTweaker : MelonMod
     {
+        public static GearItem GetGearItemPrefab(string name) => GearItem.LoadGearItemPrefab(name).GetComponent<GearItem>();
+
+        public static void ChangePrefabHydration(string name)
+        {
+            GearItem gearItem = FoodTweaker.GetGearItemPrefab(name);
+            if (gearItem == null)
+            {
+                MelonLogger.Msg(name + " GearItem Prefab is NULL!");
+                return;
+            }
+            FoodItem foodItem = gearItem.GetComponent<FoodItem>();
+            if (foodItem == null)
+            {
+                MelonLogger.Msg(name + " FoodItem Prefab is NULL!");
+                return;
+            }
+            foodItem.m_ReduceThirst = gearItem.WeightKG * FoodTweaker.waterHydrationLevel;
+        }
+
+        public override void OnInitializeMelon()
+        {
+            Debug.Log($"[{Info.Name}] Version {Info.Version} loaded!");
+            Settings.OnLoad();
+        }
+
         // Game Default Values
         public const float defaultCookedBearCalories = 900;
         public const float defaultCookedDeerCalories = 800;
@@ -102,12 +124,5 @@ namespace FoodTweaker
         public const float realisticSaltyCrackersCalories = 515;
         public const float realisticSardinesCalories = 230;
         public const float realisticTomatoSoupCalories = 150;
-
-        public override void OnApplicationStart()
-        {
-            base.OnApplicationStart();
-            Debug.Log($"[{Info.Name}] Version {Info.Version} loaded!");
-            Settings.OnLoad();
-        }
     }
 }
