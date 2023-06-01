@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using ModSettings;
+﻿using ModSettings;
 
 namespace FoodTweaker
 {
@@ -24,27 +23,27 @@ namespace FoodTweaker
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice caloriesMeat = Choice.Default;
 
-        [Name("         Bear calories/kg (Cooked)")]
+        [Name("Bear calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Bear.\nDefault Game Value: 900\nRealistic Value: 1305 (1630 at Cooking lvl 5)")]
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float bearCooked = 900;
 
-        [Name("         Deer calories/kg (Cooked)")]
+        [Name("Deer calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Deer.\nDefault Game Value: 800\nRealistic Value: 1172 (1465 at Cooking lvl 5)")]
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float deerCooked = 800;
 
-        [Name("         Moose calories/kg (Cooked)")]
+        [Name("Moose calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Moose.\nDefault Game Value: 900\nRealistic Value: 1040 (1300 at Cooking lvl 5)")]
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float mooseCooked = 900;
 
-        [Name("         Rabbit calories/kg (Cooked)")]
+        [Name("Rabbit calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Rabbit.\nDefault Game Value: 450\nRealistic Value: 932 (1140 at Cooking lvl 5)")]
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float rabbitCooked = 450;
 
-        [Name("         Wolf calories/kg (Cooked)")]
+        [Name("Wolf calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Wolf.\nDefault Game Value: 700\nRealistic Value: 875 (1165 at Cooking lvl 5)")]
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float wolfCooked = 700;
@@ -55,27 +54,27 @@ namespace FoodTweaker
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice meatShrinkage = Choice.Default;
 
-        [Name("         Bear Meat")]
+        [Name("Bear Meat")]
         [Description("Weight difference between RAW and COOKED piece of meat.\nGAME DEFAULT: 0%.\nREALISTIC: 25%")]
         [Slider(0, 0.5f, 51, NumberFormat = "{0:P0}")]
         public float bearShrinks = 0.25f;
 
-        [Name("         Deer Meat")]
+        [Name("Deer Meat")]
         [Description("Weight difference between RAW and COOKED piece of meat.\nGAME DEFAULT: 0%.\nREALISTIC: 25%")]
         [Slider(0, 0.5f, 51, NumberFormat = "{0:P0}")]
         public float deerShrinks = 0.25f;
 
-        [Name("         Moose Meat")]
+        [Name("Moose Meat")]
         [Description("Weight difference between RAW and COOKED piece of meat.\nGAME DEFAULT: 0%.\nREALISTIC: 25%")]
         [Slider(0, 0.5f, 51, NumberFormat = "{0:P0}")]
         public float mooseShrinks = 0.25f;
 
-        [Name("         Rabbit Meat")]
+        [Name("Rabbit Meat")]
         [Description("Weight difference between RAW and COOKED piece of meat.\nGAME DEFAULT: 0%.\nREALISTIC: 25%")]
         [Slider(0, 0.5f, 51, NumberFormat = "{0:P0}")]
         public float rabbitShrinks = 0.25f;
 
-        [Name("         Wolf Meat")]
+        [Name("Wolf Meat")]
         [Description("Weight difference between RAW and COOKED piece of meat.\nGAME DEFAULT: 0%.\nREALISTIC: 25%")]
         [Slider(0, 0.5f, 51, NumberFormat = "{0:P0}")]
         public float wolfShrinks = 0.25f;
@@ -85,27 +84,27 @@ namespace FoodTweaker
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice meatCookingTime = Choice.Default;
 
-        [Name("         Bear (minutes/kg)")]
+        [Name("Bear (minutes/kg)")]
         [Description("Adjust cooking time, in minutes, for 1kg Bear meat.\nGAME DEFAULT: 1 hour 22 mins.\nREALISTIC: 35 mins (24.5 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float bearCookingTime = 35;
 
-        [Name("         Deer (minutes/kg)")]
+        [Name("Deer (minutes/kg)")]
         [Description("Adjust cooking time, in minutes, for 1kg Deer meat.\nGAME DEFAULT: 57 mins.\nREALISTIC: 20 mins (14 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float deerCookingTime = 20;
 
-        [Name("         Moose (minutes/kg)")]
+        [Name("Moose (minutes/kg)")]
         [Description("Adjust cooking time, in minutes, for 1kg Moose meat.\nGAME DEFAULT: 1 hour 22 mins.\nREALISTIC: 25 mins (17.5 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float mooseCookingTime = 25;
 
-        [Name("         Rabbit (minutes/kg)")]
+        [Name("Rabbit (minutes/kg)")]
         [Description("Adjust cooking time, in minutes, for 1kg Rabbit meat\nGAME DEFAULT: 38 mins.\nREALISTIC: 28 mins (19.6 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float rabbitCookingTime = 20;
 
-        [Name("         Wolf (minutes/kg)")]
+        [Name("Wolf (minutes/kg)")]
         [Description("Adjust cooking time, in minutes, for 1kg Wolf meat.\nGAME DEFAULT: 1 hour 9 mins.\nREALISTIC: 35 mins (24.5 with Cooking lvl 5)")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float wolfCookingTime = 30;
@@ -117,22 +116,22 @@ namespace FoodTweaker
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice caloriesFish = Choice.Default;
 
-        [Name("         Coho Salmon calories/kg (Cooked)")]
+        [Name("Coho Salmon calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Coho Salmon.\nDefault Game Value: 454.5\nRealistic Value: 1120 (1400 at Cooking lvl 5)")]
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float salmonCooked = 454.5f;
 
-        [Name("         Lake Whitefish calories/kg (Cooked)")]
+        [Name("Lake Whitefish calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Lake Whitefish.\nDefault Game Value: 383.5\nRealistic Value: 1065 (1330 at Cooking lvl 5)")]
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float whitefishCooked = 383.5f;
 
-        [Name("         Rainbow Trout calories/kg (Cooked)")]
+        [Name("Rainbow Trout calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Rainbow Trout.\nDefault Game Value: 383.5\nRealistic Value: 1200 (1500 at Cooking lvl 5)")]
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float troutCooked = 383.5f;
 
-        [Name("         Smallmouth Bass calories/kg (Cooked)")]
+        [Name("Smallmouth Bass calories/kg (Cooked)")]
         [Description("Set the calorie value of 1kg of COOKED Smallmouth Bass.\nDefault Game Value: 454.5\nRealistic Value: 1168 (1460 at Cooking lvl 5)")]
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float bassCooked = 454.5f;
@@ -142,22 +141,22 @@ namespace FoodTweaker
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice fishShrinkage = Choice.Default;
 
-        [Name("         Coho Salmon")]
+        [Name("Coho Salmon")]
         [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float salmonShrinks = 0.33f;
 
-        [Name("         Lake Whitefish")]
+        [Name("Lake Whitefish")]
         [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float whitefishShrinks = 0.33f;
 
-        [Name("         Rainbow Trout")]
+        [Name("Rainbow Trout")]
         [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float troutShrinks = 0.33f;
 
-        [Name("         Smallmouth Bass")]
+        [Name("Smallmouth Bass")]
         [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float bassShrinks = 0.33f;
@@ -167,34 +166,34 @@ namespace FoodTweaker
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice fishCookingTime = Choice.Default;
 
-        [Name("         Coho Salmon (minutes/kg)")]
+        [Name("Coho Salmon (minutes/kg)")]
         [Description("Adjust cooking time, in minutes, for 1kg Coho Salmon.\nGAME DEFAULT: 12 mins.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float salmonCookingTime = 15;
 
-        [Name("         Lake Whitefish (minutes/kg)")]
+        [Name("Lake Whitefish (minutes/kg)")]
         [Description("Adjust cooking time, in minutes, for 1kg Lake Whitefish.\nGAME DEFAULT: 21 mins.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float whitefishCookingTime = 15;
 
-        [Name("         Rainbow Trout (minutes/kg)")]
+        [Name("Rainbow Trout (minutes/kg)")]
         [Description("Adjust cooking time, in minutes, for 1kg Rainbow Trout.\nGAME DEFAULT: 19 mins.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float troutCookingTime = 15;
 
-        [Name("         Smallmouth Bass (minutes/kg)")]
+        [Name("Smallmouth Bass (minutes/kg)")]
         [Description("Adjust cooking time, in minutes, for 1kg Smallmouth Bass.\nGAME DEFAULT: 15 mins.\nREALISTIC: 15 mins")]
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float bassCookingTime = 15;
 
 
         [Section("Meat & Fish Warming Up Buff")]
-        [Name("     Buff Duration")]
+        [Name("Buff Duration")]
         [Description("How long the Warming Up buff lasts.\nGame Defaults: Pinnacle Peaches = 0.75,\nPork & Beans = 1.0, Tomato Soup = 1.0")]
         [Slider(0.25f, 6, 24, NumberFormat = "{0:0.##} hours")]
         public float meatFishWarmingUpDuration = 2;
 
-        [Name("     Buff Initial Warmth increase")]
+        [Name("Buff Initial Warmth increase")]
         [Description("Immediate % increase to Warmth meter.\nGame Defaults: Pinnacle Peaches = 8%,\nPork & Beans = 10%, Tomato Soup = 20%")]
         [Slider(0, 100, 101, NumberFormat = "{0:0.#}%")]
         public float meatFishInitialWarmthBonus = 15;
@@ -206,47 +205,47 @@ namespace FoodTweaker
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice caloriesDrinks = Choice.Default;
 
-        [Name("         Birch Bark Tea")]
+        [Name("Birch Bark Tea")]
         [Description("Default Game Value: 100\nRealistic Value: 5 (estimated)")]
         [Slider(1, 100, 100, NumberFormat = "{0:0.#}")]
         public float birchBarkTea = 100;
 
-        [Name("         Coffee")]
+        [Name("Coffee")]
         [Description("Default Game Value: 100\nRealistic Value: 5")]
         [Slider(1, 100, 100, NumberFormat = "{0:0.#}")]
         public float coffee = 100;
 
-        [Name("         Go! Energy Drink")]
+        [Name("Go! Energy Drink")]
         [Description("Default Game Value: 100\nRealistic Value: 115")]
         [Slider(5, 500, 100, NumberFormat = "{0:0.#}")]
         public float goEnergyDrink = 100;
 
-        [Name("         Herbal Tea")]
+        [Name("Herbal Tea")]
         [Description("Default Game Value: 100\nRealistic Value: 2")]
         [Slider(1, 100, 100, NumberFormat = "{0:0.#}")]
         public float herbalTea = 100;
 
-        [Name("         Orange Soda")]
+        [Name("Orange Soda")]
         [Description("Default Game Value: 250\nRealistic Value: 160")]
         [Slider(100, 1000, 181, NumberFormat = "{0:0.#}")]
         public float orangeSoda = 250;
 
-        [Name("         Reishi Tea")]
+        [Name("Reishi Tea")]
         [Description("Default Game Value: 100\nRealistic Value: 1")]
         [Slider(1, 100, 100, NumberFormat = "{0:0.#}")]
         public float reishiTea = 100;
 
-        [Name("         Rose Hip Tea")]
+        [Name("Rose Hip Tea")]
         [Description("Default Game Value: 100\nRealistic Value: 3")]
         [Slider(1, 100, 100, NumberFormat = "{0:0.#}")]
         public float roseHipTea = 100;
 
-        [Name("         Stacey's Grape Soda")]
+        [Name("Stacey's Grape Soda")]
         [Description("Default Game Value: 250\nRealistic Value: 170")]
         [Slider(100, 1000, 181, NumberFormat = "{0:0.#}")]
         public float grapeSoda = 250;
 
-        [Name("         Summit Soda")]
+        [Name("Summit Soda")]
         [Description("Default Game Value: 250\nRealistic Value: 120")]
         [Slider(100, 1000, 181, NumberFormat = "{0:0.#}")]
         public float summitSoda = 250;
@@ -370,7 +369,7 @@ namespace FoodTweaker
         [Description("NO: Nothing will be changed.\nYES: Fix tea & coffee being 2x more hydrating than water.\nChange will apply when you next change scene.")]
         public bool updateHydration = false;
 
-        protected override void OnChange(FieldInfo field, object oldValue, object newValue)
+        protected override void OnChange(FieldInfo field, object? oldValue, object? newValue)
         {
             if (field.Name == nameof(modFunction) ||
                 field.Name == nameof(caloriesMeat) ||
@@ -469,10 +468,10 @@ namespace FoodTweaker
             {
                 if (Settings.settings.updateHydration)
                 {
-                    Patches.ChangePrefabHydration("GEAR_CoffeeCup");
-                    Patches.ChangePrefabHydration("GEAR_GreenTeaCup");
-                    Patches.ChangePrefabHydration("GEAR_ReishiTea");
-                    Patches.ChangePrefabHydration("GEAR_RoseHipTea");
+                    FoodTweaker.ChangePrefabHydration("GEAR_CoffeeCup");
+                    FoodTweaker.ChangePrefabHydration("GEAR_GreenTeaCup");
+                    FoodTweaker.ChangePrefabHydration("GEAR_ReishiTea");
+                    FoodTweaker.ChangePrefabHydration("GEAR_RoseHipTea");
                 }
             }
         }
@@ -480,11 +479,10 @@ namespace FoodTweaker
 
     internal static class Settings
     {
-        public static FoodTweakerSettings settings;
+        public static FoodTweakerSettings settings = new();
 
         public static void OnLoad()
         {
-            settings = new FoodTweakerSettings();
             settings.AddToModSettings("Food Tweaker Settings");
             settings.RefreshFields();
         }

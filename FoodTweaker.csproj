@@ -24,31 +24,17 @@
 		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 
-	<!--This is the of packages that the mod references.-->
-	<ItemGroup>
-		<!--This package contains almost everything a person could possibly need to reference while modding.-->
-		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.10.0" />
-		<!--The package version here in this template may be outdated and need to be updated. Visual Studio can update package versions automatically.-->
-		<!--If the mod references any other mods (such as ModSettings), that NuGet package will also need to be listed here.-->
-	</ItemGroup>
-	<ItemGroup>
-	  <Reference Include="0Harmony">
-	    <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\MelonLoader\net6\0Harmony.dll</HintPath>
-	  </Reference>
-	  <Reference Include="Il2Cpp">
-	    <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\MelonLoader\Dependencies\SupportModules\Il2Cpp.dll</HintPath>
-	  </Reference>
-	  <Reference Include="MelonLoader">
-	    <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\MelonLoader\net6\MelonLoader.dll</HintPath>
-	  </Reference>
-	  <Reference Include="ModSettings">
-	    <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\Mods\ModSettings.dll</HintPath>
-	  </Reference>
-	  <Reference Include="System.Reflection.Context">
-	    <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\MelonLoader\Managed\System.Reflection.Context.dll</HintPath>
-	  </Reference>
-	  <Reference Include="UnityEngine">
-	    <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\TheLongDark\MelonLoader\Dependencies\Il2CppAssemblyGenerator\UnityDependencies\UnityEngine.dll</HintPath>
-	  </Reference>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.10.0" />
+    <PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="1.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="System.Reflection" />
+    <Using Include="Il2Cpp" />
+    <Using Include="HarmonyLib" />
+    <Using Include="MelonLoader" />
+    <Using Include="UnityEngine" />
+  </ItemGroup>
+
 </Project>
