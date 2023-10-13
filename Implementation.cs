@@ -18,7 +18,7 @@
                 MelonLogger.Msg(name + " FoodItem Prefab is NULL!");
                 return;
             }
-            foodItem.m_ReduceThirst = gearItem.WeightKG * FoodTweaker.waterHydrationLevel;
+            foodItem.m_ReduceThirst = gearItem.GetItemWeightKG() * FoodTweaker.waterHydrationLevel;
         }
 
         public override void OnInitializeMelon()

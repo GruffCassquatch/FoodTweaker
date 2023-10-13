@@ -298,7 +298,7 @@
                         else if (__instance.name.Contains("GEAR_CannedBeans")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticPorkAndBeansCalories / FoodTweaker.porkAndBeansWeight);
                         else if (__instance.name.Contains("GEAR_Crackers")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticSaltyCrackersCalories / FoodTweaker.saltyCrackersWeight);
                         else if (__instance.name.Contains("GEAR_CannedSardines")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticSardinesCalories / FoodTweaker.sardinesWeight);
-                        else if (__instance.name.Contains("Gear_TomatoSoupCan")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticTomatoSoupCalories / FoodTweaker.tomatoSoupWeight);
+                        else if (__instance.name.Contains("GEAR_TomatoSoupCan")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticTomatoSoupCalories / FoodTweaker.tomatoSoupWeight);
                     }
                     else if (Settings.settings.caloriesOtherFood == Choice.Custom)
                     {
