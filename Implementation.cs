@@ -33,6 +33,7 @@ namespace FoodTweaker
         public const float defaultCookedBearCalories = 900;
         public const float defaultCookedDeerCalories = 800;
         public const float defaultCookedMooseCalories = 900;
+        public const float defaultCookedPtarmiganCalories = 450;
         public const float defaultCookedRabbitCalories = 450;
         public const float defaultCookedWolfCalories = 700;
 
@@ -84,10 +85,41 @@ namespace FoodTweaker
 
         public const float waterHydrationLevel = 150;
 
+        public const float acornBannockWeight = 0.05f;
+        public const float acornPancakeWeight = 0.15f;
+        public const float bannockWeight = 0.05f;
+        public const float meatPieWeight = 0.20f;
+        public const float brothWeight = 0.80f;
+        public const float fruitPorridgeWeight = 0.30f;
+        public const float cannedCornWeight = 0.30f;
+        public const float cannedHamWeight = 0.40f;
+        public const float carrotWeight = 0.10f;
+        public const float fishcakesWeight = 0.05f;
+        public const float potatoCookedWeight = 0.15f;
+        public const float fishermansPieWeight = 0.30f;
+        public const float peachPancakeWeight = 0.20f;
+        public const float pancakeWeight = 0.15f;
+        public const float peachFruitPieWeight = 0.10f;
+        public const float porridgeWeight = 0.20f;
+        public const float ptarmiganMeatPieWeight = 0.10f;
+        public const float ptarmiganMeatStewWeight = 0.35f;
+        public const float cookedPieForagersWeight = 0.20f;
+        public const float rabbitMeatPieWeight = 0.10f;
+        public const float rabbitMeatStewWeight = 0.35f;
+        public const float meatStewWeight = 0.40f;
+        public const float roseHipFruitPieWeight = 0.10f;
+        public const float predatorPieWeight = 0.20f;
+        public const float vegetableStewWeight = 0.35f;
+        public const float troutMeatStewWeight = 0.35f;
+        public const float venisonMeatPieWeight = 0.10f;
+        public const float venisonMeatStewWeight = 0.35f;
+
+
         // Realistic values
         public const float realisticCookedBearCalories = 1305;
         public const float realisticCookedDeerCalories = 1172;
         public const float realisticCookedMooseCalories = 1040;
+        public const float realisticCookedPtarmiganCalories = 980;
         public const float realisticCookedRabbitCalories = 932;
         public const float realisticCookedWolfCalories = 875;
             
@@ -95,10 +127,10 @@ namespace FoodTweaker
         public const float realisticCookedWhitefishCaloriesPerKg = 1065;
         public const float realisticCookedTroutCaloriesPerKg = 1200;
         public const float realisticCookedBassCaloriesPerKg = 1170;
-        public const float realisticCookedBurbotCaloriesPerKg = 1150f;
-        public const float realisticCookedGoldeyeCaloriesPerKg = 2500f;
-        public const float realisticCookedRedIrishLordCaloriesPerKg = 1150f;
-        public const float realisticCookedRockfishCaloriesPerKg = 1090f;
+        public const float realisticCookedBurbotCaloriesPerKg = 1150;
+        public const float realisticCookedGoldeyeCaloriesPerKg = 2500;
+        public const float realisticCookedRedIrishLordCaloriesPerKg = 1150;
+        public const float realisticCookedRockfishCaloriesPerKg = 1090;
 
         public const float realisticMeatShrinkage = 0.25f;
         public const float realisticFishShrinkage = 0.5f;
@@ -106,6 +138,7 @@ namespace FoodTweaker
         public const float bearCookingTime = 35;
         public const float deerCookingTime = 20;
         public const float mooseCookingTime = 25;
+        public const float ptarmiganCookingTime = 28;
         public const float rabbitCookingTime = 28;
         public const float wolfCookingTime = 35;
 
@@ -123,8 +156,8 @@ namespace FoodTweaker
         public const float realisticGrapeSodaCalories = 170;
         public const float realisticSummitSodaCalories = 120;
 
-        public const float realisticAcornCalories = 152;
-        public const float realisticAcornBigCalories = 608;
+        public const float realisticAcornCalories = 150;
+        public const float realisticAcornBigCalories = 600;
         public const float realisticAirlineChickenCalories = 620;
         public const float realisticAirlineVegetableCalories = 560;
         public const float realisticBeefJerkyCalories = 410;
@@ -144,5 +177,36 @@ namespace FoodTweaker
         public const float realisticSaltyCrackersCalories = 515;
         public const float realisticSardinesCalories = 230;
         public const float realisticTomatoSoupCalories = 150;
+
+        public const float realisticAcornBannockCalories = 327;
+        public const float realisticAcornPancakeCalories = 808;
+        public const float realisticBannockCalories = 427;
+        public const float realisticMeatPieCalories = 2397;
+        public const float realisticBrothCalories = 48;
+        public const float realisticFruitPorridgeCalories = 560;
+        public const float realisticCannedCornCalories = 273;
+        public const float realisticCannedHamCalories = 480;
+        public const float realisticCarrotCalories = 41;
+        public const float realisticFishcakesCalories = 230;
+        public const float realisticPotatoCookedCalories = 131;
+        public const float realisticFishermansPieCalories = 1420;
+        public const float realisticPeachPancakeCalories = 1053;
+        public const float realisticPancakeCalories = 708;
+        public const float realisticPeachFruitPieCalories = 367;
+        public const float realisticPorridgeCalories = 96;
+        public const float realisticPtarmiganMeatPieCalories = 448;
+        public const float realisticPtarmiganMeatStewCalories = 738;
+        public const float realisticCookedPieForagersCalories = 1205;
+        public const float realisticRabbitMeatPieCalories = 440;
+        public const float realisticRabbitMeatStewCalories = 714;
+        public const float realisticMeatStewCalories = 1561;
+        public const float realisticRoseHipFruitPieCalories = 328;
+        public const float realisticPredatorPieCalories = 1745;
+        public const float realisticVegetableStewCalories = 994;
+        public const float realisticTroutMeatStewCalories = 848;
+        public const float realisticVenisonMeatPieCalories = 480;
+        public const float realisticVenisonMeatStewCalories = 834;
+
+
     }
 }
