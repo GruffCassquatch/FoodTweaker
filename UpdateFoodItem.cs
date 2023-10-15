@@ -155,6 +155,10 @@
                     float whitefishShrinkage = 1 - FoodTweaker.defaultFishShrinkage;
                     float troutShrinkage = 1 - FoodTweaker.defaultFishShrinkage;
                     float bassShrinkage = 1 - FoodTweaker.defaultFishShrinkage;
+                    float burbotShrinkage = 1 - FoodTweaker.defaultFishShrinkage;
+                    float goldeyeShrinkage = 1 - FoodTweaker.defaultFishShrinkage;
+                    float redIrishLordShrinkage = 1 - FoodTweaker.defaultFishShrinkage;
+                    float rockfishShrinkage = 1 - FoodTweaker.defaultFishShrinkage;
 
                     if (Settings.settings.fishShrinkage == Choice.Realistic)
                     {
@@ -162,6 +166,10 @@
                         whitefishShrinkage = 1 - FoodTweaker.realisticFishShrinkage;
                         troutShrinkage = 1 - FoodTweaker.realisticFishShrinkage;
                         bassShrinkage = 1 - FoodTweaker.realisticFishShrinkage;
+                        burbotShrinkage = 1 - FoodTweaker.realisticFishShrinkage;
+                        goldeyeShrinkage = 1 - FoodTweaker.realisticFishShrinkage;
+                        redIrishLordShrinkage = 1 - FoodTweaker.realisticFishShrinkage;
+                        rockfishShrinkage = 1 - FoodTweaker.realisticFishShrinkage;
                     }
                     else if (Settings.settings.fishShrinkage == Choice.Custom)
                     {
@@ -169,6 +177,10 @@
                         whitefishShrinkage = 1 - Settings.settings.whitefishShrinks;
                         troutShrinkage = 1 - Settings.settings.troutShrinks;
                         bassShrinkage = 1 - Settings.settings.bassShrinks;
+                        burbotShrinkage = 1 - Settings.settings.burbotShrinks;
+                        goldeyeShrinkage = 1 - Settings.settings.goldeyeShrinks;
+                        redIrishLordShrinkage = 1 - Settings.settings.redIrishLordShrinks;
+                        rockfishShrinkage = 1 - Settings.settings.rockfishShrinks;
                     }
 
                     // Calories
@@ -176,6 +188,10 @@
                     float cookedWhitefishCaloriesPerKg = FoodTweaker.defaultCookedWhitefishCaloriesPerKg;
                     float cookedTroutCaloriesPerKg = FoodTweaker.defaultCookedTroutCaloriesPerKg;
                     float cookedBassCaloriesPerKg = FoodTweaker.defaultCookedBassCaloriesPerKg;
+                    float cookedBurbotCaloriesPerKg = FoodTweaker.defaultCookedBurbotCaloriesPerKg;
+                    float cookedGoldeyeCaloriesPerKg = FoodTweaker.defaultCookedGoldeyeCaloriesPerKg;
+                    float cookedRedIrishLordCaloriesPerKg = FoodTweaker.defaultCookedRedIrishLordCaloriesPerKg;
+                    float cookedRockfishCaloriesPerKg = FoodTweaker.defaultCookedRockfishCaloriesPerKg;
 
                     if (Settings.settings.caloriesFish == Choice.Realistic)
                     {
@@ -183,6 +199,10 @@
                         cookedWhitefishCaloriesPerKg = FoodTweaker.realisticCookedWhitefishCaloriesPerKg;
                         cookedTroutCaloriesPerKg = FoodTweaker.realisticCookedTroutCaloriesPerKg;
                         cookedBassCaloriesPerKg = FoodTweaker.realisticCookedBassCaloriesPerKg;
+                        cookedBurbotCaloriesPerKg = FoodTweaker.realisticCookedBurbotCaloriesPerKg;
+                        cookedGoldeyeCaloriesPerKg = FoodTweaker.realisticCookedGoldeyeCaloriesPerKg;
+                        cookedRedIrishLordCaloriesPerKg = FoodTweaker.realisticCookedRedIrishLordCaloriesPerKg;
+                        cookedRockfishCaloriesPerKg = FoodTweaker.realisticCookedRockfishCaloriesPerKg;
                     }
                     else if (Settings.settings.caloriesFish == Choice.Custom)
                     {
@@ -190,6 +210,10 @@
                         cookedWhitefishCaloriesPerKg = Settings.settings.whitefishCooked;
                         cookedTroutCaloriesPerKg = Settings.settings.troutCooked;
                         cookedBassCaloriesPerKg = Settings.settings.bassCooked;
+                        cookedBurbotCaloriesPerKg = Settings.settings.burbotCooked;
+                        cookedGoldeyeCaloriesPerKg = Settings.settings.goldeyeCooked;
+                        cookedRedIrishLordCaloriesPerKg = Settings.settings.redIrishLordCooked;
+                        cookedRockfishCaloriesPerKg = Settings.settings.rockfishCooked;
                     }
 
                     if (Settings.settings.caloriesFish == Choice.Default && Settings.settings.fishShrinkage != Choice.Default)
@@ -198,6 +222,10 @@
                         cookedWhitefishCaloriesPerKg = FoodTweaker.defaultCookedWhitefishCaloriesPerKg / whitefishShrinkage;
                         cookedTroutCaloriesPerKg = FoodTweaker.defaultCookedTroutCaloriesPerKg / troutShrinkage;
                         cookedBassCaloriesPerKg = FoodTweaker.defaultCookedBassCaloriesPerKg / bassShrinkage;
+                        cookedBurbotCaloriesPerKg = FoodTweaker.defaultCookedBurbotCaloriesPerKg / burbotShrinkage;
+                        cookedGoldeyeCaloriesPerKg = FoodTweaker.defaultCookedGoldeyeCaloriesPerKg / goldeyeShrinkage;
+                        cookedRedIrishLordCaloriesPerKg = FoodTweaker.defaultCookedRedIrishLordCaloriesPerKg / redIrishLordShrinkage;
+                        cookedRockfishCaloriesPerKg = FoodTweaker.defaultCookedRockfishCaloriesPerKg / rockfishShrinkage;
                     }
 
                     if (__instance.name.Contains("GEAR_RawCohoSalmon"))
@@ -240,6 +268,46 @@
                         __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * cookedBassCaloriesPerKg;
                         __instance.m_FoodWeight.m_CaloriesPerKG = cookedBassCaloriesPerKg;
                     }
+                    else if (__instance.name.Contains("GEAR_RawBurbot"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * cookedBurbotCaloriesPerKg * burbotShrinkage;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedBurbotCaloriesPerKg * burbotShrinkage;
+                    }
+                    else if (__instance.name.Contains("GEAR_CookedBurbot"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * cookedBurbotCaloriesPerKg;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedBurbotCaloriesPerKg;
+                    }
+                    else if (__instance.name.Contains("GEAR_RawGoldeye"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * cookedGoldeyeCaloriesPerKg * goldeyeShrinkage;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedGoldeyeCaloriesPerKg * goldeyeShrinkage;
+                    }
+                    else if (__instance.name.Contains("GEAR_CookedGoldeye"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * cookedGoldeyeCaloriesPerKg;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedGoldeyeCaloriesPerKg;
+                    }
+                    else if (__instance.name.Contains("GEAR_RawRedIrishLord"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * cookedRedIrishLordCaloriesPerKg * redIrishLordShrinkage;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedRedIrishLordCaloriesPerKg * redIrishLordShrinkage;
+                    }
+                    else if (__instance.name.Contains("GEAR_CookedRedIrishLord"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * cookedRedIrishLordCaloriesPerKg;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedRedIrishLordCaloriesPerKg;
+                    }
+                    else if (__instance.name.Contains("GEAR_RawRockfish"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * cookedRockfishCaloriesPerKg * rockfishShrinkage;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedRockfishCaloriesPerKg * rockfishShrinkage;
+                    }
+                    else if (__instance.name.Contains("GEAR_CookedRockfish"))
+                    {
+                        __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * cookedRockfishCaloriesPerKg;
+                        __instance.m_FoodWeight.m_CaloriesPerKG = cookedRockfishCaloriesPerKg;
+                    }
                     __instance.m_FoodItem.m_CaloriesTotal = __instance.m_FoodItem.m_CaloriesRemaining;
                 }
 
@@ -250,7 +318,9 @@
                     {
                         if (Settings.settings.caloriesDrinks == Choice.Realistic)
                         {
-                            if (__instance.name.Contains("GEAR_BirchbarkTea")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticBirchBarkTeaCalories / FoodTweaker.birchBarkTeaWeight);
+                            if (__instance.name.Contains("GEAR_AcornCoffeeCup")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticAcornCoffeeCalories / FoodTweaker.acornCoffeeWeight);
+                            else if (__instance.name.Contains("GEAR_BirchbarkTea")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticBurdockTeaCalories / FoodTweaker.burdockTeaWeight);
+                            else if (__instance.name.Contains("GEAR_BurdockTea")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticBirchBarkTeaCalories / FoodTweaker.birchBarkTeaWeight);
                             else if (__instance.name.Contains("GEAR_CoffeeCup")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticCoffeeCalories / FoodTweaker.coffeeWeight);
                             else if (__instance.name.Contains("GEAR_GreenTeaCup")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticHerbalTeaCalories / FoodTweaker.herbalTeaWeight);
                             else if (__instance.name.Contains("GEAR_SodaOrange")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticOrangeSodaCalories / FoodTweaker.orangeSodaWeight);
@@ -262,7 +332,9 @@
                         }
                         else if (Settings.settings.caloriesDrinks == Choice.Custom)
                         {
-                            if (__instance.name.Contains("GEAR_BirchbarkTea")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.birchBarkTea / FoodTweaker.birchBarkTeaWeight);
+                            if (__instance.name.Contains("GEAR_AcornCoffeeCup")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.acornCoffee / FoodTweaker.acornCoffeeWeight);
+                            else if (__instance.name.Contains("GEAR_BirchbarkTea")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.birchBarkTea / FoodTweaker.birchBarkTeaWeight);
+                            else if (__instance.name.Contains("GEAR_BurdockTea")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.burdockTea / FoodTweaker.burdockTeaWeight);
                             else if (__instance.name.Contains("GEAR_CoffeeCup")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.coffee / FoodTweaker.coffeeWeight);
                             else if (__instance.name.Contains("GEAR_GreenTeaCup")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.herbalTea / FoodTweaker.herbalTeaWeight);
                             else if (__instance.name.Contains("GEAR_SodaOrange")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.orangeSoda / FoodTweaker.orangeSodaWeight);
@@ -281,9 +353,12 @@
                 {
                     if (Settings.settings.caloriesOtherFood == Choice.Realistic)
                     {
-                        if (__instance.name.Contains("GEAR_AirlineFoodChick")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticAirlineChickenCalories / FoodTweaker.airlineChickenWeight);
+                        if (__instance.name.Contains("GEAR_AcornCooked")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticAcornCalories / FoodTweaker.acornWeight);
+                        else if (__instance.name.Contains("GEAR_AcornCookedBig")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticAcornBigCalories / FoodTweaker.acornBigWeight);
+                        else if (__instance.name.Contains("GEAR_AirlineFoodChick")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticAirlineChickenCalories / FoodTweaker.airlineChickenWeight);
                         else if (__instance.name.Contains("GEAR_AirlineFoodVeg")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticAirlineVegetableCalories / FoodTweaker.airlineVegetableWeight);
                         else if (__instance.name.Contains("GEAR_BeefJerky")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticBeefJerkyCalories / FoodTweaker.beefJerkyWeight);
+                        else if (__instance.name.Contains("GEAR_BurdockPrepared")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticBurdockPreparedCalories / FoodTweaker.burdockPreparedWeight);
                         else if (__instance.name.Contains("GEAR_CandyBar")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticChocolateBarCalories / FoodTweaker.chocolateBarWeight);
                         else if (__instance.name.Contains("GEAR_CattailStalk")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticCattailStalkCalories / FoodTweaker.cattailStalkWeight);
                         else if (__instance.name.Contains("GEAR_CondensedMilk")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (FoodTweaker.realisticCondensedMilkCalories / FoodTweaker.condensedMilkWeight);
@@ -302,9 +377,12 @@
                     }
                     else if (Settings.settings.caloriesOtherFood == Choice.Custom)
                     {
-                        if (__instance.name.Contains("GEAR_AirlineFoodChick")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.airlineChicken / FoodTweaker.airlineChickenWeight);
+                        if (__instance.name.Contains("GEAR_AcornCooked")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.acorn / FoodTweaker.acornWeight);
+                        else if (__instance.name.Contains("GEAR_AcornCookedBig")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.acornBig / FoodTweaker.acornBigWeight);
+                        else if (__instance.name.Contains("GEAR_AirlineFoodChick")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.airlineChicken / FoodTweaker.airlineChickenWeight);
                         else if (__instance.name.Contains("GEAR_AirlineFoodVeg")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.airlineVegetarian / FoodTweaker.airlineVegetableWeight);
                         else if (__instance.name.Contains("GEAR_BeefJerky")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.beefJerky / FoodTweaker.beefJerkyWeight);
+                        else if (__instance.name.Contains("GEAR_BurdockPrepared")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.burdockPrepared / FoodTweaker.burdockPreparedWeight);
                         else if (__instance.name.Contains("GEAR_CandyBar")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.chocolateBar / FoodTweaker.chocolateBarWeight);
                         else if (__instance.name.Contains("GEAR_CattailStalk")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.cattailStalk / FoodTweaker.cattailStalkWeight);
                         else if (__instance.name.Contains("GEAR_CondensedMilk")) __instance.m_FoodItem.m_CaloriesRemaining = __instance.WeightKG * (Settings.settings.condensedMilk / FoodTweaker.condensedMilkWeight);

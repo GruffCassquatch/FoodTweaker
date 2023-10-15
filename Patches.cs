@@ -59,6 +59,26 @@
                         if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.bassCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
                         return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
                     }
+                    if (__instance.m_GearItemBeingCooked.name == "GEAR_RawBurbot")
+                    {
+                        if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.burbotCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                        return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                    }
+                    else if (__instance.m_GearItemBeingCooked.name == "GEAR_RawGoldeye")
+                    {
+                        if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.goldeyeCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                        return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                    }
+                    else if (__instance.m_GearItemBeingCooked.name == "GEAR_RedIrishLord")
+                    {
+                        if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.redIrishLordCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                        return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                    }
+                    else if (__instance.m_GearItemBeingCooked.name == "GEAR_Rockfish")
+                    {
+                        if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.rockfishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                        return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                    }
                 }
             }
             return __result;
@@ -82,6 +102,10 @@
                     float cookedWhitefishCaloriesPerKg = FoodTweaker.defaultCookedWhitefishCaloriesPerKg;
                     float cookedTroutCaloriesPerKg = FoodTweaker.defaultCookedTroutCaloriesPerKg;
                     float cookedBassCaloriesPerKg = FoodTweaker.defaultCookedBassCaloriesPerKg;
+                    float cookedBurbotCaloriesPerKg = FoodTweaker.defaultCookedBurbotCaloriesPerKg;
+                    float cookedGoldeyeCaloriesPerKg = FoodTweaker.defaultCookedGoldeyeCaloriesPerKg;
+                    float cookedRedIrishLordCaloriesPerKg = FoodTweaker.defaultCookedRedIrishLordCaloriesPerKg;
+                    float cookedRockfishCaloriesPerKg = FoodTweaker.defaultCookedRockfishCaloriesPerKg;
 
                     if (Settings.settings.caloriesFish == Choice.Realistic)
                     {
@@ -89,6 +113,10 @@
                         cookedWhitefishCaloriesPerKg = FoodTweaker.realisticCookedWhitefishCaloriesPerKg;
                         cookedTroutCaloriesPerKg = FoodTweaker.realisticCookedTroutCaloriesPerKg;
                         cookedBassCaloriesPerKg = FoodTweaker.realisticCookedBassCaloriesPerKg;
+                        cookedBurbotCaloriesPerKg = FoodTweaker.realisticCookedBurbotCaloriesPerKg;
+                        cookedGoldeyeCaloriesPerKg = FoodTweaker.realisticCookedGoldeyeCaloriesPerKg;
+                        cookedRedIrishLordCaloriesPerKg = FoodTweaker.realisticCookedRedIrishLordCaloriesPerKg;
+                        cookedRockfishCaloriesPerKg = FoodTweaker.realisticCookedRockfishCaloriesPerKg;
                     }
                     else if (Settings.settings.caloriesFish == Choice.Custom)
                     {
@@ -96,11 +124,20 @@
                         cookedWhitefishCaloriesPerKg = Settings.settings.whitefishCooked;
                         cookedTroutCaloriesPerKg = Settings.settings.troutCooked;
                         cookedBassCaloriesPerKg = Settings.settings.bassCooked;
+                        cookedBurbotCaloriesPerKg = Settings.settings.burbotCooked;
+                        cookedGoldeyeCaloriesPerKg = Settings.settings.goldeyeCooked;
+                        cookedRedIrishLordCaloriesPerKg = Settings.settings.redIrishLordCooked;
+                        cookedRockfishCaloriesPerKg = Settings.settings.rockfishCooked;
                     }
+
                     if (cookedItem.name.StartsWith("GEAR_CookedCohoSalmon")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedSalmonCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
                     else if (cookedItem.name.StartsWith("GEAR_CookedLakeWhiteFish")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedWhitefishCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
                     else if (cookedItem.name.StartsWith("GEAR_CookedRainbowTrout")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedTroutCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
                     else if (cookedItem.name.StartsWith("GEAR_CookedSmallMouthBass")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedBassCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
+                    else if (cookedItem.name.StartsWith("GEAR_CookedBurbot")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedBurbotCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
+                    else if (cookedItem.name.StartsWith("GEAR_CookedGoldeye")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedGoldeyeCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
+                    else if (cookedItem.name.StartsWith("GEAR_CookedRedIrishLord")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedRedIrishLordCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
+                    else if (cookedItem.name.StartsWith("GEAR_CookedRockfish")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedRockfishCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
 
                     // Shrinkage
                     float fishShrinkage = 1 - FoodTweaker.defaultFishShrinkage;
@@ -112,6 +149,10 @@
                         else if (cookedItem.name.StartsWith("GEAR_CookedLakeWhiteFish")) fishShrinkage = 1 - Settings.settings.whitefishShrinks;
                         else if (cookedItem.name.StartsWith("GEAR_CookedRainbowTrout")) fishShrinkage = 1 - Settings.settings.troutShrinks;
                         else if (cookedItem.name.StartsWith("GEAR_CookedSmallMouthBass")) fishShrinkage = 1 - Settings.settings.bassShrinks;
+                        else if (cookedItem.name.StartsWith("GEAR_CookedBurbot")) fishShrinkage = 1 - Settings.settings.burbotShrinks;
+                        else if (cookedItem.name.StartsWith("GEAR_CookedGoldeye")) fishShrinkage = 1 - Settings.settings.goldeyeShrinks;
+                        else if (cookedItem.name.StartsWith("GEAR_CookedRedIrishLord")) fishShrinkage = 1 - Settings.settings.redIrishLordShrinks;
+                        else if (cookedItem.name.StartsWith("GEAR_CookedRockfish")) fishShrinkage = 1 - Settings.settings.rockfishShrinks;
                     }
                     cookedItem.WeightKG = rawItem.WeightKG * fishShrinkage;
                 }

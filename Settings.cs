@@ -136,6 +136,26 @@ namespace FoodTweaker
         [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
         public float bassCooked = 454.5f;
 
+        [Name("Burbot calories/kg (Cooked)")]
+        [Description("Set the calorie value of 1kg of COOKED Burbot.\nDefault Game Value: 488\nRealistic Value: 1150 (1437 at Cooking lvl 5)")]
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
+        public float burbotCooked = 488f;
+
+        [Name("Goldeye calories/kg (Cooked)")]
+        [Description("Set the calorie value of 1kg of COOKED Goldeye Fish.\nDefault Game Value: 450\nRealistic Value: 2500 (3125 at Cooking lvl 5)")]
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
+        public float goldeyeCooked = 450f;
+
+        [Name("Red Irish Lord calories/kg (Cooked)")]
+        [Description("Set the calorie value of 1kg of COOKED Red Irish Lord.\nDefault Game Value: 450\nRealistic Value: 1150 (1437 at Cooking lvl 5)")]
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
+        public float redIrishLordCooked = 450f;
+
+        [Name("Rockfish calories/kg (Cooked)")]
+        [Description("Set the calorie value of 1kg of COOKED Rockfish.\nDefault Game Value: 450\nRealistic Value: 1090 (1362 at Cooking lvl 5)")]
+        [Slider(250, 2000, 351, NumberFormat = "{0:0.#} /kg")]
+        public float rockfishCooked = 450f;
+
         [Name("Fish Shrinkage & Cleaning Loss")]
         [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%\nCUSTOM: Set your own values.")]
         [Choice("Game Default", "Realistic", "Custom")]
@@ -160,6 +180,26 @@ namespace FoodTweaker
         [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
         [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
         public float bassShrinks = 0.33f;
+
+        [Name("Burbot")]
+        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
+        [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
+        public float burbotShrinks = 0.33f;
+
+        [Name("Goldeye")]
+        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
+        [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
+        public float goldeyeShrinks = 0.33f;
+
+        [Name("Red Irish Lord")]
+        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
+        [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
+        public float redIrishLordShrinks = 0.33f;
+
+        [Name("Rockfish")]
+        [Description("Weight difference between WHOLE, RAW FISH and CLEANED, COOKED FISH.\nGAME DEFAULT: 33%. REALISTIC: 50%")]
+        [Slider(0.25f, 0.75f, 51, NumberFormat = "{0:P0}")]
+        public float rockfishShrinks = 0.33f;
 
         [Name("Cooking Time (Before Cooking Skill Bonus)")]
         [Description("GAME DEFAULT: Values will remain unchanged.\nREALISTIC: Based on realistic values + some assumptions.\nCUSTOM: Set your own values.")]
@@ -186,6 +226,26 @@ namespace FoodTweaker
         [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
         public float bassCookingTime = 15;
 
+        [Name("Burbot (minutes/kg)")]
+        [Description("Adjust cooking time, in minutes, for 1kg Burbot.\nGAME DEFAULT: ? .\nREALISTIC: 15 mins")]
+        [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
+        public float burbotCookingTime = 15;
+
+        [Name("Goldeye (minutes/kg)")]
+        [Description("Adjust cooking time, in minutes, for 1kg Goldeye.\nGAME DEFAULT: ? .\nREALISTIC: 15 mins")]
+        [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
+        public float goldeyeCookingTime = 15;
+
+        [Name("Red Irish Lord (minutes/kg)")]
+        [Description("Adjust cooking time, in minutes, for 1kg Red Irish Lord.\nGAME DEFAULT: ? .\nREALISTIC: 15 mins")]
+        [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
+        public float redIrishLordCookingTime = 15;
+
+        [Name("Rockfish (minutes/kg)")]
+        [Description("Adjust cooking time, in minutes, for 1kg rockfish.\nGAME DEFAULT: ? .\nREALISTIC: 15 mins")]
+        [Slider(1, 60, 60, NumberFormat = "{0:0.#} mins")]
+        public float rockfishCookingTime = 15;
+
 
         [Section("Meat & Fish Warming Up Buff")]
         [Name("Buff Duration")]
@@ -205,10 +265,20 @@ namespace FoodTweaker
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice caloriesDrinks = Choice.Default;
 
+        [Name("Acorn Coffee")]
+        [Description("Default Game Value: 100\nRealistic Value: 5 (estimated)")]
+        [Slider(1, 100, 100, NumberFormat = "{0:0.#}")]
+        public float acornCoffee = 100;
+
         [Name("Birch Bark Tea")]
         [Description("Default Game Value: 100\nRealistic Value: 5 (estimated)")]
         [Slider(1, 100, 100, NumberFormat = "{0:0.#}")]
         public float birchBarkTea = 100;
+
+        [Name("Burdock Tea")]
+        [Description("Default Game Value: 100\nRealistic Value: 5 (estimated)")]
+        [Slider(1, 100, 100, NumberFormat = "{0:0.#}")]
+        public float burdockTea = 100;
 
         [Name("Coffee")]
         [Description("Default Game Value: 100\nRealistic Value: 5")]
@@ -257,6 +327,16 @@ namespace FoodTweaker
         [Choice("Game Default", "Realistic", "Custom")]
         public Choice caloriesOtherFood = Choice.Default;
 
+        [Name("         Acorn")]
+        [Description("Default Game Value: 100\nRealistic Value: 152")]
+        [Slider(100, 1000, 181, NumberFormat = "{0:0.#}")]
+        public float acorn = 100;
+
+        [Name("         Acorn : Large portion")]
+        [Description("Default Game Value: 400\nRealistic Value: 608")]
+        [Slider(100, 1000, 181, NumberFormat = "{0:0.#}")]
+        public float acornBig = 400;
+
         [Name("         Airline Food: Chicken")]
         [Description("Default Game Value: 620\nRealistic Value: 620")]
         [Slider(100, 1000, 181, NumberFormat = "{0:0.#}")]
@@ -271,6 +351,11 @@ namespace FoodTweaker
         [Description("Default Game Value: 350\nRealistic Value: 410")]
         [Slider(100, 1000, 181, NumberFormat = "{0:0.#}")]
         public float beefJerky = 350;
+
+        [Name("         Burdock prepared")]
+        [Description("Default Game Value: 275\nRealistic Value: 108")]
+        [Slider(100, 1000, 181, NumberFormat = "{0:0.#}")]
+        public float burdockPrepared = 275;
 
         [Name("         Cattail Stalk")]
         [Description("Default Game Value: 150\nRealistic Value: 15 (estimated)")]
@@ -399,10 +484,17 @@ namespace FoodTweaker
             SetFieldVisible(nameof(whitefishCooked), Settings.settings.modFunction == true && Settings.settings.caloriesFish == Choice.Custom);
             SetFieldVisible(nameof(troutCooked), Settings.settings.modFunction == true && Settings.settings.caloriesFish == Choice.Custom);
             SetFieldVisible(nameof(bassCooked), Settings.settings.modFunction == true && Settings.settings.caloriesFish == Choice.Custom);
+            SetFieldVisible(nameof(burbotCooked), Settings.settings.modFunction == true && Settings.settings.caloriesFish == Choice.Custom);
+            SetFieldVisible(nameof(goldeyeCooked), Settings.settings.modFunction == true && Settings.settings.caloriesFish == Choice.Custom);
+            SetFieldVisible(nameof(redIrishLordCooked), Settings.settings.modFunction == true && Settings.settings.caloriesFish == Choice.Custom);
+            SetFieldVisible(nameof(rockfishCooked), Settings.settings.modFunction == true && Settings.settings.caloriesFish == Choice.Custom);
             SetFieldVisible(nameof(caloriesOtherFood), Settings.settings.modFunction == true);
+            SetFieldVisible(nameof(acorn), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
+            SetFieldVisible(nameof(acornBig), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
             SetFieldVisible(nameof(airlineChicken), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
             SetFieldVisible(nameof(airlineVegetarian), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
             SetFieldVisible(nameof(beefJerky), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
+            SetFieldVisible(nameof(burdockPrepared), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
             SetFieldVisible(nameof(cattailStalk), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
             SetFieldVisible(nameof(chocolateBar), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
             SetFieldVisible(nameof(condensedMilk), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
@@ -419,7 +511,9 @@ namespace FoodTweaker
             SetFieldVisible(nameof(sardines), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
             SetFieldVisible(nameof(tomatoSoup), Settings.settings.modFunction == true && Settings.settings.caloriesOtherFood == Choice.Custom);
             SetFieldVisible(nameof(caloriesDrinks), Settings.settings.modFunction == true);
+            SetFieldVisible(nameof(acornCoffee), Settings.settings.modFunction == true && Settings.settings.caloriesDrinks == Choice.Custom);
             SetFieldVisible(nameof(birchBarkTea), Settings.settings.modFunction == true && Settings.settings.caloriesDrinks == Choice.Custom);
+            SetFieldVisible(nameof(burdockTea), Settings.settings.modFunction == true && Settings.settings.caloriesDrinks == Choice.Custom);
             SetFieldVisible(nameof(coffee), Settings.settings.modFunction == true && Settings.settings.caloriesDrinks == Choice.Custom);
             SetFieldVisible(nameof(herbalTea), Settings.settings.modFunction == true && Settings.settings.caloriesDrinks == Choice.Custom);
             SetFieldVisible(nameof(orangeSoda), Settings.settings.modFunction == true && Settings.settings.caloriesDrinks == Choice.Custom);
@@ -439,6 +533,10 @@ namespace FoodTweaker
             SetFieldVisible(nameof(whitefishShrinks), Settings.settings.modFunction == true && Settings.settings.fishShrinkage == Choice.Custom);
             SetFieldVisible(nameof(troutShrinks), Settings.settings.modFunction == true && Settings.settings.fishShrinkage == Choice.Custom);
             SetFieldVisible(nameof(bassShrinks), Settings.settings.modFunction == true && Settings.settings.fishShrinkage == Choice.Custom);
+            SetFieldVisible(nameof(burbotShrinks), Settings.settings.modFunction == true && Settings.settings.fishShrinkage == Choice.Custom);
+            SetFieldVisible(nameof(goldeyeShrinks), Settings.settings.modFunction == true && Settings.settings.fishShrinkage == Choice.Custom);
+            SetFieldVisible(nameof(redIrishLordShrinks), Settings.settings.modFunction == true && Settings.settings.fishShrinkage == Choice.Custom);
+            SetFieldVisible(nameof(rockfishShrinks), Settings.settings.modFunction == true && Settings.settings.fishShrinkage == Choice.Custom);
             SetFieldVisible(nameof(meatCookingTime), Settings.settings.modFunction == true);
             SetFieldVisible(nameof(bearCookingTime), Settings.settings.modFunction == true && Settings.settings.meatCookingTime == Choice.Custom);
             SetFieldVisible(nameof(deerCookingTime), Settings.settings.modFunction == true && Settings.settings.meatCookingTime == Choice.Custom);
@@ -450,6 +548,10 @@ namespace FoodTweaker
             SetFieldVisible(nameof(whitefishCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
             SetFieldVisible(nameof(troutCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
             SetFieldVisible(nameof(bassCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
+            SetFieldVisible(nameof(burbotCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
+            SetFieldVisible(nameof(goldeyeCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
+            SetFieldVisible(nameof(redIrishLordCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
+            SetFieldVisible(nameof(rockfishCookingTime), Settings.settings.modFunction == true && Settings.settings.fishCookingTime == Choice.Custom);
             SetFieldVisible(nameof(updateHydration), Settings.settings.modFunction == true);
             SetFieldVisible(nameof(mreHeating), Settings.settings.modFunction == true);
             SetFieldVisible(nameof(mreWarmingUpDuration), Settings.settings.modFunction == true && Settings.settings.mreHeating);
@@ -472,6 +574,8 @@ namespace FoodTweaker
                     FoodTweaker.ChangePrefabHydration("GEAR_GreenTeaCup");
                     FoodTweaker.ChangePrefabHydration("GEAR_ReishiTea");
                     FoodTweaker.ChangePrefabHydration("GEAR_RoseHipTea");
+                    FoodTweaker.ChangePrefabHydration("GEAR_BurdockTea");
+                    FoodTweaker.ChangePrefabHydration("GEAR_AcornCoffeeCup");
                 }
             }
         }
