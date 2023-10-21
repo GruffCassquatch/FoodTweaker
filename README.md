@@ -2,7 +2,7 @@
 A mod for the Long Dark.    
 CHOOSE THE CORRECT MOD VERSION TO MATCH YOUR GAME VERSION      
 
-UPDATED FOR 2.12 / TFTFT BY PHAEDRUS     
+UPDATED FOR 2.12 / TFTFT BY PHAEDRUS, LATEST UPDATES BY ROMAIN     
 
 ## Mod features:
   * Adjust calories of food items (meat, fish, drinks, packaged goods etc.)
