@@ -26,6 +26,11 @@
                         if (Settings.settings.meatCookingTime == Choice.Custom) return (Settings.settings.mooseCookingTime * itemWeight) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
                         return (FoodTweaker.mooseCookingTime * itemWeight) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
                     }
+                    else if (__instance.m_GearItemBeingCooked.name == "GEAR_RawMeatPtarmigan")
+                    {
+                        if (Settings.settings.meatCookingTime == Choice.Custom) return (Settings.settings.ptarmiganCookingTime * itemWeight) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                        return (FoodTweaker.ptarmiganCookingTime * itemWeight) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                    }
                     else if (__instance.m_GearItemBeingCooked.name == "GEAR_RawMeatRabbit")
                     {
                         if (Settings.settings.meatCookingTime == Choice.Custom) return (Settings.settings.rabbitCookingTime * itemWeight) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
@@ -59,6 +64,26 @@
                         if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.bassCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
                         return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
                     }
+                    if (__instance.m_GearItemBeingCooked.name == "GEAR_RawBurbot")
+                    {
+                        if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.burbotCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                        return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                    }
+                    else if (__instance.m_GearItemBeingCooked.name == "GEAR_RawGoldeye")
+                    {
+                        if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.goldeyeCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                        return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                    }
+                    else if (__instance.m_GearItemBeingCooked.name == "GEAR_RawRedIrishLord")
+                    {
+                        if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.redIrishLordCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                        return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                    }
+                    else if (__instance.m_GearItemBeingCooked.name == "GEAR_RawRockfish")
+                    {
+                        if (Settings.settings.fishCookingTime == Choice.Custom) return (Settings.settings.rockfishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                        return (FoodTweaker.fishCookingTime * __instance.m_GearItemBeingCooked.WeightKG) * (__instance.m_CanOnlyWarmUpFood ? __instance.m_NearFireWarmUpCookingTimeMultiplier : __instance.GetTotalCookMultiplier());
+                    }
                 }
             }
             return __result;
@@ -71,7 +96,7 @@
     {
         private static void Postfix(GearItem rawItem, GearItem cookedItem)
         {
-            if (Settings.settings.modFunction && rawItem.name.StartsWith("GEAR_Raw"))
+            if (Settings.settings.modFunction && (rawItem.name.StartsWith("GEAR_Raw")))
             {
                 if (rawItem.m_FoodItem.m_IsFish)
                 {
@@ -82,6 +107,10 @@
                     float cookedWhitefishCaloriesPerKg = FoodTweaker.defaultCookedWhitefishCaloriesPerKg;
                     float cookedTroutCaloriesPerKg = FoodTweaker.defaultCookedTroutCaloriesPerKg;
                     float cookedBassCaloriesPerKg = FoodTweaker.defaultCookedBassCaloriesPerKg;
+                    float cookedBurbotCaloriesPerKg = FoodTweaker.defaultCookedBurbotCaloriesPerKg;
+                    float cookedGoldeyeCaloriesPerKg = FoodTweaker.defaultCookedGoldeyeCaloriesPerKg;
+                    float cookedRedIrishLordCaloriesPerKg = FoodTweaker.defaultCookedRedIrishLordCaloriesPerKg;
+                    float cookedRockfishCaloriesPerKg = FoodTweaker.defaultCookedRockfishCaloriesPerKg;
 
                     if (Settings.settings.caloriesFish == Choice.Realistic)
                     {
@@ -89,6 +118,10 @@
                         cookedWhitefishCaloriesPerKg = FoodTweaker.realisticCookedWhitefishCaloriesPerKg;
                         cookedTroutCaloriesPerKg = FoodTweaker.realisticCookedTroutCaloriesPerKg;
                         cookedBassCaloriesPerKg = FoodTweaker.realisticCookedBassCaloriesPerKg;
+                        cookedBurbotCaloriesPerKg = FoodTweaker.realisticCookedBurbotCaloriesPerKg;
+                        cookedGoldeyeCaloriesPerKg = FoodTweaker.realisticCookedGoldeyeCaloriesPerKg;
+                        cookedRedIrishLordCaloriesPerKg = FoodTweaker.realisticCookedRedIrishLordCaloriesPerKg;
+                        cookedRockfishCaloriesPerKg = FoodTweaker.realisticCookedRockfishCaloriesPerKg;
                     }
                     else if (Settings.settings.caloriesFish == Choice.Custom)
                     {
@@ -96,11 +129,20 @@
                         cookedWhitefishCaloriesPerKg = Settings.settings.whitefishCooked;
                         cookedTroutCaloriesPerKg = Settings.settings.troutCooked;
                         cookedBassCaloriesPerKg = Settings.settings.bassCooked;
+                        cookedBurbotCaloriesPerKg = Settings.settings.burbotCooked;
+                        cookedGoldeyeCaloriesPerKg = Settings.settings.goldeyeCooked;
+                        cookedRedIrishLordCaloriesPerKg = Settings.settings.redIrishLordCooked;
+                        cookedRockfishCaloriesPerKg = Settings.settings.rockfishCooked;
                     }
+
                     if (cookedItem.name.StartsWith("GEAR_CookedCohoSalmon")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedSalmonCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
                     else if (cookedItem.name.StartsWith("GEAR_CookedLakeWhiteFish")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedWhitefishCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
                     else if (cookedItem.name.StartsWith("GEAR_CookedRainbowTrout")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedTroutCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
                     else if (cookedItem.name.StartsWith("GEAR_CookedSmallMouthBass")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedBassCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
+                    else if (cookedItem.name.StartsWith("GEAR_CookedBurbot")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedBurbotCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
+                    else if (cookedItem.name.StartsWith("GEAR_CookedGoldeye")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedGoldeyeCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
+                    else if (cookedItem.name.StartsWith("GEAR_CookedRedIrishLord")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedRedIrishLordCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
+                    else if (cookedItem.name.StartsWith("GEAR_CookedRockfish")) cookedItem.m_FoodWeight.m_CaloriesPerKG = cookedRockfishCaloriesPerKg * GameManager.GetSkillCooking().GetCalorieScale();
 
                     // Shrinkage
                     float fishShrinkage = 1 - FoodTweaker.defaultFishShrinkage;
@@ -112,6 +154,10 @@
                         else if (cookedItem.name.StartsWith("GEAR_CookedLakeWhiteFish")) fishShrinkage = 1 - Settings.settings.whitefishShrinks;
                         else if (cookedItem.name.StartsWith("GEAR_CookedRainbowTrout")) fishShrinkage = 1 - Settings.settings.troutShrinks;
                         else if (cookedItem.name.StartsWith("GEAR_CookedSmallMouthBass")) fishShrinkage = 1 - Settings.settings.bassShrinks;
+                        else if (cookedItem.name.StartsWith("GEAR_CookedBurbot")) fishShrinkage = 1 - Settings.settings.burbotShrinks;
+                        else if (cookedItem.name.StartsWith("GEAR_CookedGoldeye")) fishShrinkage = 1 - Settings.settings.goldeyeShrinks;
+                        else if (cookedItem.name.StartsWith("GEAR_CookedRedIrishLord")) fishShrinkage = 1 - Settings.settings.redIrishLordShrinks;
+                        else if (cookedItem.name.StartsWith("GEAR_CookedRockfish")) fishShrinkage = 1 - Settings.settings.rockfishShrinks;
                     }
                     cookedItem.WeightKG = rawItem.WeightKG * fishShrinkage;
                 }
@@ -123,6 +169,7 @@
                     float cookedBearCalories = FoodTweaker.defaultCookedBearCalories;
                     float cookedDeerCalories = FoodTweaker.defaultCookedDeerCalories;
                     float cookedMooseCalories = FoodTweaker.defaultCookedMooseCalories;
+                    float cookedPtarmiganCalories = FoodTweaker.defaultCookedPtarmiganCalories;
                     float cookedRabbitCalories = FoodTweaker.defaultCookedRabbitCalories;
                     float cookedWolfCalories = FoodTweaker.defaultCookedWolfCalories;
 
@@ -131,6 +178,7 @@
                         cookedBearCalories = FoodTweaker.realisticCookedBearCalories;
                         cookedDeerCalories = FoodTweaker.realisticCookedDeerCalories;
                         cookedMooseCalories = FoodTweaker.realisticCookedMooseCalories;
+                        cookedPtarmiganCalories = FoodTweaker.realisticCookedPtarmiganCalories;
                         cookedRabbitCalories = FoodTweaker.realisticCookedRabbitCalories;
                         cookedWolfCalories = FoodTweaker.realisticCookedWolfCalories;
                     }
@@ -139,6 +187,7 @@
                         cookedBearCalories = Settings.settings.bearCooked;
                         cookedDeerCalories = Settings.settings.deerCooked;
                         cookedMooseCalories = Settings.settings.mooseCooked;
+                        cookedPtarmiganCalories = Settings.settings.mooseCooked;
                         cookedRabbitCalories = Settings.settings.rabbitCooked;
                         cookedWolfCalories = Settings.settings.wolfCooked;
                     }
@@ -147,6 +196,7 @@
                     float bearShrinkage = 1 - FoodTweaker.defaultMeatShrinkage;
                     float deerShrinkage = 1 - FoodTweaker.defaultMeatShrinkage;
                     float mooseShrinkage = 1 - FoodTweaker.defaultMeatShrinkage;
+                    float ptarmiganShrinkage = 1 - FoodTweaker.defaultMeatShrinkage;
                     float rabbitShrinkage = 1 - FoodTweaker.defaultMeatShrinkage;
                     float wolfShrinkage = 1 - FoodTweaker.defaultMeatShrinkage;
 
@@ -155,6 +205,7 @@
                         bearShrinkage = 1 - FoodTweaker.realisticMeatShrinkage;
                         deerShrinkage = 1 - FoodTweaker.realisticMeatShrinkage;
                         mooseShrinkage = 1 - FoodTweaker.realisticMeatShrinkage;
+                        ptarmiganShrinkage = 1 - FoodTweaker.realisticMeatShrinkage;
                         rabbitShrinkage = 1 - FoodTweaker.realisticMeatShrinkage;
                         wolfShrinkage = 1 - FoodTweaker.realisticMeatShrinkage;
                     }
@@ -163,6 +214,7 @@
                         bearShrinkage = 1 - Settings.settings.bearShrinks;
                         deerShrinkage = 1 - Settings.settings.deerShrinks;
                         mooseShrinkage = 1 - Settings.settings.mooseShrinks;
+                        ptarmiganShrinkage = 1 - Settings.settings.ptarmiganShrinks;
                         rabbitShrinkage = 1 - Settings.settings.rabbitShrinks;
                         wolfShrinkage = 1 - Settings.settings.wolfShrinks;
                     }
@@ -172,6 +224,7 @@
                         cookedBearCalories = FoodTweaker.defaultCookedBearCalories / bearShrinkage;
                         cookedDeerCalories = FoodTweaker.defaultCookedDeerCalories / deerShrinkage;
                         cookedMooseCalories = FoodTweaker.defaultCookedMooseCalories / mooseShrinkage;
+                        cookedPtarmiganCalories = FoodTweaker.defaultCookedPtarmiganCalories / ptarmiganShrinkage;
                         cookedRabbitCalories = FoodTweaker.defaultCookedRabbitCalories / rabbitShrinkage;
                         cookedWolfCalories = FoodTweaker.defaultCookedWolfCalories / wolfShrinkage;
                     }
@@ -190,6 +243,11 @@
                     {
                         cookedItemWeight *= mooseShrinkage;
                         cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItemWeight * cookedMooseCalories * GameManager.GetSkillCooking().GetCalorieScale();
+                    }
+                    else if (cookedItem.name.Contains("GEAR_CookedMeatPtarmigan"))
+                    {
+                        cookedItemWeight *= ptarmiganShrinkage;
+                        cookedItem.m_FoodItem.m_CaloriesRemaining = cookedItemWeight * cookedPtarmiganCalories * GameManager.GetSkillCooking().GetCalorieScale();
                     }
                     else if (cookedItem.name.Contains("GEAR_CookedMeatRabbit"))
                     {
