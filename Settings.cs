@@ -761,6 +761,7 @@ namespace FoodTweaker
                 if (Settings.settings.updateHydration)
                 {
                     FoodTweaker.ChangePrefabHydration("GEAR_CoffeeCup");
+                    FoodTweaker.ChangePrefabHydration("GEAR_BirchbarkTea");
                     FoodTweaker.ChangePrefabHydration("GEAR_GreenTeaCup");
                     FoodTweaker.ChangePrefabHydration("GEAR_ReishiTea");
                     FoodTweaker.ChangePrefabHydration("GEAR_RoseHipTea");
