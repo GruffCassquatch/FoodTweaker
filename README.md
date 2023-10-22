@@ -4,6 +4,12 @@ CHOOSE THE CORRECT MOD VERSION TO MATCH YOUR GAME VERSION
 
 UPDATED FOR 2.12 / TFTFT BY PHAEDRUS, LATEST UPDATES BY ROMAIN     
 
+## Known Issue
+* The new cooking panel still displays vanilla calories for transformed food items, that is to say :
+	* If you warm up an item (tea, cans, ...) the calories displayed are correct
+ 	* If you transform an item (reishi > tea, raw > cooked, any kind of recipe) the calories displayed aren't incorrect
+	* However, once the item is cooked, the correct values are displayed in your inventory
+
 ## Mod features:
   * Adjust calories of food items (meat, fish, drinks, packaged goods etc.)
   * Adjust cooking time for meat and fish
