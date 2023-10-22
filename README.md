@@ -7,7 +7,7 @@ UPDATED FOR 2.12 / TFTFT BY PHAEDRUS, LATEST UPDATES BY ROMAIN
 ## Known Issue
 * The new cooking panel still displays vanilla calories for transformed food items, that is to say :
 	* If you warm up an item (tea, cans, ...) the calories displayed are correct
- 	* If you transform an item (reishi > tea, raw > cooked, any kind of recipe) the calories displayed aren't incorrect
+ 	* If you transform an item (reishi > tea, raw > cooked, any kind of recipe) the calories displayed aren't correct
 	* However, once the item is cooked, the correct values are displayed in your inventory
 
 ## Mod features:
